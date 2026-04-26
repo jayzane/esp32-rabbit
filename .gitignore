@@ -1,0 +1,72 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ESP-IDF
+esp32-firmware/build/
+esp32-firmware/dependencies/
+esp-idf/
+sdkconfig
+sdkconfig.old
+*.o
+*.d
+
+# Flutter
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+.dart_tool/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets (NEVER commit these)
+.env
+.env.local
+*.pem
+*.key
+credentials.json
+secrets/
+
+# Logs
+*.log
+logs/
+
+# AI Coding
+.Claude/
+
+# Worktrees
+.worktrees/

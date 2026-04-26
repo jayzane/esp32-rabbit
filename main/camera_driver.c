@@ -1,13 +1,18 @@
 #include "camera_driver.h"
 #include "esp_log.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/semphr.h"
 
 static const char* TAG = "camera_driver";
 
+static DRAM_ATTR SemaphoreHandle_t s_mutex = NULL;
 static bool s_initialized = false;
 static bool s_running = false;
 
 camera_err_t camera_driver_init(void)
 {
+    s_mutex = xSemaphoreCreateMutex();
+
     camera_config_t config = {
         .pin_pwdn = -1,
         .pin_reset = -1,
@@ -66,45 +71,62 @@ camera_err_t camera_driver_init(void)
         s->set_colorbar(s, 0);
     }
 
+    xSemaphoreTake(s_mutex, portMAX_DELAY);
     s_initialized = true;
+    xSemaphoreGive(s_mutex);
     ESP_LOGI(TAG, "Camera initialized");
     return CAMERA_OK;
 }
 
 void camera_driver_deinit(void)
 {
+    xSemaphoreTake(s_mutex, portMAX_DELAY);
     if (s_initialized) {
         esp_camera_deinit();
         s_initialized = false;
         s_running = false;
         ESP_LOGI(TAG, "Camera deinitialized");
     }
+    xSemaphoreGive(s_mutex);
+    vSemaphoreDelete(s_mutex);
+    s_mutex = NULL;
 }
 
 camera_err_t camera_driver_start(void)
 {
+    xSemaphoreTake(s_mutex, portMAX_DELAY);
     if (!s_initialized) {
+        xSemaphoreGive(s_mutex);
         return CAMERA_ERROR_NOT_INITIALIZED;
     }
     s_running = true;
+    xSemaphoreGive(s_mutex);
     return CAMERA_OK;
 }
 
 void camera_driver_stop(void)
 {
+    xSemaphoreTake(s_mutex, portMAX_DELAY);
     s_running = false;
+    xSemaphoreGive(s_mutex);
 }
 
 bool camera_driver_is_running(void)
 {
-    return s_running;
+    xSemaphoreTake(s_mutex, portMAX_DELAY);
+    bool running = s_running;
+    xSemaphoreGive(s_mutex);
+    return running;
 }
 
 camera_fb_t* camera_driver_get_frame(void)
 {
+    xSemaphoreTake(s_mutex, portMAX_DELAY);
     if (!s_running) {
+        xSemaphoreGive(s_mutex);
         return NULL;
     }
+    xSemaphoreGive(s_mutex);
     return esp_camera_fb_get();
 }
 
@@ -117,5 +139,8 @@ void camera_driver_return_frame(camera_fb_t* fb)
 
 bool camera_driver_is_initialized(void)
 {
-    return s_initialized;
+    xSemaphoreTake(s_mutex, portMAX_DELAY);
+    bool initialized = s_initialized;
+    xSemaphoreGive(s_mutex);
+    return initialized;
 }

@@ -10,7 +10,7 @@
 
 **Design System:**
 - Color: Background #0d1117, Surface #161b22, Border #30363d, Primary #58a6ff, Success #3fb950, Danger #f85149, Text #e6edf3, Muted #8b949e
-- Typography: 'JetBrains Mono' for headings (tech feel), system-ui for body
+- Typography: 'JetBrains Mono', 'Microsoft YaHei', 'Segoe UI', system-ui (fallback chain for Chinese/English)
 - Spacing: 8px base unit (multiples: 8, 16, 24, 32, 48)
 - Border-radius: 8px cards, 6px buttons, 4px small elements
 - Motion: 150ms ease-out transitions, hover scale(1.02) + shadow lift
@@ -103,7 +103,7 @@
         }
 
         .header-title {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'JetBrains Mono', 'Microsoft YaHei', 'Segoe UI', system-ui, sans-serif;
             font-size: 20px;
             font-weight: 600;
             color: var(--primary);
@@ -140,7 +140,7 @@
         }
 
         .card-label {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'JetBrains Mono', 'Microsoft YaHei', 'Segoe UI', system-ui, sans-serif;
             font-size: 12px;
             font-weight: 500;
             color: var(--muted);
@@ -162,7 +162,7 @@
             padding: 12px 24px;
             border: none;
             border-radius: var(--r-md);
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'JetBrains Mono', 'Microsoft YaHei', 'Segoe UI', system-ui, sans-serif;
             font-size: 14px;
             font-weight: 500;
             cursor: pointer;
@@ -227,7 +227,7 @@
             justify-content: center;
             background: var(--bg);
             color: var(--muted);
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'JetBrains Mono', 'Microsoft YaHei', 'Segoe UI', system-ui, sans-serif;
             gap: var(--sp-2);
         }
 
@@ -249,7 +249,7 @@
         }
 
         .servo-value {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'JetBrains Mono', 'Microsoft YaHei', 'Segoe UI', system-ui, sans-serif;
             font-size: 48px;
             font-weight: 700;
             color: var(--primary);
@@ -257,7 +257,7 @@
         }
 
         .servo-unit {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'JetBrains Mono', 'Microsoft YaHei', 'Segoe UI', system-ui, sans-serif;
             font-size: 20px;
             color: var(--muted);
         }
@@ -313,7 +313,7 @@
         }
 
         .footer-info {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'JetBrains Mono', 'Microsoft YaHei', 'Segoe UI', system-ui, sans-serif;
             font-size: 12px;
             color: var(--muted);
         }
@@ -322,7 +322,7 @@
             display: flex;
             align-items: center;
             gap: var(--sp-1);
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'JetBrains Mono', 'Microsoft YaHei', 'Segoe UI', system-ui, sans-serif;
             font-size: 12px;
             font-weight: 500;
         }

@@ -237,6 +237,190 @@ class CameraAPITest:
             self.failed += 1
             return False
 
+    def test_servo_angle_90(self):
+        """Test POST /control with action=servo and angle=90"""
+        print("\n[Test] POST /control action=servo angle=90")
+        try:
+            resp = requests.post(
+                f"{self.base_url}/control",
+                json={"action": "servo", "angle": 90},
+                headers={"Content-Type": "application/json"},
+                timeout=5
+            )
+            if resp.status_code != 200:
+                print(f"  FAIL: Expected 200, got {resp.status_code}")
+                self.failed += 1
+                return False
+
+            data = resp.json()
+            if data.get("status") != "ok":
+                print(f"  FAIL: Expected status=ok, got {data}")
+                self.failed += 1
+                return False
+
+            if data.get("angle") != 90:
+                print(f"  FAIL: Expected angle=90, got {data}")
+                self.failed += 1
+                return False
+
+            print(f"  PASS: Servo at 90°")
+            self.passed += 1
+            return True
+        except Exception as e:
+            print(f"  FAIL: {e}")
+            self.failed += 1
+            return False
+
+    def test_servo_angle_0(self):
+        """Test POST /control with action=servo and angle=0 (min)"""
+        print("\n[Test] POST /control action=servo angle=0")
+        try:
+            resp = requests.post(
+                f"{self.base_url}/control",
+                json={"action": "servo", "angle": 0},
+                headers={"Content-Type": "application/json"},
+                timeout=5
+            )
+            if resp.status_code != 200:
+                print(f"  FAIL: Expected 200, got {resp.status_code}")
+                self.failed += 1
+                return False
+
+            data = resp.json()
+            if data.get("status") != "ok" or data.get("angle") != 0:
+                print(f"  FAIL: Expected ok/angle=0, got {data}")
+                self.failed += 1
+                return False
+
+            print(f"  PASS: Servo at 0°")
+            self.passed += 1
+            return True
+        except Exception as e:
+            print(f"  FAIL: {e}")
+            self.failed += 1
+            return False
+
+    def test_servo_angle_180(self):
+        """Test POST /control with action=servo and angle=180 (max)"""
+        print("\n[Test] POST /control action=servo angle=180")
+        try:
+            resp = requests.post(
+                f"{self.base_url}/control",
+                json={"action": "servo", "angle": 180},
+                headers={"Content-Type": "application/json"},
+                timeout=5
+            )
+            if resp.status_code != 200:
+                print(f"  FAIL: Expected 200, got {resp.status_code}")
+                self.failed += 1
+                return False
+
+            data = resp.json()
+            if data.get("status") != "ok" or data.get("angle") != 180:
+                print(f"  FAIL: Expected ok/angle=180, got {data}")
+                self.failed += 1
+                return False
+
+            print(f"  PASS: Servo at 180°")
+            self.passed += 1
+            return True
+        except Exception as e:
+            print(f"  FAIL: {e}")
+            self.failed += 1
+            return False
+
+    def test_servo_angle_out_of_range_positive(self):
+        """Test POST /control with action=servo and angle=181 (out of range)"""
+        print("\n[Test] POST /control action=servo angle=181 - out of range")
+        try:
+            resp = requests.post(
+                f"{self.base_url}/control",
+                json={"action": "servo", "angle": 181},
+                headers={"Content-Type": "application/json"},
+                timeout=5
+            )
+            if resp.status_code != 200:
+                print(f"  FAIL: Expected 200, got {resp.status_code}")
+                self.failed += 1
+                return False
+
+            data = resp.json()
+            if data.get("status") != "error":
+                print(f"  FAIL: Expected status=error, got {data}")
+                self.failed += 1
+                return False
+
+            if "angle_out_of_range" not in data.get("reason", ""):
+                print(f"  FAIL: Expected angle_out_of_range reason, got {data}")
+                self.failed += 1
+                return False
+
+            print(f"  PASS: Out of range correctly rejected")
+            self.passed += 1
+            return True
+        except Exception as e:
+            print(f"  FAIL: {e}")
+            self.failed += 1
+            return False
+
+    def test_servo_angle_out_of_range_negative(self):
+        """Test POST /control with action=servo and angle=-1 (out of range)"""
+        print("\n[Test] POST /control action=servo angle=-1 - out of range")
+        try:
+            resp = requests.post(
+                f"{self.base_url}/control",
+                json={"action": "servo", "angle": -1},
+                headers={"Content-Type": "application/json"},
+                timeout=5
+            )
+            if resp.status_code != 200:
+                print(f"  FAIL: Expected 200, got {resp.status_code}")
+                self.failed += 1
+                return False
+
+            data = resp.json()
+            if data.get("status") != "error":
+                print(f"  FAIL: Expected status=error, got {data}")
+                self.failed += 1
+                return False
+
+            print(f"  PASS: Negative angle correctly rejected")
+            self.passed += 1
+            return True
+        except Exception as e:
+            print(f"  FAIL: {e}")
+            self.failed += 1
+            return False
+
+    def test_servo_missing_angle(self):
+        """Test POST /control with action=servo but no angle field"""
+        print("\n[Test] POST /control action=servo (no angle) - should error")
+        try:
+            resp = requests.post(
+                f"{self.base_url}/control",
+                json={"action": "servo"},
+                headers={"Content-Type": "application/json"},
+                timeout=5
+            )
+            if resp.status_code != 200:
+                print(f"  FAIL: Expected 200, got {resp.status_code}")
+                self.failed += 1
+                return False
+
+            data = resp.json()
+            if data.get("status") != "error":
+                print(f"  FAIL: Expected status=error, got {data}")
+                self.failed += 1
+                return False
+
+            print(f"  PASS: Missing angle correctly rejected")
+            self.passed += 1
+            return True
+        except Exception as e:
+            print(f"  FAIL: {e}")
+            self.failed += 1
+            return False
+
     def run_all_tests(self):
         """Run all integration tests"""
         print("=" * 60)
@@ -253,6 +437,15 @@ class CameraAPITest:
         self.test_control_get_status()  # Verify it's off
         self.test_invalid_action()
         self.test_root_page()
+
+        # Servo tests
+        print("\n--- Servo Control Tests ---")
+        self.test_servo_angle_90()
+        self.test_servo_angle_0()
+        self.test_servo_angle_180()
+        self.test_servo_angle_out_of_range_positive()
+        self.test_servo_angle_out_of_range_negative()
+        self.test_servo_missing_angle()
 
         # Test stream endpoint
         # Turn camera on first for stream test

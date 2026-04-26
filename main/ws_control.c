@@ -1,5 +1,6 @@
 #include "ws_control.h"
 #include "camera_ctrl.h"
+#include "servo.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -59,6 +60,8 @@ static esp_err_t control_post_handler(httpd_req_t *req)
                 action = WS_ACTION_ON;
             } else if (strncmp(action_start, "off", 3) == 0) {
                 action = WS_ACTION_OFF;
+            } else if (strncmp(action_start, "servo", 5) == 0) {
+                action = WS_ACTION_SERVO;
             } else {
                 action = WS_ACTION_STATUS;
             }
@@ -66,6 +69,35 @@ static esp_err_t control_post_handler(httpd_req_t *req)
     }
 
     ESP_LOGI(TAG, "Parsed action: %d", action);
+
+    // Handle servo action directly (no callback support for angle)
+    if (action == WS_ACTION_SERVO) {
+        // Parse "angle" field from JSON
+        int angle = -1;
+        char *angle_start = strstr(buf, "\"angle\"");
+        if (angle_start) {
+            angle_start = strchr(angle_start, ':');
+            if (angle_start) {
+                angle_start++;
+                while (*angle_start == ' ' || *angle_start == '"') {
+                    angle_start++;
+                }
+                angle = atoi(angle_start);
+            }
+        }
+
+        // Validate angle range
+        if (angle < 0 || angle > 180) {
+            snprintf(buf, sizeof(buf),
+                "{\"status\":\"error\",\"reason\":\"angle_out_of_range\"}");
+        } else {
+            servo_set_angle(angle);
+            snprintf(buf, sizeof(buf),
+                "{\"status\":\"ok\",\"angle\":%d}", angle);
+        }
+        httpd_resp_send(req, buf, strlen(buf));
+        return ESP_OK;
+    }
 
     // Invoke stored callback with parsed action
     if (g_callback) {

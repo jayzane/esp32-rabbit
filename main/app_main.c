@@ -13,6 +13,7 @@
 #include "camera_ctrl.h"
 #include "camera_server.h"
 #include "ws_control.h"
+#include "servo.h"
 
 static const char* TAG = "app_main";
 
@@ -140,6 +141,9 @@ void app_main(void)
     /* Start WiFi */
     ESP_ERROR_CHECK(esp_wifi_start());
     ESP_LOGI(TAG, "WiFi init done, started in STA mode");
+
+    /* Initialize servo */
+    servo_init();
 
     /* Initialize camera control */
     camera_ctrl_init();

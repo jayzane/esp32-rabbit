@@ -4,13 +4,20 @@
 
 **Goal:** 纯前端 HTML/CSS/JS 实现 ESP32 摄像头监控与舵机控制
 
-**Architecture:** 单页应用，直接调用 ESP32 HTTP API（MJPEG 流 + 控制端点），无后端依赖
+**Architecture:** 单页应用，直接调用 ESP32 HTTP API（MJPEG 流 + 控制端点），无后端依赖。三阶段部署：本地浏览器 → Docker → 远程 Nginx
 
 **Tech Stack:** HTML5, CSS3, Vanilla JS, Fetch API
 
+**Design System:**
+- Color: Background #0d1117, Surface #161b22, Border #30363d, Primary #58a6ff, Success #3fb950, Danger #f85149, Text #e6edf3, Muted #8b949e
+- Typography: 'JetBrains Mono' for headings (tech feel), system-ui for body
+- Spacing: 8px base unit (multiples: 8, 16, 24, 32, 48)
+- Border-radius: 8px cards, 6px buttons, 4px small elements
+- Motion: 150ms ease-out transitions, hover scale(1.02) + shadow lift
+
 ---
 
-## Task 1: 创建 index.html
+## Task 1: 创建设计系统 index.html
 
 **Files:**
 - Create: `esp32-monitor/index.html`
@@ -23,48 +30,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESP32 监控控制台</title>
-    <link rel="stylesheet" href="style.css">
+    <title>ESP32 Monitor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           DESIGN TOKENS
+           ============================================ */
+        :root {
+            /* Colors */
+            --bg: #0d1117;
+            --surface: #161b22;
+            --border: #30363d;
+            --primary: #58a6ff;
+            --success: #3fb950;
+            --danger: #f85149;
+            --text: #e6edf3;
+            --muted: #8b949e;
+
+            /* Spacing */
+            --sp-1: 8px;
+            --sp-2: 16px;
+            --sp-3: 24px;
+            --sp-4: 32px;
+            --sp-5: 48px;
+
+            /* Radius */
+            --r-lg: 8px;
+            --r-md: 6px;
+            --r-sm: 4px;
+
+            /* Shadow */
+            --shadow-1: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-2: 0 4px 12px rgba(0,0,0,0.4);
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: var(--sp-3);
+            line-height: 1.5;
+        }
+
+        /* ============================================
+           LAYOUT
+           ============================================ */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--sp-2) var(--sp-3);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            margin-bottom: var(--sp-3);
+        }
+
+        .header-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: var(--sp-2);
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--muted);
+            transition: background 150ms ease-out;
+        }
+
+        .status-dot.connected { background: var(--success); }
+        .status-dot.error { background: var(--danger); }
+
+        /* ============================================
+           SECTION CARD
+           ============================================ */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            padding: var(--sp-3);
+            margin-bottom: var(--sp-3);
+            transition: box-shadow 150ms ease-out;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-2);
+        }
+
+        .card-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--sp-2);
+        }
+
+        /* ============================================
+           CAMERA SECTION
+           ============================================ */
+        .camera-controls {
+            display: flex;
+            gap: var(--sp-2);
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--r-md);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 150ms ease-out;
+        }
+
+        .btn:hover:not(:disabled) {
+            transform: scale(1.02);
+        }
+
+        .btn:active:not(:disabled) {
+            transform: scale(0.98);
+        }
+
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .btn-on {
+            background: var(--success);
+            color: #0d1117;
+        }
+
+        .btn-on:hover:not(:disabled) {
+            box-shadow: 0 0 20px rgba(63, 185, 80, 0.3);
+        }
+
+        .btn-off {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .btn-off:hover:not(:disabled) {
+            box-shadow: 0 0 20px rgba(248, 81, 73, 0.3);
+        }
+
+        /* ============================================
+           VIDEO SECTION
+           ============================================ */
+        .video-wrap {
+            position: relative;
+            background: #000;
+            border-radius: var(--r-md);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+
+        .video-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg);
+            color: var(--muted);
+            font-family: 'JetBrains Mono', monospace;
+            gap: var(--sp-2);
+        }
+
+        .video-placeholder .icon {
+            font-size: 48px;
+            opacity: 0.5;
+        }
+
+        .video-placeholder.hidden { display: none; }
+
+        /* ============================================
+           SERVO SECTION
+           ============================================ */
+        .servo-display {
+            display: flex;
+            align-items: baseline;
+            gap: var(--sp-1);
+            margin-bottom: var(--sp-2);
+        }
+
+        .servo-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .servo-unit {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 20px;
+            color: var(--muted);
+        }
+
+        .slider-wrap {
+            position: relative;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(88, 166, 255, 0.4);
+            transition: box-shadow 150ms ease-out;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            box-shadow: 0 0 20px rgba(88, 166, 255, 0.6);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* ============================================
+           CONNECTION STATUS
+           ============================================ */
+        .footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--sp-2) 0;
+            border-top: 1px solid var(--border);
+            margin-top: var(--sp-2);
+        }
+
+        .footer-info {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: var(--sp-1);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .connection-status.ok { color: var(--success); }
+        .connection-status.error { color: var(--danger); }
+        .connection-status.pending { color: var(--muted); }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>ESP32 监控控制台</h1>
+        <!-- Header -->
+        <header class="header">
+            <div class="header-title">
+                <span class="status-dot" id="status-dot"></span>
+                ESP32 Monitor
+            </div>
+        </header>
 
-        <!-- 摄像头控制 -->
-        <section class="camera-control">
-            <h2>摄像头</h2>
-            <div class="button-group">
-                <button id="btn-camera-on" class="btn btn-on">开启</button>
-                <button id="btn-camera-off" class="btn btn-off">关闭</button>
+        <!-- Camera Section -->
+        <section class="card" id="camera-card">
+            <div class="card-label">Camera</div>
+            <div class="camera-controls">
+                <button class="btn btn-on" id="btn-camera-on">ON</button>
+                <button class="btn btn-off" id="btn-camera-off">OFF</button>
             </div>
         </section>
 
-        <!-- 视频流 -->
-        <section class="video-section">
-            <h2>视频流</h2>
-            <div class="video-container" id="video-container">
-                <img id="video-stream" src="" alt="视频流">
-                <div id="video-placeholder" class="placeholder hidden">
-                    摄像头已关闭
+        <!-- Video Stream Section -->
+        <section class="card" id="video-card">
+            <div class="card-label">Stream</div>
+            <div class="video-wrap">
+                <img id="video-stream" src="" alt="Video stream">
+                <div class="video-placeholder hidden" id="video-placeholder">
+                    <div class="icon">[ ]</div>
+                    <div>Camera Off</div>
                 </div>
             </div>
         </section>
 
-        <!-- 舵机控制 -->
-        <section class="servo-control">
-            <h2>舵机控制</h2>
-            <div class="slider-container">
-                <label for="servo-slider">角度:</label>
-                <input type="range" id="servo-slider" min="0" max="180" value="90">
-                <span id="servo-value">90</span>°
+        <!-- Servo Control Section -->
+        <section class="card" id="servo-card">
+            <div class="card-label">Servo</div>
+            <div class="servo-display">
+                <span class="servo-value" id="servo-value">90</span>
+                <span class="servo-unit">°</span>
             </div>
-            <p>当前角度: <span id="current-angle">90</span>°</p>
+            <div class="slider-wrap">
+                <input type="range" class="slider" id="servo-slider" min="0" max="180" value="90">
+            </div>
         </section>
 
-        <!-- 状态显示 -->
-        <section class="status-section">
-            <p>连接状态: <span id="connection-status">连接中...</span></p>
-        </section>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-info">10.0.0.110:8080 / 8081</div>
+            <div class="connection-status pending" id="connection-status">
+                <span>Connecting...</span>
+            </div>
+        </footer>
     </div>
 
     <script src="app.js"></script>
@@ -74,175 +391,7 @@
 
 ---
 
-## Task 2: 创建 style.css
-
-**Files:**
-- Create: `esp32-monitor/style.css`
-
-- [ ] **Step 1: 创建 style.css**
-
-```css
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #1a1a2e;
-    color: #eee;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #00d4ff;
-}
-
-h2 {
-    margin-bottom: 15px;
-    color: #00d4ff;
-}
-
-section {
-    background: #16213e;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-/* 按钮样式 */
-.button-group {
-    display: flex;
-    gap: 10px;
-}
-
-.btn {
-    padding: 10px 30px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.btn-on {
-    background: #00d4ff;
-    color: #1a1a2e;
-}
-
-.btn-on:hover {
-    background: #00a8cc;
-}
-
-.btn-off {
-    background: #ff6b6b;
-    color: #fff;
-}
-
-.btn-off:hover {
-    background: #ee5a5a;
-}
-
-.btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-/* 视频流 */
-.video-section {
-    text-align: center;
-}
-
-.video-container {
-    position: relative;
-    background: #000;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-#video-stream {
-    width: 100%;
-    max-width: 640px;
-    display: block;
-    margin: 0 auto;
-}
-
-.placeholder {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #666;
-    font-size: 18px;
-}
-
-.hidden {
-    display: none;
-}
-
-/* 舵机控制 */
-.slider-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
-}
-
-#servo-slider {
-    flex: 1;
-    height: 8px;
-    -webkit-appearance: none;
-    background: #0f3460;
-    border-radius: 4px;
-    outline: none;
-}
-
-#servo-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
-    background: #00d4ff;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-#servo-value {
-    font-size: 20px;
-    font-weight: bold;
-    color: #00d4ff;
-    min-width: 50px;
-}
-
-/* 状态 */
-.status-section p {
-    font-size: 14px;
-}
-
-#connection-status {
-    font-weight: bold;
-}
-
-.status-ok {
-    color: #00ff88;
-}
-
-.status-error {
-    color: #ff6b6b;
-}
-```
-
----
-
-## Task 3: 创建 app.js
+## Task 2: 创建 app.js
 
 **Files:**
 - Create: `esp32-monitor/app.js`
@@ -250,276 +399,256 @@ section {
 - [ ] **Step 1: 创建 app.js**
 
 ```javascript
-// ESP32 配置
-const ESP32_IP = '10.0.0.110';
-const CONTROL_PORT = 8080;
-const STREAM_PORT = 8081;
-const CONTROL_URL = `http://${ESP32_IP}:${CONTROL_PORT}/control`;
-const STREAM_URL = `http://${ESP32_IP}:${STREAM_PORT}/stream`;
-const POLL_INTERVAL = 5000;
-const REQUEST_TIMEOUT = 10000;
+/**
+ * ESP32 Monitor - Frontend Logic
+ * Direct ESP32 HTTP API calls, no backend
+ */
 
-// DOM 元素
-const btnCameraOn = document.getElementById('btn-camera-on');
-const btnCameraOff = document.getElementById('btn-camera-off');
-const videoStream = document.getElementById('video-stream');
-const videoPlaceholder = document.getElementById('video-placeholder');
-const servoSlider = document.getElementById('servo-slider');
-const servoValue = document.getElementById('servo-value');
-const currentAngle = document.getElementById('current-angle');
-const connectionStatus = document.getElementById('connection-status');
+(function() {
+    'use strict';
 
-// 状态
-let cameraOn = false;
-let currentServoAngle = 90;
-let pollTimer = null;
+    // ========== CONFIG ==========
+    const ESP32_IP = '10.0.0.110';
+    const CONTROL_PORT = 8080;
+    const STREAM_PORT = 8081;
+    const CONTROL_URL = `http://${ESP32_IP}:${CONTROL_PORT}/control`;
+    const STREAM_URL = `http://${ESP32_IP}:${STREAM_PORT}/stream`;
+    const POLL_INTERVAL = 5000;
+    const REQUEST_TIMEOUT = 10000;
 
-// 初始化
-function init() {
-    videoStream.src = STREAM_URL;
-    setupEventListeners();
-    startPolling();
-    updateConnectionStatus('连接中...');
-}
+    // ========== STATE ==========
+    let cameraOn = false;
+    let servoAngle = 90;
+    let pollTimer = null;
 
-// 事件监听
-function setupEventListeners() {
-    btnCameraOn.addEventListener('click', () => setCamera(true));
-    btnCameraOff.addEventListener('click', () => setCamera(false));
+    // ========== DOM REFS ==========
+    const dom = {
+        statusDot: document.getElementById('status-dot'),
+        btnCameraOn: document.getElementById('btn-camera-on'),
+        btnCameraOff: document.getElementById('btn-camera-off'),
+        videoStream: document.getElementById('video-stream'),
+        videoPlaceholder: document.getElementById('video-placeholder'),
+        servoSlider: document.getElementById('servo-slider'),
+        servoValue: document.getElementById('servo-value'),
+        connectionStatus: document.getElementById('connection-status'),
+    };
 
-    let debounceTimer;
-    servoSlider.addEventListener('input', (e) => {
-        const angle = parseInt(e.target.value);
-        servoValue.textContent = angle;
-    });
-    servoSlider.addEventListener('change', (e) => {
-        const angle = parseInt(e.target.value);
-        setServoAngle(angle);
-    });
-}
-
-// 设置摄像头
-async function setCamera(on) {
-    try {
-        const resp = await fetch(CONTROL_URL, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({action: on ? 'on' : 'off'}),
-            signal: AbortSignal.timeout(REQUEST_TIMEOUT)
-        });
-        const data = await resp.json();
-        if (data.status === 'ok') {
-            cameraOn = on;
-            updateVideoDisplay();
-            updateButtonStates();
-        }
-    } catch (err) {
-        updateConnectionStatus('连接失败', true);
+    // ========== INIT ==========
+    function init() {
+        setupEventListeners();
+        startPolling();
+        syncVideoSrc();
+        updateConnectionUI('pending', 'Connecting...');
     }
-}
 
-// 设置舵机角度
-async function setServoAngle(angle) {
-    try {
-        const resp = await fetch(CONTROL_URL, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({servo: angle}),
-            signal: AbortSignal.timeout(REQUEST_TIMEOUT)
+    // ========== EVENT LISTENERS ==========
+    function setupEventListeners() {
+        dom.btnCameraOn.addEventListener('click', () => setCamera(true));
+        dom.btnCameraOff.addEventListener('click', () => setCamera(false));
+
+        let debounceTimer = null;
+        dom.servoSlider.addEventListener('input', (e) => {
+            const val = parseInt(e.target.value, 10);
+            dom.servoValue.textContent = val;
         });
-        const data = await resp.json();
-        if (data.status === 'ok' && data.servo !== undefined) {
-            currentServoAngle = data.servo;
-            currentAngle.textContent = currentServoAngle;
-            servoSlider.value = currentServoAngle;
-            servoValue.textContent = currentServoAngle;
-        }
-    } catch (err) {
-        updateConnectionStatus('连接失败', true);
+
+        dom.servoSlider.addEventListener('change', (e) => {
+            const val = parseInt(e.target.value, 10);
+            sendServoAngle(val);
+        });
     }
-}
 
-// 获取状态
-async function fetchStatus() {
-    try {
-        const resp = await fetch(CONTROL_URL, {
-            signal: AbortSignal.timeout(REQUEST_TIMEOUT)
-        });
-        const data = await resp.json();
-        if (data.status === 'ok') {
-            cameraOn = data.camera === 'on';
-            if (data.servo !== undefined) {
-                currentServoAngle = data.servo;
-                servoSlider.value = currentServoAngle;
-                servoValue.textContent = currentServoAngle;
-                currentAngle.textContent = currentServoAngle;
+    // ========== API CALLS ==========
+    async function setCamera(on) {
+        try {
+            const resp = await fetch(CONTROL_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: on ? 'on' : 'off' }),
+                signal: AbortSignal.timeout(REQUEST_TIMEOUT),
+            });
+            const data = await resp.json();
+            if (data.status === 'ok') {
+                cameraOn = on;
+                updateVideoDisplay();
+                updateCameraButtons();
+                updateConnectionUI('ok', 'Connected');
             }
-            updateVideoDisplay();
-            updateButtonStates();
-            updateConnectionStatus('已连接', false);
+        } catch (err) {
+            updateConnectionUI('error', 'Connection failed');
         }
-    } catch (err) {
-        updateConnectionStatus('连接失败', true);
     }
-}
 
-// 更新视频显示
-function updateVideoDisplay() {
-    if (cameraOn) {
-        videoStream.src = STREAM_URL + '?t=' + Date.now();
-        videoStream.style.display = 'block';
-        videoPlaceholder.classList.add('hidden');
+    async function sendServoAngle(angle) {
+        try {
+            const resp = await fetch(CONTROL_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ servo: angle }),
+                signal: AbortSignal.timeout(REQUEST_TIMEOUT),
+            });
+            const data = await resp.json();
+            if (data.status === 'ok' && data.servo !== undefined) {
+                servoAngle = data.servo;
+                dom.servoSlider.value = servoAngle;
+                dom.servoValue.textContent = servoAngle;
+            }
+        } catch (err) {
+            updateConnectionUI('error', 'Connection failed');
+        }
+    }
+
+    async function fetchStatus() {
+        try {
+            const resp = await fetch(CONTROL_URL, {
+                signal: AbortSignal.timeout(REQUEST_TIMEOUT),
+            });
+            const data = await resp.json();
+            if (data.status === 'ok') {
+                cameraOn = data.camera === 'on';
+                if (data.servo !== undefined) {
+                    servoAngle = data.servo;
+                    dom.servoSlider.value = servoAngle;
+                    dom.servoValue.textContent = servoAngle;
+                }
+                updateVideoDisplay();
+                updateCameraButtons();
+                updateConnectionUI('ok', 'Connected');
+            }
+        } catch (err) {
+            updateConnectionUI('error', 'Connection failed');
+        }
+    }
+
+    // ========== UI UPDATES ==========
+    function updateVideoDisplay() {
+        if (cameraOn) {
+            // Refresh stream with cache-bust
+            dom.videoStream.src = `${STREAM_URL}?t=${Date.now()}`;
+            dom.videoStream.style.display = 'block';
+            dom.videoPlaceholder.classList.add('hidden');
+        } else {
+            dom.videoStream.src = '';
+            dom.videoStream.style.display = 'none';
+            dom.videoPlaceholder.classList.remove('hidden');
+        }
+    }
+
+    function updateCameraButtons() {
+        dom.btnCameraOn.disabled = cameraOn;
+        dom.btnCameraOff.disabled = !cameraOn;
+    }
+
+    function updateConnectionUI(state, message) {
+        dom.statusDot.className = 'status-dot';
+        dom.connectionStatus.className = `connection-status ${state}`;
+
+        if (state === 'ok') {
+            dom.statusDot.classList.add('connected');
+        } else if (state === 'error') {
+            dom.statusDot.classList.add('error');
+        }
+
+        dom.connectionStatus.querySelector('span').textContent = message;
+    }
+
+    function syncVideoSrc() {
+        // Initial video src sync
+        dom.videoStream.src = STREAM_URL;
+    }
+
+    // ========== POLLING ==========
+    function startPolling() {
+        fetchStatus();
+        pollTimer = setInterval(fetchStatus, POLL_INTERVAL);
+    }
+
+    // ========== START ==========
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
     } else {
-        videoStream.style.display = 'none';
-        videoPlaceholder.classList.remove('hidden');
+        init();
     }
-}
-
-// 更新按钮状态
-function updateButtonStates() {
-    btnCameraOn.disabled = cameraOn;
-    btnCameraOff.disabled = !cameraOn;
-}
-
-// 更新连接状态
-function updateConnectionStatus(msg, isError = false) {
-    connectionStatus.textContent = msg;
-    connectionStatus.className = isError ? 'status-error' : 'status-ok';
-}
-
-// 轮询状态
-function startPolling() {
-    fetchStatus();
-    pollTimer = setInterval(fetchStatus, POLL_INTERVAL);
-}
-
-// 启动
-init();
+})();
 ```
 
 ---
 
-## Task 4: pytest 集成测试
+## Task 3: Docker 部署配置
 
 **Files:**
-- Create: `tests/test_esp32_monitor_frontend.py`
-- Config: `pytest.ini` 或 `pyproject.toml`
+- Create: `esp32-monitor/Dockerfile`
+- Create: `esp32-monitor/nginx.conf`
+- Create: `esp32-monitor/.dockerignore`
+- Create: `esp32-monitor/docker-compose.yml`
 
-- [ ] **Step 1: 创建 pytest 测试文件**
+- [ ] **Step 1: 创建 Dockerfile**
 
-```python
-"""
-ESP32 监控前端 pytest 集成测试
-
-测试前端静态文件结构和配置正确性。
-需要 ESP32 固件运行在 10.0.0.110:8080
-
-Usage:
-    pytest tests/test_esp32_monitor_frontend.py -v
-    pytest tests/test_esp32_monitor_frontend.py -v --esp32-ip 10.0.0.110
-"""
-
-import pytest
-import json
-import time
-
-
-def test_index_html_exists():
-    """验证 index.html 存在且包含必需元素"""
-    from pathlib import Path
-    html_path = Path(__file__).parent.parent / 'esp32-monitor' / 'index.html'
-    assert html_path.exists(), f"index.html not found at {html_path}"
-    content = html_path.read_text(encoding='utf-8')
-    assert '<img id="video-stream"' in content, "Missing video stream img"
-    assert 'id="servo-slider"' in content, "Missing servo slider"
-    assert 'id="btn-camera-on"' in content, "Missing camera on button"
-    assert 'id="btn-camera-off"' in content, "Missing camera off button"
-
-
-def test_style_css_exists():
-    """验证 style.css 存在"""
-    from pathlib import Path
-    css_path = Path(__file__).parent.parent / 'esp32-monitor' / 'style.css'
-    assert css_path.exists(), f"style.css not found at {css_path}"
-
-
-def test_app_js_exists_and_config():
-    """验证 app.js 存在且包含正确的 ESP32 配置"""
-    from pathlib import Path
-    js_path = Path(__file__).parent.parent / 'esp32-monitor' / 'app.js'
-    assert js_path.exists(), f"app.js not found at {js_path}"
-    content = js_path.read_text(encoding='utf-8')
-    assert 'ESP32_IP' in content, "Missing ESP32_IP config"
-    assert 'CONTROL_PORT' in content, "Missing CONTROL_PORT config"
-    assert 'STREAM_PORT' in content, "Missing STREAM_PORT config"
-    assert '10.0.0.110' in content, "Missing default IP config"
-
-
-def test_control_get_status(base_url, session):
-    """Test GET /control returns current status"""
-    resp = session.get(f"{base_url}/control", timeout=10)
-    assert resp.status_code == 200, f"Expected 200, got {resp.status_code}"
-    data = resp.json()
-    assert data.get("status") == "ok", f"Expected status=ok, got {data}"
-
-
-def test_control_post_camera_on(base_url, session):
-    """Test POST /control with action=on"""
-    resp = session.post(
-        f"{base_url}/control",
-        json={"action": "on"},
-        headers={"Content-Type": "application/json"},
-        timeout=10
-    )
-    assert resp.status_code == 200, f"Expected 200, got {resp.status_code}"
-    data = resp.json()
-    assert data.get("camera") == "on", f"Expected camera=on, got {data}"
-
-
-def test_control_post_camera_off(base_url, session):
-    """Test POST /control with action=off"""
-    resp = session.post(
-        f"{base_url}/control",
-        json={"action": "off"},
-        headers={"Content-Type": "application/json"},
-        timeout=10
-    )
-    assert resp.status_code == 200, f"Expected 200, got {resp.status_code}"
-    data = resp.json()
-    assert data.get("camera") == "off", f"Expected camera=off, got {data}"
-
-
-def test_control_post_servo(base_url, session):
-    """Test POST /control with servo angle"""
-    resp = session.post(
-        f"{base_url}/control",
-        json={"servo": 45},
-        headers={"Content-Type": "application/json"},
-        timeout=10
-    )
-    assert resp.status_code == 200, f"Expected 200, got {resp.status_code}"
-    data = resp.json()
-    assert data.get("servo") == 45, f"Expected servo=45, got {data}"
-
-
-def test_stream_endpoint(stream_url):
-    """Test GET /stream returns MJPEG stream"""
-    import requests
-    resp = requests.get(f"{stream_url}/stream", timeout=10, stream=True)
-    assert resp.status_code == 200, f"Expected 200, got {resp.status_code}"
-    assert "multipart" in resp.headers.get("Content-Type", ""), \
-        f"Expected multipart content-type"
+```dockerfile
+FROM nginx:alpine
+COPY . /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-c", "/etc/nginx/nginx.conf"]
 ```
 
-- [ ] **Step 2: 创建 conftest.py**
+- [ ] **Step 2: 创建 nginx.conf**
+
+```nginx
+events {
+    worker_connections 1024;
+}
+
+http {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+
+    server {
+        listen 80;
+        server_name localhost;
+        root /usr/share/nginx/html;
+        index index.html;
+
+        location / {
+            try_files $uri $uri/ =404;
+        }
+
+        location ~ /\. {
+            deny all;
+        }
+    }
+}
+```
+
+- [ ] **Step 3: 创建 .dockerignore**
+
+```
+*.md
+.git
+```
+
+- [ ] **Step 4: 创建 docker-compose.yml**
+
+```yaml
+version: '3.8'
+services:
+  esp32-monitor:
+    build: .
+    ports:
+      - "8080:80"
+```
+
+---
+
+## Task 4: pytest ESP32 API 集成测试
+
+**Files:**
+- Create: `tests/conftest.py` (已存在，追加 ESP32 相关 fixtures)
+- Create: `tests/test_esp32_api.py`
+
+- [ ] **Step 1: 检查并更新 conftest.py**
 
 ```python
-"""
-pytest 配置 for ESP32 监控前端测试
-"""
-
-import pytest
-
+# Append to existing tests/conftest.py
 
 def pytest_addoption(parser):
     parser.addoption("--esp32-ip", action="store", default="10.0.0.110",
@@ -561,89 +690,92 @@ def session():
     return requests.Session()
 ```
 
+- [ ] **Step 2: 创建 test_esp32_api.py**
+
+```python
+"""
+ESP32 控制 API 集成测试
+
+需要 ESP32 固件运行在 10.0.0.110:8080
+
+Usage:
+    pytest tests/test_esp32_api.py -v
+    pytest tests/test_esp32_api.py -v --esp32-ip 10.0.0.110
+"""
+
+import pytest
+
+
+def test_control_get_status(base_url, session):
+    """GET /control returns current status"""
+    resp = session.get(f"{base_url}/control", timeout=10)
+    assert resp.status_code == 200, f"Expected 200, got {resp.status_code}"
+    data = resp.json()
+    assert data.get("status") == "ok", f"Expected status=ok, got {data}"
+
+
+def test_control_post_camera_on(base_url, session):
+    """POST /control with action=on"""
+    resp = session.post(
+        f"{base_url}/control",
+        json={"action": "on"},
+        headers={"Content-Type": "application/json"},
+        timeout=10
+    )
+    assert resp.status_code == 200, f"Expected 200, got {resp.status_code}"
+    data = resp.json()
+    assert data.get("camera") == "on", f"Expected camera=on, got {data}"
+
+
+def test_control_post_camera_off(base_url, session):
+    """POST /control with action=off"""
+    resp = session.post(
+        f"{base_url}/control",
+        json={"action": "off"},
+        headers={"Content-Type": "application/json"},
+        timeout=10
+    )
+    assert resp.status_code == 200, f"Expected 200, got {resp.status_code}"
+    data = resp.json()
+    assert data.get("camera") == "off", f"Expected camera=off, got {data}"
+
+
+def test_control_post_servo(base_url, session):
+    """POST /control with servo angle"""
+    resp = session.post(
+        f"{base_url}/control",
+        json={"servo": 45},
+        headers={"Content-Type": "application/json"},
+        timeout=10
+    )
+    assert resp.status_code == 200, f"Expected 200, got {resp.status_code}"
+    data = resp.json()
+    assert data.get("servo") == 45, f"Expected servo=45, got {data}"
+
+
+def test_stream_endpoint(stream_url):
+    """GET /stream returns MJPEG stream"""
+    import requests
+    resp = requests.get(f"{stream_url}/stream", timeout=10, stream=True)
+    assert resp.status_code == 200, f"Expected 200, got {resp.status_code}"
+    assert "multipart" in resp.headers.get("Content-Type", ""), \
+        f"Expected multipart content-type"
+```
+
 ---
 
-## Task 5: Docker 部署配置
+## Task 5: 提交所有文件
 
-**Files:**
-- Create: `esp32-monitor/Dockerfile`
-- Create: `esp32-monitor/nginx.conf`
-- Create: `esp32-monitor/.dockerignore`
-
-- [ ] **Step 1: 创建 Dockerfile**
-
-```dockerfile
-FROM nginx:alpine
-COPY . /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-c", "/etc/nginx/nginx.conf"]
-```
-
-- [ ] **Step 2: 创建 nginx.conf**
-
-```nginx
-events {
-    worker_connections 1024;
-}
-
-http {
-    include /etc/nginx/mime.types;
-    default_type application/octet-stream;
-
-    server {
-        listen 80;
-        server_name localhost;
-        root /usr/share/nginx/html;
-        index index.html;
-
-        location / {
-            try_files $uri $uri/ =404;
-        }
-
-        # 禁止访问隐藏文件
-        location ~ /\. {
-            deny all;
-        }
-    }
-}
-```
-
-- [ ] **Step 3: 创建 .dockerignore**
-
-```
-*.md
-.git
-docker-compose.yml
-```
-
-- [ ] **Step 4: 创建 docker-compose.yml（用于二阶段测试）**
-
-```yaml
-version: '3.8'
-services:
-  esp32-monitor:
-    build: .
-    ports:
-      - "8080:80"
-    # 环境变量用于覆盖 ESP32 IP（可选）
-    environment:
-      - ESP32_IP=10.0.0.110
-```
-
----
-
-## Task 6: 提交所有文件
-
-- [ ] **Step 1: 提交 esp32-monitor 目录**
+- [ ] **Step 1: 创建 esp32-monitor 目录并提交**
 
 ```bash
 git add esp32-monitor/
 git commit -m "feat: add ESP32 monitor frontend (HTML/CSS/JS)
 
+Design system: dark theme, JetBrains Mono, 8px spacing
 - index.html: 主页面，MJPEG 视频流 + 摄像头开关 + 舵机滑动条
-- style.css: 深色主题样式
 - app.js: ESP32 API 调用逻辑，状态轮询
-- Dockerfile + nginx.conf: Docker 部署配置
+- Dockerfile + nginx.conf + docker-compose.yml: Docker 部署
 
 Three phases: local browser → Docker → remote Nginx.
 
@@ -654,9 +786,9 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 
 ```bash
 git add tests/
-git commit -m "test: add ESP32 monitor frontend integration tests
+git commit -m "test: add ESP32 API integration tests
 
-pytest tests/test_esp32_monitor_frontend.py -v
+pytest tests/test_esp32_api.py -v
 Requires ESP32 firmware running at 10.0.0.110:8080.
 
 Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
@@ -664,34 +796,81 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 
 ---
 
+## Task 6: /qa 浏览器测试验证
+
+**Files:**
+- 测试目标: `esp32-monitor/index.html`（本地打开或 Docker 启动后）
+
+- [ ] **Step 1: 本地打开前端验证**
+
+```bash
+# 方式A: 直接在浏览器打开
+# file:///<project-path>/esp32-monitor/index.html
+
+# 方式B: Docker 启动后访问
+docker build -t esp32-monitor ./esp32-monitor
+docker run -d -p 8080:80 esp32-monitor
+# 浏览器打开 http://localhost:8080
+```
+
+- [ ] **Step 2: 运行 /qa 测试**
+
+```bash
+# 确保 ESP32 运行在 10.0.0.110:8080/8081
+# 然后在浏览器中运行：
+/qa http://localhost:8080
+```
+
+- [ ] **Step 3: /qa 验证项**
+
+- [ ] 页面加载无 console errors
+- [ ] 摄像头 ON/OFF 按钮可见且可点击
+- [ ] 按钮点击后 UI 状态更新
+- [ ] 舵机 slider 可拖动，角度值实时更新
+- [ ] 视频流区域显示（摄像头开启时）
+- [ ] 连接状态指示器正确显示
+
+---
+
 ## 验证步骤
 
-1. **本地测试（无需 ESP32）**
+1. **本地测试（无 ESP32）**
    ```bash
-   # 打开 esp32-monitor/index.html 在浏览器中
-   # 验证页面结构和样式加载正常
+   # 直接打开 esp32-monitor/index.html
+   # 验证页面渲染和样式正常
    ```
 
-2. **连接 ESP32 测试**
+2. **ESP32 API 测试**
    ```bash
-   # 确保 ESP32 固件运行在 10.0.0.110:8080
-   pytest tests/test_esp32_monitor_frontend.py -v --esp32-ip 10.0.0.110
+   # ESP32 固件运行后
+   pytest tests/test_esp32_api.py -v --esp32-ip 10.0.0.110
    ```
 
-3. **Docker 测试（二阶段）**
+3. **/qa 浏览器测试**
    ```bash
+   # Docker 启动
    docker build -t esp32-monitor ./esp32-monitor
    docker run -d -p 8080:80 esp32-monitor
-   # 浏览器打开 http://localhost:8080
+
+   # /qa 验证
+   /qa http://localhost:8080
+   ```
+
+4. **Docker 部署验证（三阶段）**
+   ```bash
+   # 本地 docker-compose 测试通过后
+   # 推送代码 → 远程服务器
+   # 远程运行 docker-compose 部署
    ```
 
 ---
 
 ## Spec 覆盖检查
 
-- [x] 摄像头开启/关闭功能 → Task 1, 3
-- [x] MJPEG 视频流显示 → Task 1, 3
-- [x] 舵机角度滑动控制 → Task 1, 3
-- [x] 状态轮询更新 → Task 3
-- [x] 三阶段部署配置 → Task 5
-- [x] pytest 集成测试 → Task 4
+- [x] 摄像头开启/关闭功能 → Task 1, 2
+- [x] MJPEG 视频流显示 → Task 1, 2
+- [x] 舵机角度滑动控制 → Task 1, 2
+- [x] 状态轮询更新 → Task 2
+- [x] 三阶段部署配置 → Task 3
+- [x] ESP32 API pytest 测试 → Task 4
+- [x] /qa 浏览器 UI 测试 → Task 6

@@ -36,6 +36,8 @@ static esp_err_t stream_handler(httpd_req_t* req) {
             if (res == ESP_OK) {
                 res = httpd_resp_send_chunk(req, (const char*)fb->buf, fb->len);
             }
+        } else {
+            ESP_LOGW(TAG, "Non-JPEG frame dropped (format=%d)", fb->format);
         }
 
         camera_driver_return_frame(fb);
@@ -45,6 +47,7 @@ static esp_err_t stream_handler(httpd_req_t* req) {
         vTaskDelay(pdMS_TO_TICKS(100));
     }
 
+    httpd_resp_send_chunk(req, "--frame--\r\n", 11);
     return res;
 }
 
@@ -52,12 +55,15 @@ static esp_err_t index_handler(httpd_req_t* req) {
     const char* resp = "<html><head><title>ESP32 Camera</title></head>"
         "<body><h1>ESP32 Camera Stream</h1>"
         "<img src=\"/stream\" /></body></html>";
-    httpd_resp_send(req, resp, strlen(resp));
-    return ESP_OK;
+    esp_err_t res = httpd_resp_send(req, resp, strlen(resp));
+    if (res != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to send index response: %s", esp_err_to_name(res));
+    }
+    return res;
 }
 
-void camera_server_start(void) {
-    if (s_httpd) return;
+esp_err_t camera_server_start(void) {
+    if (s_httpd) return ESP_OK;
 
     httpd_config_t config = HTTPD_DEFAULT_CONFIG();
     config.server_port = 8081;
@@ -80,8 +86,10 @@ void camera_server_start(void) {
         httpd_register_uri_handler(s_httpd, &stream_uri);
         httpd_register_uri_handler(s_httpd, &index_uri);
         ESP_LOGI(TAG, "Camera server started on port 8081");
+        return ESP_OK;
     } else {
         ESP_LOGE(TAG, "Failed to start camera server");
+        return ESP_FAIL;
     }
 }
 

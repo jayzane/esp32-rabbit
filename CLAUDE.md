@@ -24,7 +24,7 @@
 ## ESP32
 - 型号：ESP32-WROVER-DEV
 - 摄像头型号：OV2640
-- GPIO13 PWM 连接了舵机
+- GPIO13 PWM 连接了舵机(SG90)
 - WiFi_SSID=${WiFi_SSID}
 - WIFI_PASS=${WIFI_PASS}
 - ESP32的网络配置
@@ -53,3 +53,12 @@
 # graphify
 - **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
 When the user types `/graphify`, invoke the Skill tool with `skill: "graphify"` before doing anything else.
+
+## graphify
+
+This project has a graphify knowledge graph at graphify-out/.
+
+Rules:
+- Before answering architecture or codebase questions, read graphify-out/GRAPH_REPORT.md for god nodes and community structure
+- If graphify-out/wiki/index.md exists, navigate it instead of reading raw files
+- After modifying code files in this session, run `graphify update .` to keep the graph current (AST-only, no API cost)

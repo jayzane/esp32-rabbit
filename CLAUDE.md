@@ -36,8 +36,6 @@
 - 需要通过串口日志进行闭环验证，如果报错Monitor requires TTY，则通过抓取最近串口日志来调试
 - 需要通过pytest编写关于接口的集成测试
 
-
-  
 ## 本地环境
 - windows主机
 - WSL2 Ubuntu带Dokcer环境
@@ -51,6 +49,8 @@
 - 远程服务域名为${REMOTE_DOMAIN}
 - 远程暴露端口范围${REMOTE_PORT_RANGE}
 
+## Frontend Desgin/前端设计
+- 如果设计前端设计，优先使用skill：/web-design-engineer
 
 # graphify
 - **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
@@ -67,7 +67,8 @@ Rules:
 
 # Superpowers
 ## writing-plans
-使用/superpowers:writing-plans时候要补充pytest编写关于接口的集成测试
+- 使用/superpowers:writing-plans时候要补充pytest编写关于接口和通过gstack的/qa这个skill进行前端UI交互的集成测试
+
 ## TDD原则
 - Implementation plans 写了 TDD 就要执行，不能因为"代码简单"或"mechanical task"跳过测试步骤
 - 先写失败测试，再写实现——bug 在测试失败时暴露，不是靠 review 推断

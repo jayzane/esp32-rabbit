@@ -4,10 +4,12 @@
 
 # Project
 ## 环境变量
-下述所需的环境变量来自.env，由${}包裹
+- 下述所需的环境变量来自.env，由${}包裹
+- 环境变量只是给编程环境Claude使用，ESP32需要按实际进行编码
 
 ## ESP-IDF 环境
 - 通过 `C:\Espressif\tools\Microsoft.v6.0.PowerShell_profile.ps1` 激活环境配置
+- 优先使用idf.py命令进行ESP-IDF相关操作
 - **ESP-IDF 命令必须使用 `PowerShell` 工具**，不能用 Bash（IDF 环境在 PowerShell 下才配置完整）
 - "IDF_TOOLS_PATH" = "C:\Espressif\tools"
 - "IDF_COMPONENT_LOCAL_STORAGE_URL" = "file://C:\Espressif\tools"
@@ -25,7 +27,14 @@
 - GPIO13 PWM 连接了舵机
 - WiFi_SSID=${WiFi_SSID}
 - WIFI_PASS=${WIFI_PASS}
-- ESP32_IP=10.0.0.110
+- ESP32的网络配置
+  - IP：10.0.0.110
+  - ROUTE: 10.0.0.2
+  - DNS: 10.0.0.2
+
+## ESP32调试与测试
+- 需要通过串口日志进行闭环验证，如果报错Monitor requires TTY，则通过抓取最近串口日志来调试
+- 需要通过pytest编写关于接口的集成测试
   
 ## 本地环境
 - windows主机

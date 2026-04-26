@@ -1,0 +1,10 @@
+vendor/
+node_modules/
+build/
+dist/
+.claude/
+.git/
+*.generated.py
+AGENTS.md
+CLAUDE.md
+docs/translations/

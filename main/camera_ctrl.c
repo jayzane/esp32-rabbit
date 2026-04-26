@@ -30,10 +30,11 @@ camera_err_t camera_ctrl_enable(camera_err_t (*callback)(void*), void* user_data
     if (err == CAMERA_OK) {
         s_camera_on = true;
         ESP_LOGI(TAG, "Camera enabled");
-    }
-
-    if (callback) {
-        callback(user_data);
+        if (callback) {
+            callback(user_data);
+        }
+    } else {
+        ESP_LOGE(TAG, "Camera start failed: %d", err);
     }
 
     return err;

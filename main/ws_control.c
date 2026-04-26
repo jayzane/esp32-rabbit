@@ -1,170 +1,157 @@
 #include "ws_control.h"
+#include "camera_ctrl.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include "esp_log.h"
-#include <libwebsockets.h>
+#include "esp_http_server.h"
 
 static const char *TAG = "ws_control";
 
-#define WS_CONTROL_PORT 8080
-#define WS_CONTROL_PATH "/control"
+#define CONTROL_PATH "/control"
 
 static ws_control_callback_t g_callback = NULL;
 static void *g_user_data = NULL;
-static struct lws *g_active_wsi = NULL;
+static httpd_handle_t g_httpd_handle = NULL;
 
-static int ws_control_callback(struct lws *wsi, enum lws_callback_reasons reason,
-                                void *user, void *in, size_t len)
+static esp_err_t control_get_handler(httpd_req_t *req)
 {
-    switch (reason) {
-        case LWS_CALLBACK_ESTABLISHED: {
-            char path_buf[128];
-            lws_get_request_path(wsi, path_buf, sizeof(path_buf));
-            ESP_LOGI(TAG, "WebSocket connection established from path: %s", path_buf);
-            if (strcmp(path_buf, WS_CONTROL_PATH) != 0) {
-                ESP_LOGW(TAG, "Rejected WebSocket connection from invalid path: %s", path_buf);
-                g_active_wsi = NULL;
-                return -1;  // reject connection
-            }
-            g_active_wsi = wsi;
-            break;
-        }
-
-        case LWS_CALLBACK_RECEIVE: {
-            char *message = (char *)in;
-            size_t msg_len = len;
-
-            // Ensure null-terminated string
-            char *json_str = malloc(msg_len + 1);
-            if (!json_str) {
-                ESP_LOGE(TAG, "Failed to allocate memory for message");
-                break;
-            }
-            memcpy(json_str, message, msg_len);
-            json_str[msg_len] = '\0';
-
-            ESP_LOGI(TAG, "Received: %s", json_str);
-
-            // Parse JSON looking for "action" field
-            ws_action_t action = WS_ACTION_STATUS;
-            char *action_start = strstr(json_str, "\"action\"");
-            if (action_start) {
-                action_start = strchr(action_start, ':');
-                if (action_start) {
-                    action_start++;
-                    // Skip whitespace and quotes
-                    while (*action_start == ' ' || *action_start == '\"') {
-                        action_start++;
-                    }
-                    if (strncmp(action_start, "on", 2) == 0) {
-                        action = WS_ACTION_ON;
-                    } else if (strncmp(action_start, "off", 3) == 0) {
-                        action = WS_ACTION_OFF;
-                    } else {
-                        action = WS_ACTION_STATUS;
-                    }
-                }
-            }
-
-            ESP_LOGI(TAG, "Parsed action: %d", action);
-
-            // Invoke stored callback with parsed action
-            if (g_callback) {
-                g_callback(action, g_user_data);
-            }
-
-            free(json_str);
-            break;
-        }
-
-        case LWS_CALLBACK_CLOSED:
-            ESP_LOGI(TAG, "WebSocket connection closed");
-            g_active_wsi = NULL;
-            break;
-
-        case LWS_CALLBACK_HTTP:
-            // Validate request path - reject non-control paths
-            if (strcmp(in, WS_CONTROL_PATH) != 0) {
-                ESP_LOGW(TAG, "Rejected HTTP request for path: %s", (char *)in);
-                return 1;  // non-zero = reject
-            }
-            break;
-
-        default:
-            break;
-    }
-
-    return 0;
+    char buf[128];
+    snprintf(buf, sizeof(buf),
+        "{\"status\":\"ok\",\"camera\":\"%s\"}",
+        camera_ctrl_is_on() ? "on" : "off");
+    httpd_resp_send(req, buf, strlen(buf));
+    return ESP_OK;
 }
 
-static struct lws_protocols ws_control_protocols[] = {
-    {
-        "ws_control",
-        ws_control_callback,
-        0,
-        4096,
-    },
-    { NULL, NULL, 0, 0 }
-};
+static esp_err_t control_post_handler(httpd_req_t *req)
+{
+    char buf[512];
+    memset(buf, 0, sizeof(buf));
 
-static struct lws_context *g_context = NULL;
+    // Truncate if needed
+    size_t buf_len = sizeof(buf) - 1;
+    if (req->content_len < buf_len) {
+        buf_len = req->content_len;
+    }
+
+    int ret = httpd_req_recv(req, buf, buf_len);
+    if (ret <= 0) {
+        httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Failed to receive request");
+        return ESP_FAIL;
+    }
+    buf[ret] = '\0';
+
+    ESP_LOGI(TAG, "Received: %s", buf);
+
+    // Parse JSON looking for "action" field
+    ws_action_t action = WS_ACTION_STATUS;
+    char *action_start = strstr(buf, "\"action\"");
+    if (action_start) {
+        action_start = strchr(action_start, ':');
+        if (action_start) {
+            action_start++;
+            // Skip whitespace and quotes
+            while (*action_start == ' ' || *action_start == '"') {
+                action_start++;
+            }
+            if (strncmp(action_start, "on", 2) == 0) {
+                action = WS_ACTION_ON;
+            } else if (strncmp(action_start, "off", 3) == 0) {
+                action = WS_ACTION_OFF;
+            } else {
+                action = WS_ACTION_STATUS;
+            }
+        }
+    }
+
+    ESP_LOGI(TAG, "Parsed action: %d", action);
+
+    // Invoke stored callback with parsed action
+    if (g_callback) {
+        g_callback(action, g_user_data);
+    }
+
+    // Send response
+    snprintf(buf, sizeof(buf),
+        "{\"status\":\"ok\",\"camera\":\"%s\"}",
+        camera_ctrl_is_on() ? "on" : "off");
+    httpd_resp_send(req, buf, strlen(buf));
+
+    return ESP_OK;
+}
+
+static esp_err_t root_handler(httpd_req_t *req)
+{
+    const char *resp = "<html><head><title>ESP32 Camera</title></head>"
+        "<body><h1>ESP32 Camera Surveillance</h1>"
+        "<p>Camera is <span id='status'>...</span></p>"
+        "<p><button onclick='fetch(\"/control\",{method:\"POST\",headers:{\"Content-Type\":\"application/json\"},body:JSON.stringify({action:\"on\"})}).then(r=>r.json()).then(d=>document.getElementById(\"status\").innerText=d.camera)}'>ON</button>"
+        "<button onclick='fetch(\"/control\",{method:\"POST\",headers:{\"Content-Type\":\"application/json\"},body:JSON.stringify({action:\"off\"})}).then(r=>r.json()).then(d=>document.getElementById(\"status\").innerText=d.camera)}'>OFF</button></p>"
+        "<img src='/stream' /><br/>"
+        "<script>fetch(\"/control\").then(r=>r.json()).then(d=>document.getElementById(\"status\").innerText=d.camera);</script>"
+        "</body></html>";
+    httpd_resp_send(req, resp, strlen(resp));
+    return ESP_OK;
+}
 
 void ws_control_init(ws_control_callback_t callback, void *user_data)
 {
     g_callback = callback;
     g_user_data = user_data;
 
-    struct lws_context_creation_info info;
-    memset(&info, 0, sizeof(info));
-    info.port = WS_CONTROL_PORT;
-    info.protocols = ws_control_protocols;
-    info.options = LWS_SERVER_OPTION_HTTP;
+    httpd_config_t config = HTTPD_DEFAULT_CONFIG();
+    config.server_port = 8080;
+    config.ctrl_port = 8080;
 
-    g_context = lws_create_context(&info);
-    if (g_context == NULL) {
-        ESP_LOGE(TAG, "Failed to create WebSocket context");
-        return;
+    httpd_uri_t control_get_uri = {
+        .uri = CONTROL_PATH,
+        .method = HTTP_GET,
+        .handler = control_get_handler,
+        .user_ctx = NULL
+    };
+
+    httpd_uri_t control_post_uri = {
+        .uri = CONTROL_PATH,
+        .method = HTTP_POST,
+        .handler = control_post_handler,
+        .user_ctx = NULL
+    };
+
+    httpd_uri_t root_uri = {
+        .uri = "/",
+        .method = HTTP_GET,
+        .handler = root_handler,
+        .user_ctx = NULL
+    };
+
+    if (httpd_start(&g_httpd_handle, &config) == ESP_OK) {
+        httpd_register_uri_handler(g_httpd_handle, &control_get_uri);
+        httpd_register_uri_handler(g_httpd_handle, &control_post_uri);
+        httpd_register_uri_handler(g_httpd_handle, &root_uri);
+        ESP_LOGI(TAG, "HTTP control server started on port 8080");
+    } else {
+        ESP_LOGE(TAG, "Failed to start HTTP control server");
+        g_httpd_handle = NULL;
     }
-
-    ESP_LOGI(TAG, "WebSocket server started on port %d%s", WS_CONTROL_PORT, WS_CONTROL_PATH);
 }
 
 void ws_control_deinit(void)
 {
-    if (g_context) {
-        lws_cancel_service(g_context);
-        lws_context_destroy(g_context);
-        g_context = NULL;
+    if (g_httpd_handle) {
+        httpd_stop(g_httpd_handle);
+        g_httpd_handle = NULL;
     }
     g_callback = NULL;
     g_user_data = NULL;
-    g_active_wsi = NULL;
-    ESP_LOGI(TAG, "WebSocket server deinitialized");
+    ESP_LOGI(TAG, "HTTP control server deinitialized");
 }
 
 void ws_control_send_response(const char *json_response)
 {
-    if (g_active_wsi == NULL || json_response == NULL) {
+    if (g_httpd_handle == NULL || json_response == NULL) {
         ESP_LOGW(TAG, "Cannot send response: no active connection or null response");
         return;
     }
-
-    unsigned char buf[LWS_PRE + 4096];
-    unsigned char *p = &buf[LWS_PRE];
-
-    size_t len = strlen(json_response);
-    if (len > sizeof(buf) - LWS_PRE - 1) {
-        ESP_LOGE(TAG, "Response too large");
-        return;
-    }
-
-    memcpy(p, json_response, len);
-
-    int n = lws_write(g_active_wsi, p, len, LWS_WRITE_TEXT);
-    if (n < 0) {
-        ESP_LOGE(TAG, "Failed to send WebSocket response");
-    } else {
-        ESP_LOGI(TAG, "Sent response: %s", json_response);
-    }
+    ESP_LOGI(TAG, "Response ready: %s", json_response);
 }

@@ -7,6 +7,7 @@ typedef enum {
     WS_ACTION_ON,
     WS_ACTION_OFF,
     WS_ACTION_STATUS,
+    WS_ACTION_SERVO,
 } ws_action_t;
 
 typedef void (*ws_control_callback_t)(ws_action_t action, void* user_data);

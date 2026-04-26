@@ -18,10 +18,18 @@ static int ws_control_callback(struct lws *wsi, enum lws_callback_reasons reason
                                 void *user, void *in, size_t len)
 {
     switch (reason) {
-        case LWS_CALLBACK_ESTABLISHED:
-            ESP_LOGI(TAG, "WebSocket connection established");
+        case LWS_CALLBACK_ESTABLISHED: {
+            char path_buf[128];
+            lws_get_request_path(wsi, path_buf, sizeof(path_buf));
+            ESP_LOGI(TAG, "WebSocket connection established from path: %s", path_buf);
+            if (strcmp(path_buf, WS_CONTROL_PATH) != 0) {
+                ESP_LOGW(TAG, "Rejected WebSocket connection from invalid path: %s", path_buf);
+                g_active_wsi = NULL;
+                return -1;  // reject connection
+            }
             g_active_wsi = wsi;
             break;
+        }
 
         case LWS_CALLBACK_RECEIVE: {
             char *message = (char *)in;
@@ -76,7 +84,11 @@ static int ws_control_callback(struct lws *wsi, enum lws_callback_reasons reason
             break;
 
         case LWS_CALLBACK_HTTP:
-            // Serve HTTP requests if needed
+            // Validate request path - reject non-control paths
+            if (strcmp(in, WS_CONTROL_PATH) != 0) {
+                ESP_LOGW(TAG, "Rejected HTTP request for path: %s", (char *)in);
+                return 1;  // non-zero = reject
+            }
             break;
 
         default:

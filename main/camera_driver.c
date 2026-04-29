@@ -2,6 +2,7 @@
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/semphr.h"
+#include "driver/gpio.h"
 
 static const char* TAG = "camera_driver";
 
@@ -104,10 +105,6 @@ void camera_driver_deinit(void)
         s_initialized = false;
         s_running = false;
         ESP_LOGI(TAG, "Camera deinitialized");
-    }
-    if (s_mutex) {
-        vSemaphoreDelete(s_mutex);
-        s_mutex = NULL;
     }
 }
 

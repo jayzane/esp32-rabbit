@@ -25,10 +25,8 @@ typedef struct {
     size_t frame_len;      // filled by CORE1: JPEG data length
 } camera_msg_t;
 
-// PSRAM shared JPEG buffer
-// Placed in PSRAM section, no DMA restrictions
-// Access synchronized via s_jpeg_mutex (CORE1 writes, CORE0 reads)
-extern uint8_t s_jpeg_buf[JPEG_BUF_SIZE];
+// PSRAM shared JPEG buffer (runtime allocated)
+extern uint8_t* s_jpeg_buf;
 
 // Binary semaphore protecting s_jpeg_buf
 // CORE1 takes before writing, CORE0 takes before reading

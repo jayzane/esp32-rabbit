@@ -7,9 +7,9 @@
 
 static const char* TAG = "shared_mem";
 
-// PSRAM buffer — section ".psram_vars" places it in PSRAM
-// IRAM_ATTR removed: IRAM_ATTR forces DRAM/IRAM, contradicting PSRAM placement
-uint8_t s_jpeg_buf[JPEG_BUF_SIZE] __attribute__((section(".psram_vars")));
+// PSRAM buffer — allocated from PSRAM at init time
+// No custom section needed; ESP-IDF handles PSRAM placement via heap
+uint8_t* s_jpeg_buf = NULL;
 
 // Binary semaphore for JPEG buffer access synchronization
 SemaphoreHandle_t s_jpeg_mutex = NULL;
@@ -26,20 +26,22 @@ shared_state_t s_shared_state = {
 
 void shared_mem_init(void)
 {
-    // Verify PSRAM availability
-    if (heap_caps_check_integrity_all(MALLOC_CAP_SPIRAM)) {
-        ESP_LOGI(TAG, "PSRAM available, JPEG buf in PSRAM");
-    } else {
-        ESP_LOGW(TAG, "PSRAM not available, using DRAM (JPEG buf may be small)");
+    // Allocate PSRAM buffer at runtime
+    s_jpeg_buf = (uint8_t*)heap_caps_malloc(JPEG_BUF_SIZE, MALLOC_CAP_SPIRAM);
+    if (!s_jpeg_buf) {
+        ESP_LOGW(TAG, "PSRAM alloc failed, falling back to DRAM");
+        s_jpeg_buf = (uint8_t*)malloc(JPEG_BUF_SIZE);
+    }
+    if (!s_jpeg_buf) {
+        ESP_LOGE(TAG, "Failed to allocate JPEG buffer");
+        abort();
     }
 
-    // Verify buffer is actually in PSRAM
     uint32_t buf_addr = (uint32_t)s_jpeg_buf;
-    if (heap_caps_get_address((void*)buf_addr) != 0x3F000000 &&
-        heap_caps_get_address((void*)buf_addr) != 0) {
-        ESP_LOGI(TAG, "JPEG buffer confirmed in PSRAM at addr 0x%08X", buf_addr);
+    if (buf_addr >= 0x3F000000 && buf_addr < 0x3F800000) {
+        ESP_LOGI(TAG, "JPEG buffer in PSRAM at addr 0x%08X", buf_addr);
     } else {
-        ESP_LOGW(TAG, "JPEG buffer may NOT be in PSRAM (addr 0x%08X)", buf_addr);
+        ESP_LOGW(TAG, "JPEG buffer in DRAM at addr 0x%08X", buf_addr);
     }
 
     // Binary semaphore for buffer access sync
@@ -63,6 +65,10 @@ void shared_mem_init(void)
 
 void shared_mem_deinit(void)
 {
+    if (s_jpeg_buf) {
+        free(s_jpeg_buf);
+        s_jpeg_buf = NULL;
+    }
     if (s_jpeg_mutex) {
         vSemaphoreDelete(s_jpeg_mutex);
         s_jpeg_mutex = NULL;

@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 #include "shared_mem.h"
+#include "camera_driver.h"
 
 // Queue-driven camera control API
 void camera_ctrl_init(void);

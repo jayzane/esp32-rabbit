@@ -11,8 +11,9 @@
 #include "esp_netif_types.h"
 
 #include "camera_ctrl.h"
-#include "camera_server.h"
-#include "ws_control.h"
+#include "camera_task.h"
+#include "shared_mem.h"
+#include "ws_client.h"
 #include "servo.h"
 
 static const char* TAG = "app_main";
@@ -22,7 +23,6 @@ static const char* TAG = "app_main";
 #define ESP32_GW      "10.0.0.2"
 #define ESP32_NETMASK "255.255.255.0"
 
-/* Store netif pointer globally for static IP config */
 static esp_netif_t* s_netif = NULL;
 
 /* WiFi event handler */
@@ -50,113 +50,94 @@ static void wifi_event_handler(void* arg, esp_event_base_t event_base,
     }
 }
 
-/* Control callback */
-static void ws_control_callback(ws_action_t action, void* user_data)
+/* WebSocket command handling callback */
+static void ws_command_callback(ws_cmd_t* cmd, void* user_data)
 {
-    char response[128];
+    char response[256];
+    int seq = cmd->seq;
 
-    switch (action) {
-        case WS_ACTION_ON:
+    switch (cmd->type) {
+        case WS_CMD_CAMERA_ON: {
             if (!camera_ctrl_is_on()) {
-                camera_err_t err = camera_ctrl_enable(NULL, NULL);
+                camera_err_t err = camera_ctrl_enable();
                 if (err == CAMERA_OK) {
-                    camera_server_start();
                     snprintf(response, sizeof(response),
-                        "{\"status\":\"ok\",\"camera\":\"on\"}");
+                        "{\"seq\":%d,\"status\":\"ok\",\"camera\":\"on\"}", seq);
                 } else {
                     snprintf(response, sizeof(response),
-                        "{\"status\":\"error\",\"reason\":\"init_failed\"}");
+                        "{\"seq\":%d,\"status\":\"error\",\"reason\":\"init_failed\"}", seq);
                 }
             } else {
                 snprintf(response, sizeof(response),
-                    "{\"status\":\"ok\",\"camera\":\"on\"}");
+                    "{\"seq\":%d,\"status\":\"ok\",\"camera\":\"on\"}", seq);
             }
+            ws_client_send_text(response);
             break;
+        }
 
-        case WS_ACTION_OFF:
+        case WS_CMD_CAMERA_OFF: {
             if (camera_ctrl_is_on()) {
                 camera_ctrl_disable();
             }
             snprintf(response, sizeof(response),
-                "{\"status\":\"ok\",\"camera\":\"off\"}");
+                "{\"seq\":%d,\"status\":\"ok\",\"camera\":\"off\"}", seq);
+            ws_client_send_text(response);
+            break;
+        }
+
+        case WS_CMD_SERVO: {
+            int angle = cmd->angle;
+            if (angle < 0 || angle > 180) {
+                snprintf(response, sizeof(response),
+                    "{\"seq\":%d,\"status\":\"error\",\"reason\":\"angle_out_of_range\"}", seq);
+            } else {
+                servo_set_angle(angle);
+                snprintf(response, sizeof(response),
+                    "{\"seq\":%d,\"status\":\"ok\",\"angle\":%d}", seq, angle);
+            }
+            ws_client_send_text(response);
+            break;
+        }
+
+        case WS_CMD_CAPTURE: {
+            size_t frame_len = camera_ctrl_capture();
+            if (frame_len > 0) {
+                // Send JPEG binary frame
+                ws_client_send_binary(s_jpeg_buf, frame_len);
+                snprintf(response, sizeof(response),
+                    "{\"seq\":%d,\"status\":\"ok\",\"frame_size\":%d}", seq, (int)frame_len);
+                ws_client_send_text(response);
+            } else {
+                snprintf(response, sizeof(response),
+                    "{\"seq\":%d,\"status\":\"error\",\"reason\":\"capture_failed\"}", seq);
+                ws_client_send_text(response);
+            }
+            break;
+        }
+
+        case WS_CMD_STREAM_START:
+        case WS_CMD_STREAM_STOP:
+            snprintf(response, sizeof(response),
+                "{\"seq\":%d,\"status\":\"ok\",\"stream\":\"%s\"}",
+                seq, cmd->type == WS_CMD_STREAM_START ? "started" : "stopped");
+            ws_client_send_text(response);
             break;
 
-        case WS_ACTION_STATUS:
         default:
             snprintf(response, sizeof(response),
-                "{\"status\":\"ok\",\"camera\":\"%s\"}",
-                camera_ctrl_is_on() ? "on" : "off");
+                "{\"seq\":%d,\"status\":\"error\",\"reason\":\"unknown_command\"}", seq);
+            ws_client_send_text(response);
             break;
     }
-
-    ws_control_send_response(response);
-    ESP_LOGI(TAG, "Camera control: %s", response);
 }
 
-void app_main(void)
+static void wait_for_wifi_connection(void)
 {
-    /* Initialize NVS */
-    esp_err_t ret = nvs_flash_init();
-    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
-        ESP_ERROR_CHECK(nvs_flash_erase());
-        ret = nvs_flash_init();
-    }
-    ESP_ERROR_CHECK(ret);
-
-    /* Initialize TCP/IP stack first */
-    ESP_ERROR_CHECK(esp_netif_init());
-
-    /* Create default event loop */
-    ESP_ERROR_CHECK(esp_event_loop_create_default());
-
-    /* Create default WiFi STA network interface */
-    s_netif = esp_netif_create_default_wifi_sta();
-
-    /* Initialize WiFi */
-    wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
-    ESP_ERROR_CHECK(esp_wifi_init(&cfg));
-
-    /* Register event handler */
-    ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, ESP_EVENT_ANY_ID,
-                                               &wifi_event_handler, NULL));
-    ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP,
-                                               &wifi_event_handler, NULL));
-
-    /* Set WiFi mode to station */
-    ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
-
-    /* Configure WiFi settings from sdkconfig */
-    wifi_config_t wifi_config = {
-        .sta = {
-            .threshold.authmode = WIFI_AUTH_WPA_PSK,
-            .pmf_cfg = { .capable = true, .required = false },
-        },
-    };
-    strncpy((char*)wifi_config.sta.ssid, CONFIG_ESP_WIFI_SSID, sizeof(wifi_config.sta.ssid));
-    strncpy((char*)wifi_config.sta.password, CONFIG_ESP_WIFI_PASSWORD, sizeof(wifi_config.sta.password));
-    ESP_LOGI(TAG, "WiFi config: SSID=%s", CONFIG_ESP_WIFI_SSID);
-
-    ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config));
-
-    /* Start WiFi */
-    ESP_ERROR_CHECK(esp_wifi_start());
-    ESP_LOGI(TAG, "WiFi init done, started in STA mode");
-
-    /* Initialize servo */
-    servo_init();
-
-    /* Initialize camera control */
-    camera_ctrl_init();
-
-    /* Initialize HTTP control server */
-    ws_control_init(ws_control_callback, NULL);
-
-    /* Wait for WiFi connection - check connection state periodically */
-    ESP_LOGI(TAG, "Waiting for WiFi connection...");
-
     bool connected = false;
     int connect_timeout = 15000;
     int elapsed = 0;
+
+    ESP_LOGI(TAG, "Waiting for WiFi connection...");
 
     while (!connected && elapsed < connect_timeout) {
         vTaskDelay(pdMS_TO_TICKS(100));
@@ -165,7 +146,7 @@ void app_main(void)
         wifi_ap_record_t ap_info;
         if (esp_wifi_sta_get_ap_info(&ap_info) == ESP_OK) {
             connected = true;
-            ESP_LOGI(TAG, "WiFi connected to AP: %s", ap_info.ssid);
+            ESP_LOGI(TAG, "WiFi connected to: %s", ap_info.ssid);
             break;
         }
     }
@@ -173,40 +154,85 @@ void app_main(void)
     if (!connected) {
         ESP_LOGW(TAG, "WiFi connection timeout, proceeding anyway");
     }
+}
 
-    /* Configure static IP after WiFi connects */
-    if (s_netif) {
-        /* Stop DHCP client before setting static IP */
-        esp_err_t err = esp_netif_dhcpc_stop(s_netif);
-        if (err != ESP_OK && err != ESP_ERR_ESP_NETIF_DHCP_ALREADY_STOPPED) {
-            ESP_LOGW(TAG, "DHCP stop failed: %s", esp_err_to_name(err));
-        }
+static void configure_static_ip(void)
+{
+    if (!s_netif) return;
 
-        esp_netif_ip_info_t ip_info = {0};
-        ip_info.ip.addr = esp_ip4addr_aton(ESP32_IP);
-        ip_info.netmask.addr = esp_ip4addr_aton(ESP32_NETMASK);
-        ip_info.gw.addr = esp_ip4addr_aton(ESP32_GW);
-        ESP_ERROR_CHECK(esp_netif_set_ip_info(s_netif, &ip_info));
-
-        /* Set DNS server */
-        esp_netif_dns_info_t dns_info = {0};
-        dns_info.ip.type = ESP_IPADDR_TYPE_V4;
-        dns_info.ip.u_addr.ip4.addr = esp_ip4addr_aton(ESP32_GW);
-        ESP_ERROR_CHECK(esp_netif_set_dns_info(s_netif, ESP_NETIF_DNS_MAIN, &dns_info));
-        ESP_LOGI(TAG, "Static IP/GW/DNS set: " IPSTR " gw " IPSTR " dns " IPSTR,
-                 IP2STR(&ip_info.ip), IP2STR(&ip_info.gw), IP2STR(&dns_info.ip.u_addr.ip4));
-    } else {
-        ESP_LOGE(TAG, "Failed to get netif handle");
+    esp_err_t err = esp_netif_dhcpc_stop(s_netif);
+    if (err != ESP_OK && err != ESP_ERR_ESP_NETIF_DHCP_ALREADY_STOPPED) {
+        ESP_LOGW(TAG, "DHCP stop failed: %s", esp_err_to_name(err));
     }
 
-    /* Additional stabilization delay */
-    vTaskDelay(pdMS_TO_TICKS(1000));
+    esp_netif_ip_info_t ip_info = {0};
+    ip_info.ip.addr = esp_ip4addr_aton(ESP32_IP);
+    ip_info.netmask.addr = esp_ip4addr_aton(ESP32_NETMASK);
+    ip_info.gw.addr = esp_ip4addr_aton(ESP32_GW);
+    ESP_ERROR_CHECK(esp_netif_set_ip_info(s_netif, &ip_info));
 
-    /* Start camera and stream server */
-    ESP_LOGI(TAG, "Starting camera and stream server...");
-    if (camera_ctrl_enable(NULL, NULL) == CAMERA_OK) {
-        camera_server_start();
+    esp_netif_dns_info_t dns_info = {0};
+    dns_info.ip.type = ESP_IPADDR_TYPE_V4;
+    dns_info.ip.u_addr.ip4.addr = esp_ip4addr_aton(ESP32_GW);
+    ESP_ERROR_CHECK(esp_netif_set_dns_info(s_netif, ESP_NETIF_DNS_MAIN, &dns_info));
+
+    ESP_LOGI(TAG, "Static IP/GW/DNS configured: " IPSTR,
+             IP2STR(&ip_info.ip));
+}
+
+void app_main(void)
+{
+    /* NVS */
+    esp_err_t ret = nvs_flash_init();
+    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+        ESP_ERROR_CHECK(nvs_flash_erase());
+        ret = nvs_flash_init();
     }
+    ESP_ERROR_CHECK(ret);
 
-    ESP_LOGI(TAG, "ESP32 Camera app started");
+    /* TCP/IP */
+    ESP_ERROR_CHECK(esp_netif_init());
+    ESP_ERROR_CHECK(esp_event_loop_create_default());
+
+    /* WiFi STA */
+    s_netif = esp_netif_create_default_wifi_sta();
+    wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
+    ESP_ERROR_CHECK(esp_wifi_init(&cfg));
+    ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, ESP_EVENT_ANY_ID,
+                                               &wifi_event_handler, NULL));
+    ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP,
+                                               &wifi_event_handler, NULL));
+    ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
+
+    wifi_config_t wifi_config = {
+        .sta = {
+            .threshold.authmode = WIFI_AUTH_WPA_PSK,
+            .pmf_cfg = { .capable = true, .required = false },
+        },
+    };
+    strncpy((char*)wifi_config.sta.ssid, CONFIG_ESP_WIFI_SSID, sizeof(wifi_config.sta.ssid));
+    strncpy((char*)wifi_config.sta.password, CONFIG_ESP_WIFI_PASSWORD, sizeof(wifi_config.sta.password));
+    ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config));
+    ESP_ERROR_CHECK(esp_wifi_start());
+
+    /* Shared memory and queues */
+    shared_mem_init();
+
+    /* Initialize servo */
+    servo_init();
+
+    /* Initialize camera control (Queue-driven) */
+    camera_ctrl_init();
+
+    /* CORE1: start camera task */
+    camera_task_start();
+
+    /* WebSocket client */
+    ws_client_init(ws_command_callback, NULL);
+
+    /* Wait for WiFi and configure static IP */
+    wait_for_wifi_connection();
+    configure_static_ip();
+
+    ESP_LOGI(TAG, "ESP32 dual-core app started. WS client connecting to " WS_SERVER_URI);
 }

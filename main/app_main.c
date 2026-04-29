@@ -2,6 +2,7 @@
 #include <string.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/semphr.h"
 #include "esp_system.h"
 #include "esp_log.h"
 #include "esp_wifi.h"
@@ -102,11 +103,19 @@ static void ws_command_callback(ws_cmd_t* cmd, void* user_data)
         case WS_CMD_CAPTURE: {
             size_t frame_len = camera_ctrl_capture();
             if (frame_len > 0) {
-                // Send JPEG binary frame
-                ws_client_send_binary(s_jpeg_buf, frame_len);
-                snprintf(response, sizeof(response),
-                    "{\"seq\":%d,\"status\":\"ok\",\"frame_size\":%d}", seq, (int)frame_len);
-                ws_client_send_text(response);
+                // Take mutex before reading shared JPEG buffer
+                if (xSemaphoreTake(s_jpeg_mutex, pdMS_TO_TICKS(3000)) == pdTRUE) {
+                    ws_client_send_binary(s_jpeg_buf, frame_len);
+                    xSemaphoreGive(s_jpeg_mutex);
+                    snprintf(response, sizeof(response),
+                        "{\"seq\":%d,\"status\":\"ok\",\"frame_size\":%d}", seq, (int)frame_len);
+                    ws_client_send_text(response);
+                } else {
+                    ESP_LOGE(TAG, "JPEG mutex timeout waiting for frame");
+                    snprintf(response, sizeof(response),
+                        "{\"seq\":%d,\"status\":\"error\",\"reason\":\"capture_timeout\"}", seq);
+                    ws_client_send_text(response);
+                }
             } else {
                 snprintf(response, sizeof(response),
                     "{\"seq\":%d,\"status\":\"error\",\"reason\":\"capture_failed\"}", seq);

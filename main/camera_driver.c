@@ -2,11 +2,9 @@
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/semphr.h"
-#include "driver/gpio.h"
 
 static const char* TAG = "camera_driver";
 
-static DRAM_ATTR SemaphoreHandle_t s_mutex = NULL;
 static bool s_initialized = false;
 static bool s_running = false;
 
@@ -14,12 +12,6 @@ camera_err_t camera_driver_init(void)
 {
     if (s_initialized) {
         return CAMERA_OK;
-    }
-
-    s_mutex = xSemaphoreCreateMutex();
-    if (s_mutex == NULL) {
-        ESP_LOGE(TAG, "Failed to create mutex");
-        return CAMERA_ERROR_INIT_FAILED;
     }
 
     camera_config_t config = {
@@ -53,8 +45,6 @@ camera_err_t camera_driver_init(void)
     esp_err_t err = esp_camera_init(&config);
     if (err != ESP_OK) {
         ESP_LOGE(TAG, "Camera init failed: %s (0x%x)", esp_err_to_name(err), err);
-        vSemaphoreDelete(s_mutex);
-        s_mutex = NULL;
         return CAMERA_ERROR_INIT_FAILED;
     }
     ESP_LOGI(TAG, "esp_camera_init OK");
@@ -88,8 +78,6 @@ camera_err_t camera_driver_init(void)
     } else {
         ESP_LOGE(TAG, "Failed to get camera sensor");
         esp_camera_deinit();
-        vSemaphoreDelete(s_mutex);
-        s_mutex = NULL;
         return CAMERA_ERROR_INIT_FAILED;
     }
 

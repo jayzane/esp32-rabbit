@@ -128,8 +128,27 @@ static void ws_client_reconnect_task(void* param)
         ESP_LOGI(TAG, "WS reconnecting in %d ms...", delay_ms);
         vTaskDelay(pdMS_TO_TICKS(delay_ms));
 
-        if (s_ws_client) {
-            esp_websocket_client_start(s_ws_client);
+        if (s_ws_client == NULL) {
+            // Client was destroyed, exit reconnect loop
+            ESP_LOGW(TAG, "WS client destroyed, exiting reconnect task");
+            break;
+        }
+
+        esp_err_t err = esp_websocket_client_start(s_ws_client);
+        if (err != ESP_OK) {
+            ESP_LOGW(TAG, "WS reconnect start failed: %s, will retry", esp_err_to_name(err));
+            // Client in bad state: destroy and re-init
+            esp_websocket_client_destroy(s_ws_client);
+            esp_websocket_client_config_t cfg = {
+                .uri = WS_SERVER_URI,
+                .ping_interval_ms = WS_PING_INTERVAL_MS,
+                .pingpong_timeout_secs = 10,
+            };
+            s_ws_client = esp_websocket_client_init(&cfg);
+            if (s_ws_client) {
+                esp_websocket_client_register_event(s_ws_client, WEBSOCKET_EVENT_ANY,
+                                                    websocket_event_handler, NULL);
+            }
         }
 
         delay_ms *= 2;

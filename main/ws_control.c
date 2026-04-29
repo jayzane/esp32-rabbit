@@ -21,6 +21,7 @@ static esp_err_t control_get_handler(httpd_req_t *req)
     snprintf(buf, sizeof(buf),
         "{\"status\":\"ok\",\"camera\":\"%s\"}",
         camera_ctrl_is_on() ? "on" : "off");
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
     httpd_resp_send(req, buf, strlen(buf));
     return ESP_OK;
 }
@@ -95,6 +96,7 @@ static esp_err_t control_post_handler(httpd_req_t *req)
             snprintf(buf, sizeof(buf),
                 "{\"status\":\"ok\",\"angle\":%d}", angle);
         }
+        httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
         httpd_resp_send(req, buf, strlen(buf));
         return ESP_OK;
     }
@@ -108,8 +110,18 @@ static esp_err_t control_post_handler(httpd_req_t *req)
     snprintf(buf, sizeof(buf),
         "{\"status\":\"ok\",\"camera\":\"%s\"}",
         camera_ctrl_is_on() ? "on" : "off");
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
     httpd_resp_send(req, buf, strlen(buf));
 
+    return ESP_OK;
+}
+
+static esp_err_t control_options_handler(httpd_req_t *req)
+{
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Headers", "Content-Type");
+    httpd_resp_send(req, NULL, 0);
     return ESP_OK;
 }
 
@@ -150,6 +162,13 @@ void ws_control_init(ws_control_callback_t callback, void *user_data)
         .user_ctx = NULL
     };
 
+    httpd_uri_t control_options_uri = {
+        .uri = CONTROL_PATH,
+        .method = HTTP_OPTIONS,
+        .handler = control_options_handler,
+        .user_ctx = NULL
+    };
+
     httpd_uri_t root_uri = {
         .uri = "/",
         .method = HTTP_GET,
@@ -160,6 +179,7 @@ void ws_control_init(ws_control_callback_t callback, void *user_data)
     if (httpd_start(&g_httpd_handle, &config) == ESP_OK) {
         httpd_register_uri_handler(g_httpd_handle, &control_get_uri);
         httpd_register_uri_handler(g_httpd_handle, &control_post_uri);
+        httpd_register_uri_handler(g_httpd_handle, &control_options_uri);
         httpd_register_uri_handler(g_httpd_handle, &root_uri);
         ESP_LOGI(TAG, "HTTP control server started on port 8080");
     } else {

@@ -1,0 +1,1245 @@
+{
+  "nodes": [
+    {
+      "id": "main_app_main_c",
+      "label": "app_main.c",
+      "file_type": "code",
+      "source_file": "main\\app_main.c",
+      "source_location": "L1"
+    },
+    {
+      "id": "app_main_wifi_event_handler",
+      "label": "wifi_event_handler()",
+      "file_type": "code",
+      "source_file": "main\\app_main.c",
+      "source_location": "L29"
+    },
+    {
+      "id": "app_main_ws_control_callback",
+      "label": "ws_control_callback()",
+      "file_type": "code",
+      "source_file": "main\\app_main.c",
+      "source_location": "L54"
+    },
+    {
+      "id": "app_main_app_main",
+      "label": "app_main()",
+      "file_type": "code",
+      "source_file": "main\\app_main.c",
+      "source_location": "L96"
+    },
+    {
+      "id": "main_camera_ctrl_c",
+      "label": "camera_ctrl.c",
+      "file_type": "code",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L1"
+    },
+    {
+      "id": "camera_ctrl_camera_ctrl_init",
+      "label": "camera_ctrl_init()",
+      "file_type": "code",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L8"
+    },
+    {
+      "id": "camera_ctrl_camera_ctrl_deinit",
+      "label": "camera_ctrl_deinit()",
+      "file_type": "code",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L13"
+    },
+    {
+      "id": "camera_ctrl_camera_ctrl_enable",
+      "label": "camera_ctrl_enable()",
+      "file_type": "code",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L19"
+    },
+    {
+      "id": "camera_ctrl_camera_ctrl_disable",
+      "label": "camera_ctrl_disable()",
+      "file_type": "code",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L43"
+    },
+    {
+      "id": "camera_ctrl_camera_ctrl_is_on",
+      "label": "camera_ctrl_is_on()",
+      "file_type": "code",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L52"
+    },
+    {
+      "id": "main_camera_driver_c",
+      "label": "camera_driver.c",
+      "file_type": "code",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L1"
+    },
+    {
+      "id": "camera_driver_camera_driver_init",
+      "label": "camera_driver_init()",
+      "file_type": "code",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L12"
+    },
+    {
+      "id": "camera_driver_camera_driver_deinit",
+      "label": "camera_driver_deinit()",
+      "file_type": "code",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L100"
+    },
+    {
+      "id": "camera_driver_camera_driver_start",
+      "label": "camera_driver_start()",
+      "file_type": "code",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L114"
+    },
+    {
+      "id": "camera_driver_camera_driver_stop",
+      "label": "camera_driver_stop()",
+      "file_type": "code",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L123"
+    },
+    {
+      "id": "camera_driver_camera_driver_is_running",
+      "label": "camera_driver_is_running()",
+      "file_type": "code",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L128"
+    },
+    {
+      "id": "camera_driver_camera_driver_get_frame",
+      "label": "camera_driver_get_frame()",
+      "file_type": "code",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L133"
+    },
+    {
+      "id": "camera_driver_camera_driver_return_frame",
+      "label": "camera_driver_return_frame()",
+      "file_type": "code",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L141"
+    },
+    {
+      "id": "camera_driver_camera_driver_is_initialized",
+      "label": "camera_driver_is_initialized()",
+      "file_type": "code",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L148"
+    },
+    {
+      "id": "main_camera_server_c",
+      "label": "camera_server.c",
+      "file_type": "code",
+      "source_file": "main\\camera_server.c",
+      "source_location": "L1"
+    },
+    {
+      "id": "camera_server_stream_handler",
+      "label": "stream_handler()",
+      "file_type": "code",
+      "source_file": "main\\camera_server.c",
+      "source_location": "L9"
+    },
+    {
+      "id": "camera_server_index_handler",
+      "label": "index_handler()",
+      "file_type": "code",
+      "source_file": "main\\camera_server.c",
+      "source_location": "L54"
+    },
+    {
+      "id": "camera_server_camera_server_start",
+      "label": "camera_server_start()",
+      "file_type": "code",
+      "source_file": "main\\camera_server.c",
+      "source_location": "L65"
+    },
+    {
+      "id": "camera_server_camera_server_stop",
+      "label": "camera_server_stop()",
+      "file_type": "code",
+      "source_file": "main\\camera_server.c",
+      "source_location": "L96"
+    },
+    {
+      "id": "camera_server_camera_server_is_running",
+      "label": "camera_server_is_running()",
+      "file_type": "code",
+      "source_file": "main\\camera_server.c",
+      "source_location": "L104"
+    },
+    {
+      "id": "main_servo_c",
+      "label": "servo.c",
+      "file_type": "code",
+      "source_file": "main\\servo.c",
+      "source_location": "L1"
+    },
+    {
+      "id": "servo_angle_to_duty",
+      "label": "angle_to_duty()",
+      "file_type": "code",
+      "source_file": "main\\servo.c",
+      "source_location": "L22"
+    },
+    {
+      "id": "servo_servo_init",
+      "label": "servo_init()",
+      "file_type": "code",
+      "source_file": "main\\servo.c",
+      "source_location": "L33"
+    },
+    {
+      "id": "servo_servo_set_angle",
+      "label": "servo_set_angle()",
+      "file_type": "code",
+      "source_file": "main\\servo.c",
+      "source_location": "L60"
+    },
+    {
+      "id": "servo_servo_get_angle",
+      "label": "servo_get_angle()",
+      "file_type": "code",
+      "source_file": "main\\servo.c",
+      "source_location": "L73"
+    },
+    {
+      "id": "servo_servo_deinit",
+      "label": "servo_deinit()",
+      "file_type": "code",
+      "source_file": "main\\servo.c",
+      "source_location": "L78"
+    },
+    {
+      "id": "main_ws_control_c",
+      "label": "ws_control.c",
+      "file_type": "code",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L1"
+    },
+    {
+      "id": "ws_control_control_get_handler",
+      "label": "control_get_handler()",
+      "file_type": "code",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L18"
+    },
+    {
+      "id": "ws_control_control_post_handler",
+      "label": "control_post_handler()",
+      "file_type": "code",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L29"
+    },
+    {
+      "id": "ws_control_control_options_handler",
+      "label": "control_options_handler()",
+      "file_type": "code",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L119"
+    },
+    {
+      "id": "ws_control_root_handler",
+      "label": "root_handler()",
+      "file_type": "code",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L128"
+    },
+    {
+      "id": "ws_control_ws_control_init",
+      "label": "ws_control_init()",
+      "file_type": "code",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L142"
+    },
+    {
+      "id": "ws_control_ws_control_deinit",
+      "label": "ws_control_deinit()",
+      "file_type": "code",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L191"
+    },
+    {
+      "id": "ws_control_ws_control_send_response",
+      "label": "ws_control_send_response()",
+      "file_type": "code",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L202"
+    },
+    {
+      "id": "main_camera_ctrl_h",
+      "label": "camera_ctrl.h",
+      "file_type": "code",
+      "source_file": "main\\camera_ctrl.h",
+      "source_location": "L1"
+    },
+    {
+      "id": "main_camera_driver_h",
+      "label": "camera_driver.h",
+      "file_type": "code",
+      "source_file": "main\\camera_driver.h",
+      "source_location": "L1"
+    },
+    {
+      "id": "main_camera_server_h",
+      "label": "camera_server.h",
+      "file_type": "code",
+      "source_file": "main\\camera_server.h",
+      "source_location": "L1"
+    },
+    {
+      "id": "main_servo_h",
+      "label": "servo.h",
+      "file_type": "code",
+      "source_file": "main\\servo.h",
+      "source_location": "L1"
+    },
+    {
+      "id": "main_ws_control_h",
+      "label": "ws_control.h",
+      "file_type": "code",
+      "source_file": "main\\ws_control.h",
+      "source_location": "L1"
+    }
+  ],
+  "edges": [
+    {
+      "source": "main_app_main_c",
+      "target": "stdio",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "main_app_main_c",
+      "target": "string",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "main_app_main_c",
+      "target": "freertos",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "main_app_main_c",
+      "target": "task",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "main_app_main_c",
+      "target": "esp_system",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "main_app_main_c",
+      "target": "esp_log",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "main_app_main_c",
+      "target": "esp_wifi",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "main_app_main_c",
+      "target": "esp_event",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "main_app_main_c",
+      "target": "nvs_flash",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "main_app_main_c",
+      "target": "esp_netif",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "main_app_main_c",
+      "target": "esp_netif_types",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "main_app_main_c",
+      "target": "camera_ctrl",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "main_app_main_c",
+      "target": "camera_server",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "main_app_main_c",
+      "target": "ws_control",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "main_app_main_c",
+      "target": "servo",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "main_app_main_c",
+      "target": "app_main_wifi_event_handler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "main_app_main_c",
+      "target": "app_main_ws_control_callback",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "main_app_main_c",
+      "target": "app_main_app_main",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L96",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_ctrl_c",
+      "target": "camera_ctrl",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_ctrl_c",
+      "target": "esp_log",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_ctrl_c",
+      "target": "camera_ctrl_camera_ctrl_init",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_ctrl_c",
+      "target": "camera_ctrl_camera_ctrl_deinit",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_ctrl_c",
+      "target": "camera_ctrl_camera_ctrl_enable",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_ctrl_c",
+      "target": "camera_ctrl_camera_ctrl_disable",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_ctrl_c",
+      "target": "camera_ctrl_camera_ctrl_is_on",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "camera_ctrl_camera_ctrl_deinit",
+      "target": "camera_ctrl_camera_ctrl_disable",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_driver_c",
+      "target": "camera_driver",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_driver_c",
+      "target": "esp_log",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_driver_c",
+      "target": "freertos",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_driver_c",
+      "target": "semphr",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_driver_c",
+      "target": "camera_driver_camera_driver_init",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_driver_c",
+      "target": "camera_driver_camera_driver_deinit",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L100",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_driver_c",
+      "target": "camera_driver_camera_driver_start",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L114",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_driver_c",
+      "target": "camera_driver_camera_driver_stop",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L123",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_driver_c",
+      "target": "camera_driver_camera_driver_is_running",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L128",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_driver_c",
+      "target": "camera_driver_camera_driver_get_frame",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L133",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_driver_c",
+      "target": "camera_driver_camera_driver_return_frame",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L141",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_driver_c",
+      "target": "camera_driver_camera_driver_is_initialized",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L148",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_server_c",
+      "target": "camera_server",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_server.c",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_server_c",
+      "target": "esp_http_server",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_server.c",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_server_c",
+      "target": "esp_log",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_server.c",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_server_c",
+      "target": "camera_driver",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_server.c",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_server_c",
+      "target": "camera_server_stream_handler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_server.c",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_server_c",
+      "target": "camera_server_index_handler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_server.c",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_server_c",
+      "target": "camera_server_camera_server_start",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_server.c",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_server_c",
+      "target": "camera_server_camera_server_stop",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_server.c",
+      "source_location": "L96",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_server_c",
+      "target": "camera_server_camera_server_is_running",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_server.c",
+      "source_location": "L104",
+      "weight": 1.0
+    },
+    {
+      "source": "main_servo_c",
+      "target": "servo",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\servo.c",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "main_servo_c",
+      "target": "gpio",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\servo.c",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "main_servo_c",
+      "target": "ledc",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\servo.c",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "main_servo_c",
+      "target": "ledc_types",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\servo.c",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "main_servo_c",
+      "target": "esp_log",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\servo.c",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "main_servo_c",
+      "target": "servo_angle_to_duty",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\servo.c",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "main_servo_c",
+      "target": "servo_servo_init",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\servo.c",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "main_servo_c",
+      "target": "servo_servo_set_angle",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\servo.c",
+      "source_location": "L60",
+      "weight": 1.0
+    },
+    {
+      "source": "main_servo_c",
+      "target": "servo_servo_get_angle",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\servo.c",
+      "source_location": "L73",
+      "weight": 1.0
+    },
+    {
+      "source": "main_servo_c",
+      "target": "servo_servo_deinit",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\servo.c",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
+      "source": "servo_servo_init",
+      "target": "servo_angle_to_duty",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\servo.c",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
+      "source": "servo_servo_set_angle",
+      "target": "servo_angle_to_duty",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\servo.c",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "main_ws_control_c",
+      "target": "ws_control",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "main_ws_control_c",
+      "target": "camera_ctrl",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "main_ws_control_c",
+      "target": "servo",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "main_ws_control_c",
+      "target": "string",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "main_ws_control_c",
+      "target": "stdlib",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "main_ws_control_c",
+      "target": "stdio",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "main_ws_control_c",
+      "target": "esp_log",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "main_ws_control_c",
+      "target": "esp_http_server",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "main_ws_control_c",
+      "target": "ws_control_control_get_handler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "main_ws_control_c",
+      "target": "ws_control_control_post_handler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "main_ws_control_c",
+      "target": "ws_control_control_options_handler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L119",
+      "weight": 1.0
+    },
+    {
+      "source": "main_ws_control_c",
+      "target": "ws_control_root_handler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L128",
+      "weight": 1.0
+    },
+    {
+      "source": "main_ws_control_c",
+      "target": "ws_control_ws_control_init",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L142",
+      "weight": 1.0
+    },
+    {
+      "source": "main_ws_control_c",
+      "target": "ws_control_ws_control_deinit",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L191",
+      "weight": 1.0
+    },
+    {
+      "source": "main_ws_control_c",
+      "target": "ws_control_ws_control_send_response",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_control.c",
+      "source_location": "L202",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_ctrl_h",
+      "target": "stdbool",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_ctrl.h",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_ctrl_h",
+      "target": "camera_driver",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_ctrl.h",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_driver_h",
+      "target": "esp_camera",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_driver.h",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_server_h",
+      "target": "stdbool",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_server.h",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "main_camera_server_h",
+      "target": "esp_err",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_server.h",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "main_servo_h",
+      "target": "stdint",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\servo.h",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "main_ws_control_h",
+      "target": "stdbool",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_control.h",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main_ws_control_callback",
+      "target": "camera_ctrl_camera_ctrl_is_on",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L60",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main_ws_control_callback",
+      "target": "camera_ctrl_camera_ctrl_enable",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main_ws_control_callback",
+      "target": "camera_server_camera_server_start",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L63",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main_ws_control_callback",
+      "target": "camera_ctrl_camera_ctrl_disable",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main_ws_control_callback",
+      "target": "ws_control_ws_control_send_response",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L92",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main_app_main",
+      "target": "servo_servo_init",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L146",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main_app_main",
+      "target": "camera_ctrl_camera_ctrl_init",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L149",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main_app_main",
+      "target": "ws_control_ws_control_init",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L152",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main_app_main",
+      "target": "camera_ctrl_camera_ctrl_enable",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L207",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main_app_main",
+      "target": "camera_server_camera_server_start",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L208",
+      "weight": 1.0
+    },
+    {
+      "source": "camera_ctrl_camera_ctrl_enable",
+      "target": "camera_driver_camera_driver_is_initialized",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "camera_ctrl_camera_ctrl_enable",
+      "target": "camera_driver_camera_driver_init",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "camera_ctrl_camera_ctrl_enable",
+      "target": "camera_driver_camera_driver_start",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "camera_ctrl_camera_ctrl_disable",
+      "target": "camera_driver_camera_driver_stop",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "camera_server_stream_handler",
+      "target": "camera_driver_camera_driver_is_running",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\camera_server.c",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "camera_server_stream_handler",
+      "target": "camera_driver_camera_driver_get_frame",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\camera_server.c",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "camera_server_stream_handler",
+      "target": "camera_driver_camera_driver_return_frame",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\camera_server.c",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "ws_control_control_get_handler",
+      "target": "camera_ctrl_camera_ctrl_is_on",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\ws_control.c",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "ws_control_control_post_handler",
+      "target": "servo_servo_set_angle",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\ws_control.c",
+      "source_location": "L95",
+      "weight": 1.0
+    },
+    {
+      "source": "ws_control_control_post_handler",
+      "target": "camera_ctrl_camera_ctrl_is_on",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\ws_control.c",
+      "source_location": "L112",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

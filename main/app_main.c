@@ -27,6 +27,37 @@ static const char* TAG = "app_main";
 static esp_netif_t* s_netif = NULL;
 
 /* WiFi event handler */
+/* Periodic status heartbeat task */
+static void status_heartbeat_task(void* param)
+{
+    char status_json[256];
+    int heartbeat_count = 0;
+
+    /* Wait for WS client to connect first */
+    while (!ws_client_is_connected()) {
+        vTaskDelay(pdMS_TO_TICKS(500));
+    }
+
+    ESP_LOGI(TAG, "WS connected, starting heartbeat");
+
+    while (ws_client_is_connected()) {
+        vTaskDelay(pdMS_TO_TICKS(5000));  /* 5 second heartbeat */
+
+        /* Send periodic status with camera and servo state */
+        snprintf(status_json, sizeof(status_json),
+            "{\"status\":\"heartbeat\",\"seq\":%d,\"camera\":\"%s\",\"servo\":%d}",
+            heartbeat_count++,
+            camera_ctrl_is_on() ? "on" : "off",
+            servo_get_angle());
+
+        ws_client_send_text(status_json);
+        ESP_LOGD(TAG, "Heartbeat sent: %s", status_json);
+    }
+
+    ESP_LOGW(TAG, "WS disconnected, heartbeat stopped");
+    vTaskDelete(NULL);
+}
+
 static void wifi_event_handler(void* arg, esp_event_base_t event_base,
                                int32_t event_id, void* event_data)
 {
@@ -54,6 +85,7 @@ static void wifi_event_handler(void* arg, esp_event_base_t event_base,
 /* WebSocket command handling callback */
 static void ws_command_callback(ws_cmd_t* cmd, void* user_data)
 {
+    ESP_LOGI(TAG, "WS command callback: type=%d seq=%u angle=%d", cmd->type, cmd->seq, cmd->angle);
     char response[256];
     int seq = cmd->seq;
 
@@ -238,6 +270,9 @@ void app_main(void)
 
     /* WebSocket client */
     ws_client_init(ws_command_callback, NULL);
+
+    /* Start heartbeat task (sends periodic status) */
+    xTaskCreate(&status_heartbeat_task, "heartbeat", 4096, NULL, 2, NULL);
 
     /* Wait for WiFi and configure static IP */
     wait_for_wifi_connection();

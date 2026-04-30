@@ -84,3 +84,8 @@ graphify-out/cache/
 graphify-out/manifest.json
 graphify-out/cost.json
 .graphify_python
+.gstack/
+
+# Utility scripts
+kill_server.ps1
+server_log.txt

@@ -39,7 +39,7 @@ bool ws_client_is_connected(void);
 
 // WebSocket server URI
 #ifndef WS_SERVER_URI
-#define WS_SERVER_URI "ws://10.0.0.232:11080"
+#define WS_SERVER_URI "ws://10.0.0.232:11080/ws?role=esp32"
 #endif
 
 #define WS_PING_INTERVAL_MS       10000

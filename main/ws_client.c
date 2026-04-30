@@ -168,28 +168,47 @@ static int ws_parse_frame(const uint8_t* data, int len, uint8_t* out_payload, in
 
 static void ws_client_recv_task(void* param)
 {
+    ESP_LOGI(TAG, "WS recv task STARTED, s_sock_fd=%d", s_sock_fd);
     uint8_t buf[2048];
     uint8_t payload[2048];
+    int loop_count = 0;
 
     while (s_sock_fd >= 0) {
+        loop_count++;
+        if (loop_count % 1000 == 0) {
+            ESP_LOGI(TAG, "WS recv task alive, loop=%d", loop_count);
+        }
         int received = recv(s_sock_fd, (char*)buf, sizeof(buf) - 1, 0);
+        ESP_LOGI(TAG, "WS recv returned: %d bytes", received);
         if (received <= 0) {
             ESP_LOGI(TAG, "WS recv disconnected, errno=%d", errno);
             break;
         }
 
+        // Log ALL bytes received for debugging
+        ESP_LOGI(TAG, "WS recv raw bytes: %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x",
+                 buf[0], buf[1], buf[2], buf[3], buf[4], buf[5], buf[6], buf[7],
+                 buf[8], buf[9], buf[10], buf[11], buf[12], buf[13], buf[14], buf[15]);
+
         int payload_len = ws_parse_frame(buf, received, payload, sizeof(payload) - 1);
+        ESP_LOGI(TAG, "WS parse result: %d", payload_len);
         if (payload_len > 0) {
             payload[payload_len] = '\0';
-            ESP_LOGD(TAG, "WS text received: %.*s", payload_len, payload);
+            ESP_LOGI(TAG, "WS text received: %.*s", payload_len, payload);
             ws_cmd_t cmd = {0};
             parse_json_command((char*)payload, &cmd);
+            ESP_LOGI(TAG, "WS cmd parsed: type=%d", cmd.type);
             if (s_event_callback) {
+                ESP_LOGI(TAG, "WS invoking callback");
                 s_event_callback(&cmd, s_user_data);
             }
         } else if (payload_len == -2) {
             ESP_LOGI(TAG, "WS close frame received");
             break;
+        } else if (payload_len == -1) {
+            ESP_LOGW(TAG, "WS parse failed - incomplete frame");
+        } else if (payload_len == 0) {
+            ESP_LOGW(TAG, "WS parse skipped - non-text opcode");
         }
     }
 

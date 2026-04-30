@@ -1,25 +1,25 @@
 /**
  * ESP32 Monitor - Frontend Logic
- * Direct ESP32 HTTP API calls, no backend
+ * WebSocket client connected to ESP32 via ws://10.0.0.232:11080
  */
 
 (function() {
     'use strict';
 
     // ========== CONFIG ==========
-    const ESP32_IP = '10.0.0.110';
-    const CONTROL_PORT = 8080;
-    const STREAM_PORT = 8081;
-    const CONTROL_URL = `http://${ESP32_IP}:${CONTROL_PORT}/control`;
-    const STREAM_URL = `http://${ESP32_IP}:${STREAM_PORT}/stream`;
+    const WS_HOST = '10.0.0.232';
+    const WS_PORT = 11080;
+    const WS_URL = `ws://${WS_HOST}:${WS_PORT}/ws?role=frontend`;
     const POLL_INTERVAL = 5000;
-    const REQUEST_TIMEOUT = 10000;
+    const RECONNECT_DELAY = 3000;
 
     // ========== STATE ==========
     let cameraOn = false;
     let servoAngle = 90;
+    let ws = null;
     let pollTimer = null;
     let toastTimer = null;
+    let connected = false;
 
     // ========== DOM REFS ==========
     const dom = {
@@ -37,10 +37,69 @@
     // ========== INIT ==========
     function init() {
         setupEventListeners();
-        startPolling();
+        connectWS();
         updateVideoDisplay();
         updateCameraButtons();
         updateConnectionUI('pending', 'Connecting...');
+    }
+
+    // ========== WEBSOCKET ==========
+    function connectWS() {
+        ws = new WebSocket(WS_URL);
+
+        ws.onopen = () => {
+            console.log('WebSocket connected');
+            connected = true;
+            updateConnectionUI('ok', 'Connected');
+            // Request status on connect
+            send({ action: 'status' });
+        };
+
+        ws.onmessage = (event) => {
+            try {
+                const data = JSON.parse(event.data);
+                if (data.camera !== undefined) {
+                    cameraOn = data.camera === 'on';
+                    updateVideoDisplay();
+                    updateCameraButtons();
+                }
+                if (data.angle !== undefined) {
+                    servoAngle = data.angle;
+                    dom.servoSlider.value = servoAngle;
+                    dom.servoValue.textContent = servoAngle;
+                }
+                if (data.servo !== undefined) {
+                    servoAngle = data.servo;
+                    dom.servoSlider.value = servoAngle;
+                    dom.servoValue.textContent = servoAngle;
+                }
+            } catch (e) {
+                console.log('WS message:', event.data);
+            }
+        };
+
+        ws.onclose = () => {
+            console.log('WebSocket disconnected');
+            connected = false;
+            updateConnectionUI('error', 'Disconnected');
+            // Reconnect after delay
+            setTimeout(connectWS, RECONNECT_DELAY);
+        };
+
+        ws.onerror = (err) => {
+            console.log('WebSocket error', err);
+            updateConnectionUI('error', 'Connection failed');
+        };
+    }
+
+    function send(data) {
+        console.log('send called with:', data);
+        if (ws && ws.readyState === WebSocket.OPEN) {
+            console.log('WebSocket sending:', JSON.stringify(data));
+            ws.send(JSON.stringify(data));
+        } else {
+            console.log('WebSocket not ready, state:', ws ? ws.readyState : 'ws is null');
+        }
     }
 
     // ========== EVENT LISTENERS ==========
@@ -59,104 +118,22 @@
         });
     }
 
-    // ========== API CALLS ==========
-    async function setCamera(on) {
-        const prevCameraOn = cameraOn;
-        cameraOn = on; // Optimistic update
-        updateCameraButtons();
-
-        try {
-            const resp = await fetch(CONTROL_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: on ? 'on' : 'off' }),
-                signal: AbortSignal.timeout(REQUEST_TIMEOUT),
-            });
-            const data = await resp.json();
-
-            if (data.status === 'ok') {
-                cameraOn = data.camera === 'on';
-                updateVideoDisplay();
-                updateCameraButtons();
-                updateConnectionUI('ok', 'Connected');
-                showToast(`${on ? 'Camera ON' : 'Camera OFF'}`, 'success');
-            } else {
-                cameraOn = prevCameraOn;
-                updateCameraButtons();
-                updateVideoDisplay();
-                showToast(data.reason || 'Failed', 'error');
-            }
-        } catch (err) {
-            cameraOn = prevCameraOn;
-            updateCameraButtons();
-            updateVideoDisplay();
-            updateConnectionUI('error', 'Connection failed');
-            showToast('Connection failed', 'error');
-        }
+    // ========== ACTIONS ==========
+    function setCamera(on) {
+        const msg = { action: on ? 'on' : 'off' };
+        console.log('setCamera called:', msg);
+        send(msg);
+        showToast(`${on ? 'Camera ON' : 'Camera OFF'}`, 'info');
     }
 
-    async function sendServoAngle(angle) {
-        const prevAngle = servoAngle;
-        servoAngle = angle;
-
-        try {
-            const resp = await fetch(CONTROL_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: 'servo', angle: angle }),
-                signal: AbortSignal.timeout(REQUEST_TIMEOUT),
-            });
-            const data = await resp.json();
-
-            if (data.status === 'ok') {
-                servoAngle = data.angle !== undefined ? data.angle : angle;
-                dom.servoSlider.value = servoAngle;
-                dom.servoValue.textContent = servoAngle;
-            } else {
-                servoAngle = prevAngle;
-                dom.servoSlider.value = servoAngle;
-                dom.servoValue.textContent = servoAngle;
-                showToast(data.reason || 'Servo control failed', 'error');
-            }
-        } catch (err) {
-            servoAngle = prevAngle;
-            dom.servoSlider.value = servoAngle;
-            dom.servoValue.textContent = servoAngle;
-            updateConnectionUI('error', 'Connection failed');
-            showToast('Connection failed', 'error');
-        }
-    }
-
-    async function fetchStatus() {
-        try {
-            const resp = await fetch(CONTROL_URL, {
-                signal: AbortSignal.timeout(REQUEST_TIMEOUT),
-            });
-            const data = await resp.json();
-
-            if (data.status === 'ok') {
-                cameraOn = data.camera === 'on';
-                if (data.angle !== undefined) {
-                    servoAngle = data.angle;
-                }
-                if (data.servo !== undefined) {
-                    servoAngle = data.servo;
-                }
-                dom.servoSlider.value = servoAngle;
-                dom.servoValue.textContent = servoAngle;
-                updateVideoDisplay();
-                updateCameraButtons();
-                updateConnectionUI('ok', 'Connected');
-            }
-        } catch (err) {
-            updateConnectionUI('error', 'Connection failed');
-        }
+    function sendServoAngle(angle) {
+        send({ action: 'servo', angle: angle });
     }
 
     // ========== UI UPDATES ==========
     function updateVideoDisplay() {
         if (cameraOn) {
-            dom.videoStream.src = STREAM_URL;
+            dom.videoStream.src = `http://${WS_HOST}:11081/stream`;
             dom.videoStream.style.display = 'block';
             dom.videoPlaceholder.classList.add('hidden');
         } else {
@@ -194,12 +171,6 @@
         toastTimer = setTimeout(() => {
             dom.toast.classList.remove('show');
         }, 3000);
-    }
-
-    // ========== POLLING ==========
-    function startPolling() {
-        fetchStatus();
-        pollTimer = setInterval(fetchStatus, POLL_INTERVAL);
     }
 
     // ========== START ==========

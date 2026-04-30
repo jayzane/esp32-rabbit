@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32 Monitor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           DESIGN TOKENS
+           ============================================ */
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --border: #30363d;
+            --primary: #58a6ff;
+            --success: #3fb950;
+            --danger: #f85149;
+            --text: #e6edf3;
+            --muted: #8b949e;
+
+            --sp-1: 8px;
+            --sp-2: 16px;
+            --sp-3: 24px;
+            --sp-4: 32px;
+            --sp-5: 48px;
+
+            --r-lg: 8px;
+            --r-md: 6px;
+            --r-sm: 4px;
+
+            --shadow-1: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-2: 0 4px 12px rgba(0,0,0,0.4);
+            --shadow-glow-primary: 0 0 20px rgba(88, 166, 255, 0.3);
+            --shadow-glow-success: 0 0 20px rgba(63, 185, 80, 0.3);
+            --shadow-glow-danger: 0 0 20px rgba(248, 81, 73, 0.3);
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'JetBrains Mono', 'Microsoft YaHei', 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: var(--sp-3);
+            line-height: 1.5;
+        }
+
+        /* ============================================
+           LAYOUT
+           ============================================ */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--sp-2) var(--sp-3);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            margin-bottom: var(--sp-3);
+        }
+
+        .header-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: var(--sp-2);
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--muted);
+            transition: background 150ms ease-out, box-shadow 150ms ease-out;
+        }
+
+        .status-dot.connected {
+            background: var(--success);
+            box-shadow: 0 0 8px rgba(63, 185, 80, 0.6);
+        }
+
+        .status-dot.error {
+            background: var(--danger);
+            box-shadow: 0 0 8px rgba(248, 81, 73, 0.6);
+        }
+
+        /* ============================================
+           SECTION CARD
+           ============================================ */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            padding: var(--sp-3);
+            margin-bottom: var(--sp-3);
+            transition: box-shadow 150ms ease-out;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-2);
+        }
+
+        .card-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--sp-2);
+        }
+
+        /* ============================================
+           CAMERA CONTROLS
+           ============================================ */
+        .camera-controls {
+            display: flex;
+            gap: var(--sp-2);
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--r-md);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 150ms ease-out;
+            letter-spacing: 0.05em;
+        }
+
+        .btn:hover:not(:disabled) {
+            transform: scale(1.02);
+        }
+
+        .btn:active:not(:disabled) {
+            transform: scale(0.98);
+        }
+
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .btn-on {
+            background: var(--success);
+            color: #0d1117;
+        }
+
+        .btn-on:hover:not(:disabled) {
+            box-shadow: var(--shadow-glow-success);
+        }
+
+        .btn-off {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .btn-off:hover:not(:disabled) {
+            box-shadow: var(--shadow-glow-danger);
+        }
+
+        /* ============================================
+           VIDEO STREAM
+           ============================================ */
+        .video-wrap {
+            position: relative;
+            background: #000;
+            border-radius: var(--r-md);
+            overflow: hidden;
+            aspect-ratio: 4 / 3;
+        }
+
+        .video-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg);
+            color: var(--muted);
+            gap: var(--sp-2);
+        }
+
+        .video-placeholder .icon {
+            font-size: 48px;
+            opacity: 0.5;
+        }
+
+        .video-placeholder.hidden {
+            display: none;
+        }
+
+        /* ============================================
+           SERVO CONTROL
+           ============================================ */
+        .servo-display {
+            display: flex;
+            align-items: baseline;
+            gap: var(--sp-1);
+            margin-bottom: var(--sp-2);
+        }
+
+        .servo-value {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+            transition: color 150ms ease-out;
+        }
+
+        .servo-unit {
+            font-size: 20px;
+            color: var(--muted);
+        }
+
+        .slider-wrap {
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+            transition: background 150ms ease-out;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(88, 166, 255, 0.4);
+            transition: box-shadow 150ms ease-out, transform 150ms ease-out;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            box-shadow: 0 0 20px rgba(88, 166, 255, 0.6);
+            transform: scale(1.1);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(88, 166, 255, 0.4);
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--sp-1);
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--sp-2) 0;
+            border-top: 1px solid var(--border);
+            margin-top: var(--sp-2);
+        }
+
+        .footer-info {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: var(--sp-1);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .connection-status.ok { color: var(--success); }
+        .connection-status.error { color: var(--danger); }
+        .connection-status.pending { color: var(--muted); }
+
+        /* ============================================
+           ENTRANCE ANIMATION
+           ============================================ */
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeSlideIn 400ms ease-out backwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0ms; }
+        .card:nth-child(2) { animation-delay: 80ms; }
+        .card:nth-child(3) { animation-delay: 160ms; }
+
+        /* ============================================
+           TOAST NOTIFICATION
+           ============================================ */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            padding: 12px 20px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r-md);
+            font-size: 13px;
+            color: var(--text);
+            box-shadow: var(--shadow-2);
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 200ms ease-out, transform 200ms ease-out;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast.success { border-left: 3px solid var(--success); }
+        .toast.error { border-left: 3px solid var(--danger); }
+        .toast.info { border-left: 3px solid var(--primary); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-title">
+                <span class="status-dot" id="status-dot"></span>
+                ESP32 Monitor
+            </div>
+        </header>
+
+        <!-- Camera Control -->
+        <section class="card" id="camera-card">
+            <div class="card-label">Camera</div>
+            <div class="camera-controls">
+                <button class="btn btn-on" id="btn-camera-on">ON</button>
+                <button class="btn btn-off" id="btn-camera-off">OFF</button>
+            </div>
+        </section>
+
+        <!-- Video Stream -->
+        <section class="card" id="video-card">
+            <div class="card-label">Stream</div>
+            <div class="video-wrap">
+                <img id="video-stream" src="" alt="Video stream">
+                <div class="video-placeholder hidden" id="video-placeholder">
+                    <div class="icon">▢</div>
+                    <div>Camera Off</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servo Control -->
+        <section class="card" id="servo-card">
+            <div class="card-label">Servo</div>
+            <div class="servo-display">
+                <span class="servo-value" id="servo-value">90</span>
+                <span class="servo-unit">°</span>
+            </div>
+            <div class="slider-wrap">
+                <input type="range" class="slider" id="servo-slider" min="0" max="180" value="90">
+                <div class="slider-labels">
+                    <span>0°</span>
+                    <span>90°</span>
+                    <span>180°</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-info">10.0.0.110:8080 / 8081</div>
+            <div class="connection-status pending" id="connection-status">
+                <span>Connecting...</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

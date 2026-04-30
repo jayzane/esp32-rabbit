@@ -71,7 +71,15 @@ logs/
 # Worktrees
 .worktrees/
 
-# Graphify
+# Graphify temp files
+.graphify_ast.json
+.graphify_extract.json
+.graphify_semantic.json
+.graphify_semantic_new.json
+.graphify_uncached.txt
+.graphify_cached.json
+.graphify_analysis.json
+.graphify_old.json
 graphify-out/cache/
 graphify-out/manifest.json
 graphify-out/cost.json

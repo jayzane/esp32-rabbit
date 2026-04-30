@@ -1,1203 +1,5014 @@
 {
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
   "nodes": [
     {
-      "id": "main_app_main_c",
       "label": "app_main.c",
-      "community": 0
+      "community": 0,
+      "file_type": "code",
+      "source_file": "main\\app_main.c",
+      "source_location": "L1",
+      "id": "main_app_main_c",
+      "norm_label": "app_main.c"
     },
     {
-      "id": "app_main_wifi_event_handler",
       "label": "wifi_event_handler()",
-      "community": 0
+      "community": 0,
+      "file_type": "code",
+      "source_file": "main\\app_main.c",
+      "source_location": "L30",
+      "id": "app_main_wifi_event_handler",
+      "norm_label": "wifi_event_handler()"
     },
     {
-      "id": "app_main_ws_control_callback",
       "label": "ws_control_callback()",
-      "community": 0
+      "community": 1,
+      "id": "app_main_ws_control_callback",
+      "norm_label": "ws_control_callback()"
     },
     {
-      "id": "app_main_app_main",
       "label": "app_main()",
-      "community": 0
+      "community": 0,
+      "file_type": "code",
+      "source_file": "main\\app_main.c",
+      "source_location": "L192",
+      "id": "app_main_app_main",
+      "norm_label": "app_main()"
     },
     {
-      "id": "main_camera_ctrl_c",
       "label": "camera_ctrl.c",
-      "community": 0
+      "community": 2,
+      "file_type": "code",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L1",
+      "id": "main_camera_ctrl_c",
+      "norm_label": "camera_ctrl.c"
     },
     {
-      "id": "camera_ctrl_camera_ctrl_init",
       "label": "camera_ctrl_init()",
-      "community": 0
+      "community": 2,
+      "file_type": "code",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L10",
+      "id": "camera_ctrl_camera_ctrl_init",
+      "norm_label": "camera_ctrl_init()"
     },
     {
-      "id": "camera_ctrl_camera_ctrl_deinit",
       "label": "camera_ctrl_deinit()",
-      "community": 0
+      "community": 2,
+      "file_type": "code",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L15",
+      "id": "camera_ctrl_camera_ctrl_deinit",
+      "norm_label": "camera_ctrl_deinit()"
     },
     {
-      "id": "camera_ctrl_camera_ctrl_enable",
       "label": "camera_ctrl_enable()",
-      "community": 0
+      "community": 2,
+      "file_type": "code",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L20",
+      "id": "camera_ctrl_camera_ctrl_enable",
+      "norm_label": "camera_ctrl_enable()"
     },
     {
-      "id": "camera_ctrl_camera_ctrl_disable",
       "label": "camera_ctrl_disable()",
-      "community": 0
+      "community": 2,
+      "file_type": "code",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L43",
+      "id": "camera_ctrl_camera_ctrl_disable",
+      "norm_label": "camera_ctrl_disable()"
     },
     {
-      "id": "camera_ctrl_camera_ctrl_is_on",
       "label": "camera_ctrl_is_on()",
-      "community": 0
+      "community": 1,
+      "file_type": "code",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L55",
+      "id": "camera_ctrl_camera_ctrl_is_on",
+      "norm_label": "camera_ctrl_is_on()"
     },
     {
-      "id": "main_camera_driver_c",
       "label": "camera_driver.c",
-      "community": 0
+      "community": 2,
+      "file_type": "code",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L1",
+      "id": "main_camera_driver_c",
+      "norm_label": "camera_driver.c"
     },
     {
-      "id": "camera_driver_camera_driver_init",
       "label": "camera_driver_init()",
-      "community": 0
+      "community": 2,
+      "file_type": "code",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L11",
+      "id": "camera_driver_camera_driver_init",
+      "norm_label": "camera_driver_init()"
     },
     {
-      "id": "camera_driver_camera_driver_deinit",
       "label": "camera_driver_deinit()",
-      "community": 0
+      "community": 2,
+      "file_type": "code",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L89",
+      "id": "camera_driver_camera_driver_deinit",
+      "norm_label": "camera_driver_deinit()"
     },
     {
-      "id": "camera_driver_camera_driver_start",
       "label": "camera_driver_start()",
-      "community": 0
+      "community": 2,
+      "file_type": "code",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L99",
+      "id": "camera_driver_camera_driver_start",
+      "norm_label": "camera_driver_start()"
     },
     {
-      "id": "camera_driver_camera_driver_stop",
       "label": "camera_driver_stop()",
-      "community": 0
+      "community": 2,
+      "file_type": "code",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L108",
+      "id": "camera_driver_camera_driver_stop",
+      "norm_label": "camera_driver_stop()"
     },
     {
-      "id": "camera_driver_camera_driver_is_running",
       "label": "camera_driver_is_running()",
-      "community": 0
+      "community": 2,
+      "file_type": "code",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L113",
+      "id": "camera_driver_camera_driver_is_running",
+      "norm_label": "camera_driver_is_running()"
     },
     {
-      "id": "camera_driver_camera_driver_get_frame",
       "label": "camera_driver_get_frame()",
-      "community": 0
+      "community": 2,
+      "file_type": "code",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L118",
+      "id": "camera_driver_camera_driver_get_frame",
+      "norm_label": "camera_driver_get_frame()"
     },
     {
-      "id": "camera_driver_camera_driver_return_frame",
       "label": "camera_driver_return_frame()",
-      "community": 0
+      "community": 2,
+      "file_type": "code",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L126",
+      "id": "camera_driver_camera_driver_return_frame",
+      "norm_label": "camera_driver_return_frame()"
     },
     {
-      "id": "camera_driver_camera_driver_is_initialized",
       "label": "camera_driver_is_initialized()",
-      "community": 0
+      "community": 2,
+      "file_type": "code",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L133",
+      "id": "camera_driver_camera_driver_is_initialized",
+      "norm_label": "camera_driver_is_initialized()"
     },
     {
-      "id": "main_camera_server_c",
       "label": "camera_server.c",
-      "community": 0
+      "community": 1,
+      "id": "main_camera_server_c",
+      "norm_label": "camera_server.c"
     },
     {
-      "id": "camera_server_stream_handler",
       "label": "stream_handler()",
-      "community": 0
+      "community": 2,
+      "id": "camera_server_stream_handler",
+      "norm_label": "stream_handler()"
     },
     {
-      "id": "camera_server_index_handler",
       "label": "index_handler()",
-      "community": 0
+      "community": 1,
+      "id": "camera_server_index_handler",
+      "norm_label": "index_handler()"
     },
     {
-      "id": "camera_server_camera_server_start",
       "label": "camera_server_start()",
-      "community": 0
+      "community": 1,
+      "id": "camera_server_camera_server_start",
+      "norm_label": "camera_server_start()"
     },
     {
-      "id": "camera_server_camera_server_stop",
       "label": "camera_server_stop()",
-      "community": 0
+      "community": 1,
+      "id": "camera_server_camera_server_stop",
+      "norm_label": "camera_server_stop()"
     },
     {
-      "id": "camera_server_camera_server_is_running",
       "label": "camera_server_is_running()",
-      "community": 0
+      "community": 1,
+      "id": "camera_server_camera_server_is_running",
+      "norm_label": "camera_server_is_running()"
     },
     {
-      "id": "main_servo_c",
       "label": "servo.c",
-      "community": 0
+      "community": 1,
+      "id": "main_servo_c",
+      "norm_label": "servo.c"
     },
     {
-      "id": "servo_angle_to_duty",
       "label": "angle_to_duty()",
-      "community": 0
+      "community": 1,
+      "id": "servo_angle_to_duty",
+      "norm_label": "angle_to_duty()"
     },
     {
-      "id": "servo_servo_init",
       "label": "servo_init()",
-      "community": 0
+      "community": 1,
+      "id": "servo_servo_init",
+      "norm_label": "servo_init()"
     },
     {
-      "id": "servo_servo_set_angle",
       "label": "servo_set_angle()",
-      "community": 0
+      "community": 1,
+      "id": "servo_servo_set_angle",
+      "norm_label": "servo_set_angle()"
     },
     {
-      "id": "servo_servo_get_angle",
       "label": "servo_get_angle()",
-      "community": 0
+      "community": 1,
+      "id": "servo_servo_get_angle",
+      "norm_label": "servo_get_angle()"
     },
     {
-      "id": "servo_servo_deinit",
       "label": "servo_deinit()",
-      "community": 0
+      "community": 1,
+      "id": "servo_servo_deinit",
+      "norm_label": "servo_deinit()"
     },
     {
-      "id": "main_ws_control_c",
       "label": "ws_control.c",
-      "community": 0
+      "community": 1,
+      "id": "main_ws_control_c",
+      "norm_label": "ws_control.c"
     },
     {
-      "id": "ws_control_control_get_handler",
       "label": "control_get_handler()",
-      "community": 0
+      "community": 1,
+      "id": "ws_control_control_get_handler",
+      "norm_label": "control_get_handler()"
     },
     {
-      "id": "ws_control_control_post_handler",
       "label": "control_post_handler()",
-      "community": 0
+      "community": 1,
+      "id": "ws_control_control_post_handler",
+      "norm_label": "control_post_handler()"
     },
     {
-      "id": "ws_control_control_options_handler",
       "label": "control_options_handler()",
-      "community": 0
+      "community": 1,
+      "id": "ws_control_control_options_handler",
+      "norm_label": "control_options_handler()"
     },
     {
-      "id": "ws_control_root_handler",
       "label": "root_handler()",
-      "community": 0
+      "community": 1,
+      "id": "ws_control_root_handler",
+      "norm_label": "root_handler()"
     },
     {
-      "id": "ws_control_ws_control_init",
       "label": "ws_control_init()",
-      "community": 0
+      "community": 1,
+      "id": "ws_control_ws_control_init",
+      "norm_label": "ws_control_init()"
     },
     {
-      "id": "ws_control_ws_control_deinit",
       "label": "ws_control_deinit()",
-      "community": 0
+      "community": 1,
+      "id": "ws_control_ws_control_deinit",
+      "norm_label": "ws_control_deinit()"
     },
     {
-      "id": "ws_control_ws_control_send_response",
       "label": "ws_control_send_response()",
-      "community": 0
+      "community": 1,
+      "id": "ws_control_ws_control_send_response",
+      "norm_label": "ws_control_send_response()"
     },
     {
-      "id": "main_camera_ctrl_h",
       "label": "camera_ctrl.h",
-      "community": 0
+      "community": 0,
+      "file_type": "code",
+      "source_file": "main\\camera_ctrl.h",
+      "source_location": "L1",
+      "id": "main_camera_ctrl_h",
+      "norm_label": "camera_ctrl.h"
     },
     {
-      "id": "main_camera_driver_h",
       "label": "camera_driver.h",
-      "community": 0
+      "community": 12,
+      "id": "main_camera_driver_h",
+      "norm_label": "camera_driver.h"
     },
     {
-      "id": "main_camera_server_h",
       "label": "camera_server.h",
-      "community": 0
+      "community": 13,
+      "id": "main_camera_server_h",
+      "norm_label": "camera_server.h"
     },
     {
-      "id": "main_servo_h",
       "label": "servo.h",
-      "community": 0
+      "community": 14,
+      "id": "main_servo_h",
+      "norm_label": "servo.h"
     },
     {
-      "id": "main_ws_control_h",
       "label": "ws_control.h",
-      "community": 0
+      "community": 15,
+      "id": "main_ws_control_h",
+      "norm_label": "ws_control.h"
     },
     {
-      "id": "app_main",
       "label": "app_main",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/app_main.c",
+      "source_location": "line 96",
+      "id": "app_main",
+      "norm_label": "app_main"
     },
     {
-      "id": "servo_init",
       "label": "servo_init",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/servo.c",
+      "source_location": "line 33",
+      "id": "servo_init",
+      "norm_label": "servo_init"
     },
     {
-      "id": "servo_set_angle",
       "label": "servo_set_angle",
-      "community": 0
+      "community": 7,
+      "file_type": "code",
+      "source_file": "main/servo.c",
+      "source_location": "line 60",
+      "id": "servo_set_angle",
+      "norm_label": "servo_set_angle"
     },
     {
-      "id": "servo_get_angle",
       "label": "servo_get_angle",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/servo.c",
+      "source_location": "line 73",
+      "id": "servo_get_angle",
+      "norm_label": "servo_get_angle"
     },
     {
-      "id": "servo_deinit",
       "label": "servo_deinit",
-      "community": 0
+      "community": 16,
+      "file_type": "code",
+      "source_file": "main/servo.c",
+      "source_location": "line 78",
+      "id": "servo_deinit",
+      "norm_label": "servo_deinit"
     },
     {
-      "id": "SERVO_GPIO",
       "label": "SERVO_GPIO",
-      "community": 0
+      "community": 17,
+      "file_type": "code",
+      "source_file": "main/servo.c",
+      "source_location": "line 9",
+      "id": "SERVO_GPIO",
+      "norm_label": "servo_gpio"
     },
     {
-      "id": "SERVO_LEDC_CHANNEL",
       "label": "SERVO_LEDC_CHANNEL",
-      "community": 0
+      "community": 7,
+      "file_type": "code",
+      "source_file": "main/servo.c",
+      "source_location": "line 10",
+      "id": "SERVO_LEDC_CHANNEL",
+      "norm_label": "servo_ledc_channel"
     },
     {
-      "id": "SERVO_FREQUENCY_HZ",
       "label": "SERVO_FREQUENCY_HZ",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/servo.c",
+      "source_location": "line 13",
+      "id": "SERVO_FREQUENCY_HZ",
+      "norm_label": "servo_frequency_hz"
     },
     {
-      "id": "SERVO_MIN_ANGLE",
       "label": "SERVO_MIN_ANGLE",
-      "community": 0
+      "community": 7,
+      "file_type": "code",
+      "source_file": "main/servo.h",
+      "source_location": "line 6",
+      "id": "SERVO_MIN_ANGLE",
+      "norm_label": "servo_min_angle"
     },
     {
-      "id": "SERVO_MAX_ANGLE",
       "label": "SERVO_MAX_ANGLE",
-      "community": 0
+      "community": 7,
+      "file_type": "code",
+      "source_file": "main/servo.h",
+      "source_location": "line 7",
+      "id": "SERVO_MAX_ANGLE",
+      "norm_label": "servo_max_angle"
     },
     {
-      "id": "LEDC_PWM",
       "label": "LEDC PWM",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/servo.c",
+      "source_location": "line 2-3",
+      "id": "LEDC_PWM",
+      "norm_label": "ledc pwm"
     },
     {
-      "id": "GPIO13",
       "label": "GPIO13",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/servo.c",
+      "source_location": "line 9",
+      "id": "GPIO13",
+      "norm_label": "gpio13"
     },
     {
-      "id": "ws_control_init",
       "label": "ws_control_init",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/ws_control.c",
+      "source_location": "line 142",
+      "id": "ws_control_init",
+      "norm_label": "ws_control_init"
     },
     {
-      "id": "ws_control_callback",
       "label": "ws_control_callback",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/app_main.c",
+      "source_location": "line 54",
+      "id": "ws_control_callback",
+      "norm_label": "ws_control_callback"
     },
     {
-      "id": "ws_action_t",
       "label": "ws_action_t",
-      "community": 0
+      "community": 7,
+      "file_type": "code",
+      "source_file": "main/ws_control.h",
+      "source_location": "line 6-11",
+      "id": "ws_action_t",
+      "norm_label": "ws_action_t"
     },
     {
-      "id": "WS_ACTION_ON",
       "label": "WS_ACTION_ON",
-      "community": 0
+      "community": 7,
+      "file_type": "code",
+      "source_file": "main/ws_control.h",
+      "source_location": "line 7",
+      "id": "WS_ACTION_ON",
+      "norm_label": "ws_action_on"
     },
     {
-      "id": "WS_ACTION_OFF",
       "label": "WS_ACTION_OFF",
-      "community": 0
+      "community": 7,
+      "file_type": "code",
+      "source_file": "main/ws_control.h",
+      "source_location": "line 8",
+      "id": "WS_ACTION_OFF",
+      "norm_label": "ws_action_off"
     },
     {
-      "id": "WS_ACTION_STATUS",
       "label": "WS_ACTION_STATUS",
-      "community": 0
+      "community": 7,
+      "file_type": "code",
+      "source_file": "main/ws_control.h",
+      "source_location": "line 9",
+      "id": "WS_ACTION_STATUS",
+      "norm_label": "ws_action_status"
     },
     {
-      "id": "WS_ACTION_SERVO",
       "label": "WS_ACTION_SERVO",
-      "community": 0
+      "community": 7,
+      "file_type": "code",
+      "source_file": "main/ws_control.h",
+      "source_location": "line 10",
+      "id": "WS_ACTION_SERVO",
+      "norm_label": "ws_action_servo"
     },
     {
-      "id": "camera_ctrl_init",
       "label": "camera_ctrl_init",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/app_main.c",
+      "source_location": "line 149",
+      "id": "camera_ctrl_init",
+      "norm_label": "camera_ctrl_init"
     },
     {
-      "id": "camera_ctrl_enable",
       "label": "camera_ctrl_enable",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/app_main.c",
+      "source_location": "line 61",
+      "id": "camera_ctrl_enable",
+      "norm_label": "camera_ctrl_enable"
     },
     {
-      "id": "camera_ctrl_disable",
       "label": "camera_ctrl_disable",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/app_main.c",
+      "source_location": "line 78",
+      "id": "camera_ctrl_disable",
+      "norm_label": "camera_ctrl_disable"
     },
     {
-      "id": "camera_ctrl_is_on",
       "label": "camera_ctrl_is_on",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/app_main.c",
+      "source_location": "line 23",
+      "id": "camera_ctrl_is_on",
+      "norm_label": "camera_ctrl_is_on"
     },
     {
-      "id": "camera_server_start",
       "label": "camera_server_start",
-      "community": 0
+      "community": 11,
+      "file_type": "code",
+      "source_file": "main/app_main.c",
+      "source_location": "line 63",
+      "id": "camera_server_start",
+      "norm_label": "camera_server_start"
     },
     {
-      "id": "control_get_handler",
       "label": "control_get_handler",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/ws_control.c",
+      "source_location": "line 18",
+      "id": "control_get_handler",
+      "norm_label": "control_get_handler"
     },
     {
-      "id": "control_post_handler",
       "label": "control_post_handler",
-      "community": 0
+      "community": 7,
+      "file_type": "code",
+      "source_file": "main/ws_control.c",
+      "source_location": "line 29",
+      "id": "control_post_handler",
+      "norm_label": "control_post_handler"
     },
     {
-      "id": "esp_http_server",
       "label": "esp_http_server",
-      "community": 0
+      "community": 1,
+      "file_type": "code",
+      "source_file": "main/ws_control.c",
+      "source_location": "line 8",
+      "id": "esp_http_server",
+      "norm_label": "esp_http_server"
     },
     {
-      "id": "ESP32-WROVER-DEV",
       "label": "ESP32-WROVER-DEV",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/app_main.c",
+      "source_location": "line 1",
+      "id": "ESP32-WROVER-DEV",
+      "norm_label": "esp32-wrover-dev"
     },
     {
-      "id": "OV2640",
       "label": "OV2640",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/app_main.c",
+      "source_location": "line 1",
+      "id": "OV2640",
+      "norm_label": "ov2640"
     },
     {
-      "id": "SG90",
       "label": "SG90 Servo",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/servo.c",
+      "source_location": "line 1",
+      "id": "SG90",
+      "norm_label": "sg90 servo"
     },
     {
-      "id": "ESP32_Camera_Surveillance_Integration_Tests",
       "label": "ESP32 Camera Surveillance Integration Tests",
-      "community": 0
+      "community": 10,
+      "file_type": "document",
+      "source_file": "tests/test_camera_api.py",
+      "source_location": "line 1-2",
+      "id": "ESP32_Camera_Surveillance_Integration_Tests",
+      "norm_label": "esp32 camera surveillance integration tests"
     },
     {
-      "id": "test_control_get_status",
       "label": "test_control_get_status",
-      "community": 0
+      "community": 10,
+      "file_type": "code",
+      "source_file": "tests/test_camera_api.py",
+      "source_location": "line 15",
+      "id": "test_control_get_status",
+      "norm_label": "test_control_get_status"
     },
     {
-      "id": "test_control_post_on",
       "label": "test_control_post_on",
-      "community": 0
+      "community": 10,
+      "file_type": "code",
+      "source_file": "tests/test_camera_api.py",
+      "source_location": "line 29",
+      "id": "test_control_post_on",
+      "norm_label": "test_control_post_on"
     },
     {
-      "id": "test_control_post_off",
       "label": "test_control_post_off",
-      "community": 0
+      "community": 10,
+      "file_type": "code",
+      "source_file": "tests/test_camera_api.py",
+      "source_location": "line 43",
+      "id": "test_control_post_off",
+      "norm_label": "test_control_post_off"
     },
     {
-      "id": "test_stream_endpoint",
       "label": "test_stream_endpoint",
-      "community": 0
+      "community": 10,
+      "file_type": "code",
+      "source_file": "tests/test_camera_api.py",
+      "source_location": "line 68",
+      "id": "test_stream_endpoint",
+      "norm_label": "test_stream_endpoint"
     },
     {
-      "id": "test_invalid_action",
       "label": "test_invalid_action",
-      "community": 0
+      "community": 18,
+      "file_type": "code",
+      "source_file": "tests/test_camera_api.py",
+      "source_location": "line 101",
+      "id": "test_invalid_action",
+      "norm_label": "test_invalid_action"
     },
     {
-      "id": "test_camera_on_off_sequence",
       "label": "test_camera_on_off_sequence",
-      "community": 0
+      "community": 10,
+      "file_type": "code",
+      "source_file": "tests/test_camera_api.py",
+      "source_location": "line 116",
+      "id": "test_camera_on_off_sequence",
+      "norm_label": "test_camera_on_off_sequence"
     },
     {
-      "id": "conftest_pytest_fixtures",
       "label": "pytest fixtures (conftest.py)",
-      "community": 0
+      "community": 10,
+      "file_type": "document",
+      "source_file": "tests/conftest.py",
+      "source_location": "line 16-44",
+      "id": "conftest_pytest_fixtures",
+      "norm_label": "pytest fixtures (conftest.py)"
     },
     {
-      "id": "ESP32_Monitor_Frontend_Design",
       "label": "ESP32 Monitor Frontend Design",
-      "community": 0
+      "community": 11,
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-04-26-esp32-monitor-frontend-design.md",
+      "source_location": "line 1",
+      "id": "ESP32_Monitor_Frontend_Design",
+      "norm_label": "esp32 monitor frontend design"
     },
     {
-      "id": "Dark_Theme_Design_System",
       "label": "Dark Theme Design System",
-      "community": 0
+      "community": 11,
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-04-26-esp32-monitor-frontend-implementation.md",
+      "source_location": "line 11-16",
+      "id": "Dark_Theme_Design_System",
+      "norm_label": "dark theme design system"
     },
     {
-      "id": "JetBrains_Mono_Font",
       "label": "JetBrains Mono Font",
-      "community": 0
+      "community": 11,
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-04-26-esp32-monitor-frontend-implementation.md",
+      "source_location": "line 13",
+      "id": "JetBrains_Mono_Font",
+      "norm_label": "jetbrains mono font"
     },
     {
-      "id": "8px_Spacing_System",
       "label": "8px Spacing System",
-      "community": 0
+      "community": 11,
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-04-26-esp32-monitor-frontend-implementation.md",
+      "source_location": "line 14",
+      "id": "8px_Spacing_System",
+      "norm_label": "8px spacing system"
     },
     {
-      "id": "Three_Phase_Deployment",
       "label": "Three Phase Deployment",
-      "community": 0
+      "community": 11,
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-04-26-esp32-monitor-frontend-design.md",
+      "source_location": "line 81-88",
+      "id": "Three_Phase_Deployment",
+      "norm_label": "three phase deployment"
     },
     {
-      "id": "ESP32_Monitor_Frontend_Implementation_Plan",
       "label": "ESP32 Monitor Frontend Implementation Plan",
-      "community": 0
+      "community": 11,
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-04-26-esp32-monitor-frontend-implementation.md",
+      "source_location": "line 1",
+      "id": "ESP32_Monitor_Frontend_Implementation_Plan",
+      "norm_label": "esp32 monitor frontend implementation plan"
     },
     {
-      "id": "Servo_Control_Plan",
       "label": "Servo Control Implementation Plan",
-      "community": 0
+      "community": 7,
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-04-26-servo-control-plan.md",
+      "source_location": "line 1",
+      "id": "Servo_Control_Plan",
+      "norm_label": "servo control implementation plan"
     },
     {
-      "id": "Servo_Control_Design_Spec",
       "label": "Servo Control Interface Design",
-      "community": 0
+      "community": 7,
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-04-26-servo-control-design.md",
+      "source_location": "line 1",
+      "id": "Servo_Control_Design_Spec",
+      "norm_label": "servo control interface design"
     },
     {
-      "id": "angle_to_duty",
       "label": "angle_to_duty",
-      "community": 0
+      "community": 7,
+      "file_type": "code",
+      "source_file": "main/servo.c",
+      "source_location": "line 22",
+      "id": "angle_to_duty",
+      "norm_label": "angle_to_duty"
     },
     {
-      "id": "MJPEG_Stream",
       "label": "MJPEG Stream",
-      "community": 0
+      "community": 11,
+      "file_type": "code",
+      "source_file": "main/app_main.c",
+      "source_location": "line 208",
+      "id": "MJPEG_Stream",
+      "norm_label": "mjpeg stream"
     },
     {
-      "id": "root_handler",
       "label": "root_handler",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/ws_control.c",
+      "source_location": "line 128",
+      "id": "root_handler",
+      "norm_label": "root_handler"
     },
     {
-      "id": "control_options_handler",
       "label": "control_options_handler",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/ws_control.c",
+      "source_location": "line 119",
+      "id": "control_options_handler",
+      "norm_label": "control_options_handler"
     },
     {
-      "id": "ESP32_Static_IP",
       "label": "ESP32 Static IP Configuration",
-      "community": 0
+      "community": 10,
+      "file_type": "code",
+      "source_file": "main/app_main.c",
+      "source_location": "line 20-23",
+      "id": "ESP32_Static_IP",
+      "norm_label": "esp32 static ip configuration"
     },
     {
-      "id": "WiFi_STA_Mode",
       "label": "WiFi STA Mode",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/app_main.c",
+      "source_location": "line 126",
+      "id": "WiFi_STA_Mode",
+      "norm_label": "wifi sta mode"
     },
     {
-      "id": "s_current_angle",
       "label": "s_current_angle",
-      "community": 0
+      "community": 4,
+      "file_type": "code",
+      "source_file": "main/servo.c",
+      "source_location": "line 20",
+      "id": "s_current_angle",
+      "norm_label": "s_current_angle"
     },
     {
-      "id": "angle_out_of_range",
       "label": "angle_out_of_range error",
-      "community": 0
+      "community": 7,
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-04-26-servo-control-design.md",
+      "source_location": "line 68",
+      "id": "angle_out_of_range",
+      "norm_label": "angle_out_of_range error"
     },
     {
-      "id": "Camera_Surveillance_System",
       "label": "Camera Surveillance System Architecture",
-      "community": 0
+      "community": 2,
+      "file_type": "document",
+      "source_file": "graphify-out/GRAPH_REPORT.md",
+      "source_location": "line 147",
+      "id": "Camera_Surveillance_System",
+      "norm_label": "camera surveillance system architecture"
+    },
+    {
+      "label": "ws_command_callback()",
+      "file_type": "code",
+      "source_file": "main\\app_main.c",
+      "source_location": "L55",
+      "id": "app_main_ws_command_callback",
+      "community": 3,
+      "norm_label": "ws_command_callback()"
+    },
+    {
+      "label": "wait_for_wifi_connection()",
+      "file_type": "code",
+      "source_file": "main\\app_main.c",
+      "source_location": "L143",
+      "id": "app_main_wait_for_wifi_connection",
+      "community": 0,
+      "norm_label": "wait_for_wifi_connection()"
+    },
+    {
+      "label": "configure_static_ip()",
+      "file_type": "code",
+      "source_file": "main\\app_main.c",
+      "source_location": "L168",
+      "id": "app_main_configure_static_ip",
+      "community": 0,
+      "norm_label": "configure_static_ip()"
+    },
+    {
+      "label": "camera_ctrl_capture()",
+      "file_type": "code",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L60",
+      "id": "camera_ctrl_camera_ctrl_capture",
+      "community": 3,
+      "norm_label": "camera_ctrl_capture()"
+    },
+    {
+      "label": "camera_task.c",
+      "file_type": "code",
+      "source_file": "main\\camera_task.c",
+      "source_location": "L1",
+      "id": "main_camera_task_c",
+      "community": 0,
+      "norm_label": "camera_task.c"
+    },
+    {
+      "label": "vCameraTask()",
+      "file_type": "code",
+      "source_file": "main\\camera_task.c",
+      "source_location": "L11",
+      "id": "camera_task_vcameratask",
+      "community": 2,
+      "norm_label": "vcameratask()"
+    },
+    {
+      "label": "camera_task_start()",
+      "file_type": "code",
+      "source_file": "main\\camera_task.c",
+      "source_location": "L155",
+      "id": "camera_task_camera_task_start",
+      "community": 0,
+      "norm_label": "camera_task_start()"
+    },
+    {
+      "label": "camera_task_stop()",
+      "file_type": "code",
+      "source_file": "main\\camera_task.c",
+      "source_location": "L165",
+      "id": "camera_task_camera_task_stop",
+      "community": 0,
+      "norm_label": "camera_task_stop()"
+    },
+    {
+      "label": "camera_task.h",
+      "file_type": "code",
+      "source_file": "main\\camera_task.h",
+      "source_location": "L1",
+      "id": "main_camera_task_h",
+      "community": 0,
+      "norm_label": "camera_task.h"
+    },
+    {
+      "label": "shared_mem.c",
+      "file_type": "code",
+      "source_file": "main\\shared_mem.c",
+      "source_location": "L1",
+      "id": "main_shared_mem_c",
+      "community": 9,
+      "norm_label": "shared_mem.c"
+    },
+    {
+      "label": "shared_mem_init()",
+      "file_type": "code",
+      "source_file": "main\\shared_mem.c",
+      "source_location": "L27",
+      "id": "shared_mem_shared_mem_init",
+      "community": 9,
+      "norm_label": "shared_mem_init()"
+    },
+    {
+      "label": "shared_mem_deinit()",
+      "file_type": "code",
+      "source_file": "main\\shared_mem.c",
+      "source_location": "L66",
+      "id": "shared_mem_shared_mem_deinit",
+      "community": 9,
+      "norm_label": "shared_mem_deinit()"
+    },
+    {
+      "label": "shared_mem.h",
+      "file_type": "code",
+      "source_file": "main\\shared_mem.h",
+      "source_location": "L1",
+      "id": "main_shared_mem_h",
+      "community": 9,
+      "norm_label": "shared_mem.h"
+    },
+    {
+      "label": "ws_client.c",
+      "file_type": "code",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L1",
+      "id": "main_ws_client_c",
+      "community": 3,
+      "norm_label": "ws_client.c"
+    },
+    {
+      "label": "next_seq()",
+      "file_type": "code",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L37",
+      "id": "ws_client_next_seq",
+      "community": 3,
+      "norm_label": "next_seq()"
+    },
+    {
+      "label": "base64_encode()",
+      "file_type": "code",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L43",
+      "id": "ws_client_base64_encode",
+      "community": 3,
+      "norm_label": "base64_encode()"
+    },
+    {
+      "label": "sha1_hash()",
+      "file_type": "code",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L61",
+      "id": "ws_client_sha1_hash",
+      "community": 3,
+      "norm_label": "sha1_hash()"
+    },
+    {
+      "label": "ws_send_handshake()",
+      "file_type": "code",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L74",
+      "id": "ws_client_ws_send_handshake",
+      "community": 3,
+      "norm_label": "ws_send_handshake()"
+    },
+    {
+      "label": "ws_parse_frame()",
+      "file_type": "code",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L121",
+      "id": "ws_client_ws_parse_frame",
+      "community": 3,
+      "norm_label": "ws_parse_frame()"
+    },
+    {
+      "label": "ws_client_recv_task()",
+      "file_type": "code",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L169",
+      "id": "ws_client_ws_client_recv_task",
+      "community": 3,
+      "norm_label": "ws_client_recv_task()"
+    },
+    {
+      "label": "ws_client_reconnect_task()",
+      "file_type": "code",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L209",
+      "id": "ws_client_ws_client_reconnect_task",
+      "community": 3,
+      "norm_label": "ws_client_reconnect_task()"
+    },
+    {
+      "label": "parse_json_command()",
+      "file_type": "code",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L300",
+      "id": "ws_client_parse_json_command",
+      "community": 3,
+      "norm_label": "parse_json_command()"
+    },
+    {
+      "label": "ws_client_init()",
+      "file_type": "code",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L338",
+      "id": "ws_client_ws_client_init",
+      "community": 0,
+      "norm_label": "ws_client_init()"
+    },
+    {
+      "label": "ws_client_deinit()",
+      "file_type": "code",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L348",
+      "id": "ws_client_ws_client_deinit",
+      "community": 3,
+      "norm_label": "ws_client_deinit()"
+    },
+    {
+      "label": "ws_send_frame()",
+      "file_type": "code",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L368",
+      "id": "ws_client_ws_send_frame",
+      "community": 3,
+      "norm_label": "ws_send_frame()"
+    },
+    {
+      "label": "ws_client_send_text()",
+      "file_type": "code",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L397",
+      "id": "ws_client_ws_client_send_text",
+      "community": 3,
+      "norm_label": "ws_client_send_text()"
+    },
+    {
+      "label": "ws_client_send_binary()",
+      "file_type": "code",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L404",
+      "id": "ws_client_ws_client_send_binary",
+      "community": 3,
+      "norm_label": "ws_client_send_binary()"
+    },
+    {
+      "label": "ws_client_is_connected()",
+      "file_type": "code",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L411",
+      "id": "ws_client_ws_client_is_connected",
+      "community": 3,
+      "norm_label": "ws_client_is_connected()"
+    },
+    {
+      "label": "ws_client.h",
+      "file_type": "code",
+      "source_file": "main\\ws_client.h",
+      "source_location": "L1",
+      "id": "main_ws_client_h",
+      "community": 9,
+      "norm_label": "ws_client.h"
+    },
+    {
+      "label": "test_ws_commands.py",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L1",
+      "id": "tests_test_ws_commands_py",
+      "community": 6,
+      "norm_label": "test_ws_commands.py"
+    },
+    {
+      "label": "TestWSCommandProtocol",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L10",
+      "id": "test_ws_commands_testwscommandprotocol",
+      "community": 8,
+      "norm_label": "testwscommandprotocol"
+    },
+    {
+      "label": ".test_parse_camera_on_command()",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L13",
+      "id": "test_ws_commands_testwscommandprotocol_test_parse_camera_on_command",
+      "community": 8,
+      "norm_label": ".test_parse_camera_on_command()"
+    },
+    {
+      "label": ".test_parse_camera_off_command()",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L19",
+      "id": "test_ws_commands_testwscommandprotocol_test_parse_camera_off_command",
+      "community": 8,
+      "norm_label": ".test_parse_camera_off_command()"
+    },
+    {
+      "label": ".test_parse_servo_command_with_angle()",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L25",
+      "id": "test_ws_commands_testwscommandprotocol_test_parse_servo_command_with_angle",
+      "community": 8,
+      "norm_label": ".test_parse_servo_command_with_angle()"
+    },
+    {
+      "label": ".test_parse_capture_command()",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L32",
+      "id": "test_ws_commands_testwscommandprotocol_test_parse_capture_command",
+      "community": 8,
+      "norm_label": ".test_parse_capture_command()"
+    },
+    {
+      "label": ".test_parse_stream_start_command()",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L38",
+      "id": "test_ws_commands_testwscommandprotocol_test_parse_stream_start_command",
+      "community": 8,
+      "norm_label": ".test_parse_stream_start_command()"
+    },
+    {
+      "label": ".test_parse_stream_stop_command()",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L44",
+      "id": "test_ws_commands_testwscommandprotocol_test_parse_stream_stop_command",
+      "community": 8,
+      "norm_label": ".test_parse_stream_stop_command()"
+    },
+    {
+      "label": "TestWSResponseFormat",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L51",
+      "id": "test_ws_commands_testwsresponseformat",
+      "community": 5,
+      "norm_label": "testwsresponseformat"
+    },
+    {
+      "label": ".test_response_has_seq_field()",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L54",
+      "id": "test_ws_commands_testwsresponseformat_test_response_has_seq_field",
+      "community": 5,
+      "norm_label": ".test_response_has_seq_field()"
+    },
+    {
+      "label": ".test_ok_response_camera_on()",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L66",
+      "id": "test_ws_commands_testwsresponseformat_test_ok_response_camera_on",
+      "community": 5,
+      "norm_label": ".test_ok_response_camera_on()"
+    },
+    {
+      "label": ".test_ok_response_servo()",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L74",
+      "id": "test_ws_commands_testwsresponseformat_test_ok_response_servo",
+      "community": 5,
+      "norm_label": ".test_ok_response_servo()"
+    },
+    {
+      "label": ".test_ok_response_capture()",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L82",
+      "id": "test_ws_commands_testwsresponseformat_test_ok_response_capture",
+      "community": 5,
+      "norm_label": ".test_ok_response_capture()"
+    },
+    {
+      "label": ".test_error_response_init_failed()",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L90",
+      "id": "test_ws_commands_testwsresponseformat_test_error_response_init_failed",
+      "community": 5,
+      "norm_label": ".test_error_response_init_failed()"
+    },
+    {
+      "label": ".test_error_response_angle_out_of_range()",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L97",
+      "id": "test_ws_commands_testwsresponseformat_test_error_response_angle_out_of_range",
+      "community": 5,
+      "norm_label": ".test_error_response_angle_out_of_range()"
+    },
+    {
+      "label": ".test_error_response_capture_failed()",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L104",
+      "id": "test_ws_commands_testwsresponseformat_test_error_response_capture_failed",
+      "community": 5,
+      "norm_label": ".test_error_response_capture_failed()"
+    },
+    {
+      "label": ".test_error_response_unknown_command()",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L111",
+      "id": "test_ws_commands_testwsresponseformat_test_error_response_unknown_command",
+      "community": 5,
+      "norm_label": ".test_error_response_unknown_command()"
+    },
+    {
+      "label": "TestJPEGBinaryFrame",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L119",
+      "id": "test_ws_commands_testjpegbinaryframe",
+      "community": 6,
+      "norm_label": "testjpegbinaryframe"
+    },
+    {
+      "label": ".test_binary_frame_header_format()",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L122",
+      "id": "test_ws_commands_testjpegbinaryframe_test_binary_frame_header_format",
+      "community": 6,
+      "norm_label": ".test_binary_frame_header_format()"
+    },
+    {
+      "label": ".test_jpeg_soi_marker()",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L134",
+      "id": "test_ws_commands_testjpegbinaryframe_test_jpeg_soi_marker",
+      "community": 6,
+      "norm_label": ".test_jpeg_soi_marker()"
+    },
+    {
+      "label": ".test_jpeg_buf_size_constant()",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L139",
+      "id": "test_ws_commands_testjpegbinaryframe_test_jpeg_buf_size_constant",
+      "community": 6,
+      "norm_label": ".test_jpeg_buf_size_constant()"
+    },
+    {
+      "label": "TestCameraMsgQueue",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L145",
+      "id": "test_ws_commands_testcameramsgqueue",
+      "community": 6,
+      "norm_label": "testcameramsgqueue"
+    },
+    {
+      "label": ".test_queue_message_struct_packing()",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L148",
+      "id": "test_ws_commands_testcameramsgqueue_test_queue_message_struct_packing",
+      "community": 6,
+      "norm_label": ".test_queue_message_struct_packing()"
+    },
+    {
+      "label": ".test_camera_cmd_enum_values()",
+      "file_type": "code",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L173",
+      "id": "test_ws_commands_testcameramsgqueue_test_camera_cmd_enum_values",
+      "community": 6,
+      "norm_label": ".test_camera_cmd_enum_values()"
+    },
+    {
+      "label": "pytest tests/test_ws_commands.py Requires: pip install pytest",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L1",
+      "id": "test_ws_commands_rationale_1",
+      "community": 6,
+      "norm_label": "pytest tests/test_ws_commands.py requires: pip install pytest"
+    },
+    {
+      "label": "Test ESP32 WS client command protocol",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L11",
+      "id": "test_ws_commands_rationale_11",
+      "community": 8,
+      "norm_label": "test esp32 ws client command protocol"
+    },
+    {
+      "label": "camera_on command JSON parsing",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L14",
+      "id": "test_ws_commands_rationale_14",
+      "community": 8,
+      "norm_label": "camera_on command json parsing"
+    },
+    {
+      "label": "camera_off command JSON parsing",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L20",
+      "id": "test_ws_commands_rationale_20",
+      "community": 8,
+      "norm_label": "camera_off command json parsing"
+    },
+    {
+      "label": "servo command with angle parameter",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L26",
+      "id": "test_ws_commands_rationale_26",
+      "community": 8,
+      "norm_label": "servo command with angle parameter"
+    },
+    {
+      "label": "capture command parsing",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L33",
+      "id": "test_ws_commands_rationale_33",
+      "community": 8,
+      "norm_label": "capture command parsing"
+    },
+    {
+      "label": "stream_start command parsing",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L39",
+      "id": "test_ws_commands_rationale_39",
+      "community": 8,
+      "norm_label": "stream_start command parsing"
+    },
+    {
+      "label": "stream_stop command parsing",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L45",
+      "id": "test_ws_commands_rationale_45",
+      "community": 8,
+      "norm_label": "stream_stop command parsing"
+    },
+    {
+      "label": "Test ESP32 response format",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L52",
+      "id": "test_ws_commands_rationale_52",
+      "community": 5,
+      "norm_label": "test esp32 response format"
+    },
+    {
+      "label": "All responses must include seq field",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L55",
+      "id": "test_ws_commands_rationale_55",
+      "community": 5,
+      "norm_label": "all responses must include seq field"
+    },
+    {
+      "label": "camera_on ok response format",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L67",
+      "id": "test_ws_commands_rationale_67",
+      "community": 5,
+      "norm_label": "camera_on ok response format"
+    },
+    {
+      "label": "servo ok response format",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L75",
+      "id": "test_ws_commands_rationale_75",
+      "community": 5,
+      "norm_label": "servo ok response format"
+    },
+    {
+      "label": "capture ok response with frame_size",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L83",
+      "id": "test_ws_commands_rationale_83",
+      "community": 5,
+      "norm_label": "capture ok response with frame_size"
+    },
+    {
+      "label": "init_failed error response",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L91",
+      "id": "test_ws_commands_rationale_91",
+      "community": 5,
+      "norm_label": "init_failed error response"
+    },
+    {
+      "label": "angle_out_of_range error response",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L98",
+      "id": "test_ws_commands_rationale_98",
+      "community": 5,
+      "norm_label": "angle_out_of_range error response"
+    },
+    {
+      "label": "capture_failed error response",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L105",
+      "id": "test_ws_commands_rationale_105",
+      "community": 5,
+      "norm_label": "capture_failed error response"
+    },
+    {
+      "label": "unknown_command error response",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L112",
+      "id": "test_ws_commands_rationale_112",
+      "community": 5,
+      "norm_label": "unknown_command error response"
+    },
+    {
+      "label": "Test JPEG binary frame format over WebSocket",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L120",
+      "id": "test_ws_commands_rationale_120",
+      "community": 6,
+      "norm_label": "test jpeg binary frame format over websocket"
+    },
+    {
+      "label": "Binary frame: 4-byte little-endian length prefix + JPEG data",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L123",
+      "id": "test_ws_commands_rationale_123",
+      "community": 6,
+      "norm_label": "binary frame: 4-byte little-endian length prefix + jpeg data"
+    },
+    {
+      "label": "JPEG data must start with SOI marker 0xFF 0xD8",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L135",
+      "id": "test_ws_commands_rationale_135",
+      "community": 6,
+      "norm_label": "jpeg data must start with soi marker 0xff 0xd8"
+    },
+    {
+      "label": "JPEG_BUF_SIZE = 128KB = 131072 bytes",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L140",
+      "id": "test_ws_commands_rationale_140",
+      "community": 6,
+      "norm_label": "jpeg_buf_size = 128kb = 131072 bytes"
+    },
+    {
+      "label": "Test dual-core Queue message structure",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L146",
+      "id": "test_ws_commands_rationale_146",
+      "community": 6,
+      "norm_label": "test dual-core queue message structure"
+    },
+    {
+      "label": "Simulate C struct packing for camera_msg_t",
+      "file_type": "rationale",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L149",
+      "id": "test_ws_commands_rationale_149",
+      "community": 6,
+      "norm_label": "simulate c struct packing for camera_msg_t"
+    },
+    {
+      "id": "stdio",
+      "community": 0,
+      "norm_label": ""
+    },
+    {
+      "id": "string",
+      "community": 0,
+      "norm_label": ""
+    },
+    {
+      "id": "freertos",
+      "community": 9,
+      "norm_label": ""
+    },
+    {
+      "id": "task",
+      "community": 0,
+      "norm_label": ""
+    },
+    {
+      "id": "semphr",
+      "community": 9,
+      "norm_label": ""
+    },
+    {
+      "id": "esp_system",
+      "community": 0,
+      "norm_label": ""
+    },
+    {
+      "id": "esp_log",
+      "community": 2,
+      "norm_label": ""
+    },
+    {
+      "id": "esp_wifi",
+      "community": 0,
+      "norm_label": ""
+    },
+    {
+      "id": "esp_event",
+      "community": 0,
+      "norm_label": ""
+    },
+    {
+      "id": "nvs_flash",
+      "community": 0,
+      "norm_label": ""
+    },
+    {
+      "id": "esp_netif",
+      "community": 0,
+      "norm_label": ""
+    },
+    {
+      "id": "esp_netif_types",
+      "community": 0,
+      "norm_label": ""
+    },
+    {
+      "id": "camera_ctrl",
+      "community": 2,
+      "norm_label": ""
+    },
+    {
+      "id": "camera_task",
+      "community": 0,
+      "norm_label": ""
+    },
+    {
+      "id": "shared_mem",
+      "community": 0,
+      "norm_label": ""
+    },
+    {
+      "id": "ws_client",
+      "community": 3,
+      "norm_label": ""
+    },
+    {
+      "id": "servo",
+      "community": 0,
+      "norm_label": ""
+    },
+    {
+      "id": "stdbool",
+      "community": 0,
+      "norm_label": ""
+    },
+    {
+      "id": "camera_driver",
+      "community": 0,
+      "norm_label": ""
+    },
+    {
+      "id": "esp_camera",
+      "community": 0,
+      "norm_label": ""
+    },
+    {
+      "id": "esp_heap_caps",
+      "community": 9,
+      "norm_label": ""
+    },
+    {
+      "id": "queue",
+      "community": 9,
+      "norm_label": ""
+    },
+    {
+      "id": "stdint",
+      "community": 9,
+      "norm_label": ""
+    },
+    {
+      "id": "stddef",
+      "community": 9,
+      "norm_label": ""
+    },
+    {
+      "id": "sockets",
+      "community": 3,
+      "norm_label": ""
+    },
+    {
+      "id": "netdb",
+      "community": 3,
+      "norm_label": ""
+    },
+    {
+      "id": "ip4_addr",
+      "community": 3,
+      "norm_label": ""
+    },
+    {
+      "id": "esp_random",
+      "community": 3,
+      "norm_label": ""
+    },
+    {
+      "id": "pytest",
+      "community": 6,
+      "norm_label": ""
+    },
+    {
+      "id": "json",
+      "community": 6,
+      "norm_label": ""
+    },
+    {
+      "id": "struct",
+      "community": 6,
+      "norm_label": ""
+    },
+    {
+      "id": "SERVO_LEDC_PERIOD",
+      "community": 7,
+      "norm_label": ""
+    },
+    {
+      "id": "ws_control",
+      "community": 2,
+      "norm_label": ""
+    },
+    {
+      "id": "camera_server",
+      "community": 2,
+      "norm_label": ""
     }
   ],
-  "edges": [
+  "links": [
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "main_app_main_c",
+      "_tgt": "app_main_wifi_event_handler",
+      "source_file": "main\\app_main.c",
+      "source_location": "L30",
+      "weight": 1.0,
       "source": "main_app_main_c",
       "target": "app_main_wifi_event_handler",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "app_main_ws_control_callback",
       "source": "main_app_main_c",
       "target": "app_main_ws_control_callback",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "main_app_main_c",
+      "_tgt": "app_main_app_main",
+      "source_file": "main\\app_main.c",
+      "source_location": "L192",
+      "weight": 1.0,
       "source": "main_app_main_c",
       "target": "app_main_app_main",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L1",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "stdio",
+      "source": "main_app_main_c",
+      "target": "stdio",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L2",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "string",
+      "source": "main_app_main_c",
+      "target": "string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L3",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "freertos",
+      "source": "main_app_main_c",
+      "target": "freertos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L4",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "task",
+      "source": "main_app_main_c",
+      "target": "task",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L5",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "semphr",
+      "source": "main_app_main_c",
+      "target": "semphr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L6",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "esp_system",
+      "source": "main_app_main_c",
+      "target": "esp_system",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L7",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "esp_log",
+      "source": "main_app_main_c",
+      "target": "esp_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L8",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "esp_wifi",
+      "source": "main_app_main_c",
+      "target": "esp_wifi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L9",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "esp_event",
+      "source": "main_app_main_c",
+      "target": "esp_event",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L10",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "nvs_flash",
+      "source": "main_app_main_c",
+      "target": "nvs_flash",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L11",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "esp_netif",
+      "source": "main_app_main_c",
+      "target": "esp_netif",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L12",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "esp_netif_types",
+      "source": "main_app_main_c",
+      "target": "esp_netif_types",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L14",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "camera_ctrl",
+      "source": "main_app_main_c",
+      "target": "camera_ctrl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L15",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "camera_task",
+      "source": "main_app_main_c",
+      "target": "camera_task",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L16",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "shared_mem",
+      "source": "main_app_main_c",
+      "target": "shared_mem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L17",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "ws_client",
+      "source": "main_app_main_c",
+      "target": "ws_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L18",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "servo",
+      "source": "main_app_main_c",
+      "target": "servo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L55",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "app_main_ws_command_callback",
+      "source": "main_app_main_c",
+      "target": "app_main_ws_command_callback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L143",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "app_main_wait_for_wifi_connection",
+      "source": "main_app_main_c",
+      "target": "app_main_wait_for_wifi_connection",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L168",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_app_main_c",
+      "_tgt": "app_main_configure_static_ip",
+      "source": "main_app_main_c",
+      "target": "app_main_configure_static_ip",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 0,
+      "_src": "app_main_ws_control_callback",
+      "_tgt": "camera_ctrl_camera_ctrl_is_on",
       "source": "app_main_ws_control_callback",
       "target": "camera_ctrl_camera_ctrl_is_on",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "confidence_score": 0.5
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 0,
+      "_src": "app_main_ws_control_callback",
+      "_tgt": "camera_ctrl_camera_ctrl_enable",
       "source": "app_main_ws_control_callback",
       "target": "camera_ctrl_camera_ctrl_enable",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "confidence_score": 0.5
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 0,
+      "_src": "app_main_ws_control_callback",
+      "_tgt": "camera_server_camera_server_start",
       "source": "app_main_ws_control_callback",
       "target": "camera_server_camera_server_start",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "confidence_score": 0.5
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 0,
+      "_src": "app_main_ws_control_callback",
+      "_tgt": "camera_ctrl_camera_ctrl_disable",
       "source": "app_main_ws_control_callback",
       "target": "camera_ctrl_camera_ctrl_disable",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "confidence_score": 0.5
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 0,
+      "_src": "app_main_ws_control_callback",
+      "_tgt": "ws_control_ws_control_send_response",
       "source": "app_main_ws_control_callback",
       "target": "ws_control_ws_control_send_response",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "confidence_score": 0.5
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 0,
+      "_src": "app_main_app_main",
+      "_tgt": "servo_servo_init",
       "source": "app_main_app_main",
       "target": "servo_servo_init",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "confidence_score": 0.5
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 1,
+      "_src": "app_main_app_main",
+      "_tgt": "camera_ctrl_camera_ctrl_init",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L234",
+      "weight": 1.0,
       "source": "app_main_app_main",
-      "target": "camera_ctrl_camera_ctrl_init",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "target": "camera_ctrl_camera_ctrl_init"
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 0,
+      "_src": "app_main_app_main",
+      "_tgt": "ws_control_ws_control_init",
       "source": "app_main_app_main",
       "target": "ws_control_ws_control_init",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "confidence_score": 0.5
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 0,
+      "_src": "app_main_app_main",
+      "_tgt": "camera_ctrl_camera_ctrl_enable",
       "source": "app_main_app_main",
       "target": "camera_ctrl_camera_ctrl_enable",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "confidence_score": 0.5
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 0,
+      "_src": "app_main_app_main",
+      "_tgt": "camera_server_camera_server_start",
       "source": "app_main_app_main",
       "target": "camera_server_camera_server_start",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "confidence_score": 0.5
     },
     {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L243",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "app_main_app_main",
+      "_tgt": "app_main_wait_for_wifi_connection",
+      "source": "app_main_app_main",
+      "target": "app_main_wait_for_wifi_connection",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\app_main.c",
+      "source_location": "L244",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "app_main_app_main",
+      "_tgt": "app_main_configure_static_ip",
+      "source": "app_main_app_main",
+      "target": "app_main_configure_static_ip",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L228",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "app_main_app_main",
+      "_tgt": "shared_mem_shared_mem_init",
+      "source": "app_main_app_main",
+      "target": "shared_mem_shared_mem_init"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L237",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "app_main_app_main",
+      "_tgt": "camera_task_camera_task_start",
+      "source": "app_main_app_main",
+      "target": "camera_task_camera_task_start"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L240",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "app_main_app_main",
+      "_tgt": "ws_client_ws_client_init",
+      "source": "app_main_app_main",
+      "target": "ws_client_ws_client_init"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "main_camera_ctrl_c",
+      "_tgt": "camera_ctrl_camera_ctrl_init",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L10",
+      "weight": 1.0,
       "source": "main_camera_ctrl_c",
       "target": "camera_ctrl_camera_ctrl_init",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "main_camera_ctrl_c",
+      "_tgt": "camera_ctrl_camera_ctrl_deinit",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L15",
+      "weight": 1.0,
       "source": "main_camera_ctrl_c",
       "target": "camera_ctrl_camera_ctrl_deinit",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "main_camera_ctrl_c",
+      "_tgt": "camera_ctrl_camera_ctrl_enable",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L20",
+      "weight": 1.0,
       "source": "main_camera_ctrl_c",
       "target": "camera_ctrl_camera_ctrl_enable",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "main_camera_ctrl_c",
+      "_tgt": "camera_ctrl_camera_ctrl_disable",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L43",
+      "weight": 1.0,
       "source": "main_camera_ctrl_c",
       "target": "camera_ctrl_camera_ctrl_disable",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "main_camera_ctrl_c",
+      "_tgt": "camera_ctrl_camera_ctrl_is_on",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L55",
+      "weight": 1.0,
       "source": "main_camera_ctrl_c",
       "target": "camera_ctrl_camera_ctrl_is_on",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L1",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_ctrl_c",
+      "_tgt": "camera_ctrl",
+      "source": "main_camera_ctrl_c",
+      "target": "camera_ctrl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L2",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_ctrl_c",
+      "_tgt": "shared_mem",
+      "source": "main_camera_ctrl_c",
+      "target": "shared_mem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L3",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_ctrl_c",
+      "_tgt": "esp_log",
+      "source": "main_camera_ctrl_c",
+      "target": "esp_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_ctrl.c",
+      "source_location": "L60",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_ctrl_c",
+      "_tgt": "camera_ctrl_camera_ctrl_capture",
+      "source": "main_camera_ctrl_c",
+      "target": "camera_ctrl_camera_ctrl_capture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "camera_ctrl_camera_ctrl_deinit",
+      "_tgt": "camera_ctrl_camera_ctrl_disable",
       "source": "camera_ctrl_camera_ctrl_deinit",
       "target": "camera_ctrl_camera_ctrl_disable",
-      "relation": "calls",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 0,
+      "_src": "camera_ctrl_camera_ctrl_enable",
+      "_tgt": "camera_driver_camera_driver_is_initialized",
       "source": "camera_ctrl_camera_ctrl_enable",
       "target": "camera_driver_camera_driver_is_initialized",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "confidence_score": 0.5
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 0,
+      "_src": "camera_ctrl_camera_ctrl_enable",
+      "_tgt": "camera_driver_camera_driver_init",
       "source": "camera_ctrl_camera_ctrl_enable",
       "target": "camera_driver_camera_driver_init",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "confidence_score": 0.5
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 0,
+      "_src": "camera_ctrl_camera_ctrl_enable",
+      "_tgt": "camera_driver_camera_driver_start",
       "source": "camera_ctrl_camera_ctrl_enable",
       "target": "camera_driver_camera_driver_start",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "confidence_score": 0.5
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L63",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "camera_ctrl_camera_ctrl_enable",
+      "_tgt": "app_main_ws_command_callback",
+      "source": "camera_ctrl_camera_ctrl_enable",
+      "target": "app_main_ws_command_callback"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 0,
+      "_src": "camera_ctrl_camera_ctrl_disable",
+      "_tgt": "camera_driver_camera_driver_stop",
       "source": "camera_ctrl_camera_ctrl_disable",
       "target": "camera_driver_camera_driver_stop",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "confidence_score": 0.5
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L81",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "camera_ctrl_camera_ctrl_disable",
+      "_tgt": "app_main_ws_command_callback",
+      "source": "camera_ctrl_camera_ctrl_disable",
+      "target": "app_main_ws_command_callback"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 0,
+      "_src": "camera_ctrl_camera_ctrl_is_on",
+      "_tgt": "ws_control_control_get_handler",
       "source": "camera_ctrl_camera_ctrl_is_on",
       "target": "ws_control_control_get_handler",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "confidence_score": 0.5
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 0,
+      "_src": "camera_ctrl_camera_ctrl_is_on",
+      "_tgt": "ws_control_control_post_handler",
       "source": "camera_ctrl_camera_ctrl_is_on",
       "target": "ws_control_control_post_handler",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "confidence_score": 0.5
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L62",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "camera_ctrl_camera_ctrl_is_on",
+      "_tgt": "app_main_ws_command_callback",
+      "source": "camera_ctrl_camera_ctrl_is_on",
+      "target": "app_main_ws_command_callback"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "main_camera_driver_c",
+      "_tgt": "camera_driver_camera_driver_init",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L11",
+      "weight": 1.0,
       "source": "main_camera_driver_c",
       "target": "camera_driver_camera_driver_init",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "main_camera_driver_c",
+      "_tgt": "camera_driver_camera_driver_deinit",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L89",
+      "weight": 1.0,
       "source": "main_camera_driver_c",
       "target": "camera_driver_camera_driver_deinit",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "main_camera_driver_c",
+      "_tgt": "camera_driver_camera_driver_start",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L99",
+      "weight": 1.0,
       "source": "main_camera_driver_c",
       "target": "camera_driver_camera_driver_start",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "main_camera_driver_c",
+      "_tgt": "camera_driver_camera_driver_stop",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L108",
+      "weight": 1.0,
       "source": "main_camera_driver_c",
       "target": "camera_driver_camera_driver_stop",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "main_camera_driver_c",
+      "_tgt": "camera_driver_camera_driver_is_running",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L113",
+      "weight": 1.0,
       "source": "main_camera_driver_c",
       "target": "camera_driver_camera_driver_is_running",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "main_camera_driver_c",
+      "_tgt": "camera_driver_camera_driver_get_frame",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L118",
+      "weight": 1.0,
       "source": "main_camera_driver_c",
       "target": "camera_driver_camera_driver_get_frame",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "main_camera_driver_c",
+      "_tgt": "camera_driver_camera_driver_return_frame",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L126",
+      "weight": 1.0,
       "source": "main_camera_driver_c",
       "target": "camera_driver_camera_driver_return_frame",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "main_camera_driver_c",
+      "_tgt": "camera_driver_camera_driver_is_initialized",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L133",
+      "weight": 1.0,
       "source": "main_camera_driver_c",
       "target": "camera_driver_camera_driver_is_initialized",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L1",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_driver_c",
+      "_tgt": "camera_driver",
+      "source": "main_camera_driver_c",
+      "target": "camera_driver",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L2",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_driver_c",
+      "_tgt": "esp_log",
+      "source": "main_camera_driver_c",
+      "target": "esp_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L3",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_driver_c",
+      "_tgt": "freertos",
+      "source": "main_camera_driver_c",
+      "target": "freertos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_driver.c",
+      "source_location": "L4",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_driver_c",
+      "_tgt": "semphr",
+      "source": "main_camera_driver_c",
+      "target": "semphr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\camera_task.c",
+      "source_location": "L75",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "camera_driver_camera_driver_init",
+      "_tgt": "camera_task_vcameratask",
+      "source": "camera_driver_camera_driver_init",
+      "target": "camera_task_vcameratask"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\camera_task.c",
+      "source_location": "L84",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "camera_driver_camera_driver_deinit",
+      "_tgt": "camera_task_vcameratask",
+      "source": "camera_driver_camera_driver_deinit",
+      "target": "camera_task_vcameratask"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 0,
+      "_src": "camera_driver_camera_driver_is_running",
+      "_tgt": "camera_server_stream_handler",
       "source": "camera_driver_camera_driver_is_running",
       "target": "camera_server_stream_handler",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "confidence_score": 0.5
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 0,
+      "_src": "camera_driver_camera_driver_get_frame",
+      "_tgt": "camera_server_stream_handler",
       "source": "camera_driver_camera_driver_get_frame",
       "target": "camera_server_stream_handler",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "confidence_score": 0.5
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 0,
+      "_src": "camera_driver_camera_driver_return_frame",
+      "_tgt": "camera_server_stream_handler",
       "source": "camera_driver_camera_driver_return_frame",
       "target": "camera_server_stream_handler",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "confidence_score": 0.5
     },
     {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_camera_server_c",
+      "_tgt": "esp_http_server",
       "source": "main_camera_server_c",
       "target": "esp_http_server",
-      "relation": "imports",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_camera_server_c",
+      "_tgt": "camera_server_stream_handler",
       "source": "main_camera_server_c",
       "target": "camera_server_stream_handler",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_camera_server_c",
+      "_tgt": "camera_server_index_handler",
       "source": "main_camera_server_c",
       "target": "camera_server_index_handler",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_camera_server_c",
+      "_tgt": "camera_server_camera_server_start",
       "source": "main_camera_server_c",
       "target": "camera_server_camera_server_start",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_camera_server_c",
+      "_tgt": "camera_server_camera_server_stop",
       "source": "main_camera_server_c",
       "target": "camera_server_camera_server_stop",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_camera_server_c",
+      "_tgt": "camera_server_camera_server_is_running",
       "source": "main_camera_server_c",
       "target": "camera_server_camera_server_is_running",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_servo_c",
+      "_tgt": "servo_angle_to_duty",
       "source": "main_servo_c",
       "target": "servo_angle_to_duty",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_servo_c",
+      "_tgt": "servo_servo_init",
       "source": "main_servo_c",
       "target": "servo_servo_init",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_servo_c",
+      "_tgt": "servo_servo_set_angle",
       "source": "main_servo_c",
       "target": "servo_servo_set_angle",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_servo_c",
+      "_tgt": "servo_servo_get_angle",
       "source": "main_servo_c",
       "target": "servo_servo_get_angle",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_servo_c",
+      "_tgt": "servo_servo_deinit",
       "source": "main_servo_c",
       "target": "servo_servo_deinit",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "servo_angle_to_duty",
+      "_tgt": "servo_servo_init",
       "source": "servo_angle_to_duty",
       "target": "servo_servo_init",
-      "relation": "calls",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "servo_angle_to_duty",
+      "_tgt": "servo_servo_set_angle",
       "source": "servo_angle_to_duty",
       "target": "servo_servo_set_angle",
-      "relation": "calls",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "key": 0,
+      "_src": "servo_servo_set_angle",
+      "_tgt": "ws_control_control_post_handler",
       "source": "servo_servo_set_angle",
       "target": "ws_control_control_post_handler",
-      "relation": "calls",
-      "confidence": "INFERRED"
+      "confidence_score": 0.5
     },
     {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_ws_control_c",
+      "_tgt": "esp_http_server",
       "source": "main_ws_control_c",
       "target": "esp_http_server",
-      "relation": "imports",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_ws_control_c",
+      "_tgt": "ws_control_control_get_handler",
       "source": "main_ws_control_c",
       "target": "ws_control_control_get_handler",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_ws_control_c",
+      "_tgt": "ws_control_control_post_handler",
       "source": "main_ws_control_c",
       "target": "ws_control_control_post_handler",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_ws_control_c",
+      "_tgt": "ws_control_control_options_handler",
       "source": "main_ws_control_c",
       "target": "ws_control_control_options_handler",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_ws_control_c",
+      "_tgt": "ws_control_root_handler",
       "source": "main_ws_control_c",
       "target": "ws_control_root_handler",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_ws_control_c",
+      "_tgt": "ws_control_ws_control_init",
       "source": "main_ws_control_c",
       "target": "ws_control_ws_control_init",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_ws_control_c",
+      "_tgt": "ws_control_ws_control_deinit",
       "source": "main_ws_control_c",
       "target": "ws_control_ws_control_deinit",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 0,
+      "_src": "main_ws_control_c",
+      "_tgt": "ws_control_ws_control_send_response",
       "source": "main_ws_control_c",
       "target": "ws_control_ws_control_send_response",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "confidence_score": 1.0
     },
     {
-      "source": "app_main",
-      "target": "servo_init",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_ctrl.h",
+      "source_location": "L4",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_ctrl_h",
+      "_tgt": "stdbool",
+      "source": "main_camera_ctrl_h",
+      "target": "stdbool",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_ctrl.h",
+      "source_location": "L5",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_ctrl_h",
+      "_tgt": "shared_mem",
+      "source": "main_camera_ctrl_h",
+      "target": "shared_mem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_ctrl.h",
+      "source_location": "L6",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_ctrl_h",
+      "_tgt": "camera_driver",
+      "source": "main_camera_ctrl_h",
+      "target": "camera_driver",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "app_main",
+      "_tgt": "servo_init",
+      "confidence_score": 1.0,
+      "source_file": "main/app_main.c",
+      "source_location": "line 146",
+      "source": "app_main",
+      "target": "servo_init"
     },
     {
-      "source": "app_main",
-      "target": "ws_control_init",
       "relation": "calls",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "app_main",
+      "_tgt": "ws_control_init",
+      "confidence_score": 1.0,
+      "source_file": "main/app_main.c",
+      "source_location": "line 152",
+      "source": "app_main",
+      "target": "ws_control_init"
     },
     {
-      "source": "app_main",
-      "target": "camera_ctrl_init",
       "relation": "calls",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "app_main",
+      "_tgt": "camera_ctrl_init",
+      "confidence_score": 1.0,
+      "source_file": "main/app_main.c",
+      "source_location": "line 149",
+      "source": "app_main",
+      "target": "camera_ctrl_init"
     },
     {
-      "source": "app_main",
-      "target": "ws_control_callback",
       "relation": "defines_and_registers",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "app_main",
+      "_tgt": "ws_control_callback",
+      "confidence_score": 1.0,
+      "source_file": "main/app_main.c",
+      "source_location": "line 54-93",
+      "source": "app_main",
+      "target": "ws_control_callback"
     },
     {
-      "source": "app_main",
-      "target": "ESP32_Static_IP",
       "relation": "configures",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "app_main",
+      "_tgt": "ESP32_Static_IP",
+      "confidence_score": 1.0,
+      "source_file": "main/app_main.c",
+      "source_location": "line 177-197",
+      "source": "app_main",
+      "target": "ESP32_Static_IP"
     },
     {
-      "source": "app_main",
-      "target": "WiFi_STA_Mode",
       "relation": "configures",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "app_main",
+      "_tgt": "WiFi_STA_Mode",
+      "confidence_score": 1.0,
+      "source_file": "main/app_main.c",
+      "source_location": "line 126",
+      "source": "app_main",
+      "target": "WiFi_STA_Mode"
     },
     {
-      "source": "app_main",
-      "target": "ESP32-WROVER-DEV",
       "relation": "targets",
-      "confidence": "INFERRED"
+      "confidence": "INFERRED",
+      "key": 1,
+      "_src": "app_main",
+      "_tgt": "ESP32-WROVER-DEV",
+      "confidence_score": 0.9,
+      "source_file": "main/app_main.c",
+      "source_location": "line 1",
+      "source": "app_main",
+      "target": "ESP32-WROVER-DEV"
     },
     {
-      "source": "app_main",
-      "target": "OV2640",
       "relation": "uses",
-      "confidence": "INFERRED"
+      "confidence": "INFERRED",
+      "key": 1,
+      "_src": "app_main",
+      "_tgt": "OV2640",
+      "confidence_score": 0.8,
+      "source_file": "main/app_main.c",
+      "source_location": "line 13-14",
+      "source": "app_main",
+      "target": "OV2640"
     },
     {
-      "source": "app_main",
-      "target": "Camera_Surveillance_System",
       "relation": "is_part_of",
-      "confidence": "INFERRED"
+      "confidence": "INFERRED",
+      "key": 1,
+      "_src": "app_main",
+      "_tgt": "Camera_Surveillance_System",
+      "confidence_score": 0.8,
+      "source_file": "main/app_main.c",
+      "source_location": "line 96-212",
+      "source": "app_main",
+      "target": "Camera_Surveillance_System"
     },
     {
-      "source": "servo_init",
-      "target": "LEDC_PWM",
       "relation": "configures",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "servo_init",
+      "_tgt": "LEDC_PWM",
+      "confidence_score": 1.0,
+      "source_file": "main/servo.c",
+      "source_location": "line 33-54",
+      "source": "servo_init",
+      "target": "LEDC_PWM"
     },
     {
-      "source": "servo_init",
-      "target": "GPIO13",
       "relation": "configures",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "servo_init",
+      "_tgt": "GPIO13",
+      "confidence_score": 1.0,
+      "source_file": "main/servo.c",
+      "source_location": "line 46-47",
+      "source": "servo_init",
+      "target": "GPIO13"
     },
     {
-      "source": "servo_init",
-      "target": "SERVO_FREQUENCY_HZ",
       "relation": "uses",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "servo_init",
+      "_tgt": "SERVO_FREQUENCY_HZ",
+      "confidence_score": 1.0,
+      "source_file": "main/servo.c",
+      "source_location": "line 40",
+      "source": "servo_init",
+      "target": "SERVO_FREQUENCY_HZ"
     },
     {
-      "source": "servo_init",
-      "target": "s_current_angle",
       "relation": "initializes",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "servo_init",
+      "_tgt": "s_current_angle",
+      "confidence_score": 1.0,
+      "source_file": "main/servo.c",
+      "source_location": "line 56",
+      "source": "servo_init",
+      "target": "s_current_angle"
     },
     {
-      "source": "servo_set_angle",
-      "target": "control_post_handler",
       "relation": "calls",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "servo_set_angle",
+      "_tgt": "control_post_handler",
+      "confidence_score": 1.0,
+      "source_file": "main/ws_control.c",
+      "source_location": "line 95",
+      "source": "servo_set_angle",
+      "target": "control_post_handler"
     },
     {
-      "source": "servo_set_angle",
-      "target": "angle_to_duty",
       "relation": "calls",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "servo_set_angle",
+      "_tgt": "angle_to_duty",
+      "confidence_score": 1.0,
+      "source_file": "main/servo.c",
+      "source_location": "line 67",
+      "source": "servo_set_angle",
+      "target": "angle_to_duty"
     },
     {
-      "source": "servo_set_angle",
-      "target": "SERVO_MIN_ANGLE",
       "relation": "validates",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "servo_set_angle",
+      "_tgt": "SERVO_MIN_ANGLE",
+      "confidence_score": 1.0,
+      "source_file": "main/servo.c",
+      "source_location": "line 62",
+      "source": "servo_set_angle",
+      "target": "SERVO_MIN_ANGLE"
     },
     {
-      "source": "servo_set_angle",
-      "target": "SERVO_MAX_ANGLE",
       "relation": "validates",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "servo_set_angle",
+      "_tgt": "SERVO_MAX_ANGLE",
+      "confidence_score": 1.0,
+      "source_file": "main/servo.c",
+      "source_location": "line 62",
+      "source": "servo_set_angle",
+      "target": "SERVO_MAX_ANGLE"
     },
     {
-      "source": "servo_set_angle",
-      "target": "s_current_angle",
       "relation": "modifies",
-      "confidence": "EXTRACTED"
-    },
-    {
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "servo_set_angle",
+      "_tgt": "s_current_angle",
+      "confidence_score": 1.0,
+      "source_file": "main/servo.c",
+      "source_location": "line 66",
       "source": "servo_set_angle",
-      "target": "ESP32_Monitor_Frontend_Design",
+      "target": "s_current_angle"
+    },
+    {
       "relation": "controls_via_HTTP",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "servo_set_angle",
+      "_tgt": "ESP32_Monitor_Frontend_Design",
+      "confidence_score": 1.0,
+      "source_file": "docs/superpowers/specs/2026-04-26-esp32-monitor-frontend-design.md",
+      "source_location": "line 33-35",
+      "source": "servo_set_angle",
+      "target": "ESP32_Monitor_Frontend_Design"
     },
     {
-      "source": "servo_get_angle",
-      "target": "s_current_angle",
       "relation": "reads",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "servo_get_angle",
+      "_tgt": "s_current_angle",
+      "confidence_score": 1.0,
+      "source_file": "main/servo.c",
+      "source_location": "line 75",
+      "source": "servo_get_angle",
+      "target": "s_current_angle"
     },
     {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "key": 1,
+      "_src": "SERVO_LEDC_CHANNEL",
+      "_tgt": "control_post_handler",
+      "confidence_score": 0.85,
+      "source_file": "main/ws_control.c",
+      "source_location": "line 95",
       "source": "SERVO_LEDC_CHANNEL",
-      "target": "control_post_handler",
-      "relation": "uses",
-      "confidence": "INFERRED"
+      "target": "control_post_handler"
     },
     {
-      "source": "LEDC_PWM",
-      "target": "SG90",
       "relation": "controlled_by",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "LEDC_PWM",
+      "_tgt": "SG90",
+      "confidence_score": 1.0,
+      "source_file": "main/servo.c",
+      "source_location": "line 9-13",
+      "source": "LEDC_PWM",
+      "target": "SG90"
     },
     {
-      "source": "GPIO13",
-      "target": "SG90",
       "relation": "connected_to",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "GPIO13",
+      "_tgt": "SG90",
+      "confidence_score": 1.0,
+      "source_file": "main/servo.c",
+      "source_location": "line 9",
+      "source": "GPIO13",
+      "target": "SG90"
     },
     {
-      "source": "ws_control_init",
-      "target": "ws_control_callback",
       "relation": "accepts_as_callback",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ws_control_init",
+      "_tgt": "ws_control_callback",
+      "confidence_score": 1.0,
+      "source_file": "main/ws_control.c",
+      "source_location": "line 142",
+      "source": "ws_control_init",
+      "target": "ws_control_callback"
     },
     {
-      "source": "ws_control_init",
-      "target": "control_get_handler",
       "relation": "registers",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ws_control_init",
+      "_tgt": "control_get_handler",
+      "confidence_score": 1.0,
+      "source_file": "main/ws_control.c",
+      "source_location": "line 180",
+      "source": "ws_control_init",
+      "target": "control_get_handler"
     },
     {
-      "source": "ws_control_init",
-      "target": "control_post_handler",
       "relation": "registers",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ws_control_init",
+      "_tgt": "control_post_handler",
+      "confidence_score": 1.0,
+      "source_file": "main/ws_control.c",
+      "source_location": "line 181",
+      "source": "ws_control_init",
+      "target": "control_post_handler"
     },
     {
-      "source": "ws_control_init",
-      "target": "control_options_handler",
       "relation": "registers",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ws_control_init",
+      "_tgt": "control_options_handler",
+      "confidence_score": 1.0,
+      "source_file": "main/ws_control.c",
+      "source_location": "line 182",
+      "source": "ws_control_init",
+      "target": "control_options_handler"
     },
     {
-      "source": "ws_control_init",
-      "target": "root_handler",
       "relation": "registers",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ws_control_init",
+      "_tgt": "root_handler",
+      "confidence_score": 1.0,
+      "source_file": "main/ws_control.c",
+      "source_location": "line 183",
+      "source": "ws_control_init",
+      "target": "root_handler"
     },
     {
-      "source": "ws_control_init",
-      "target": "esp_http_server",
       "relation": "uses",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ws_control_init",
+      "_tgt": "esp_http_server",
+      "confidence_score": 1.0,
+      "source_file": "main/ws_control.c",
+      "source_location": "line 147",
+      "source": "ws_control_init",
+      "target": "esp_http_server"
     },
     {
-      "source": "ws_control_callback",
-      "target": "camera_ctrl_enable",
       "relation": "calls",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ws_control_callback",
+      "_tgt": "camera_ctrl_enable",
+      "confidence_score": 1.0,
+      "source_file": "main/app_main.c",
+      "source_location": "line 61",
+      "source": "ws_control_callback",
+      "target": "camera_ctrl_enable"
     },
     {
-      "source": "ws_control_callback",
-      "target": "camera_ctrl_disable",
       "relation": "calls",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ws_control_callback",
+      "_tgt": "camera_ctrl_disable",
+      "confidence_score": 1.0,
+      "source_file": "main/app_main.c",
+      "source_location": "line 78",
+      "source": "ws_control_callback",
+      "target": "camera_ctrl_disable"
     },
     {
-      "source": "ws_control_callback",
-      "target": "camera_ctrl_is_on",
       "relation": "calls",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ws_control_callback",
+      "_tgt": "camera_ctrl_is_on",
+      "confidence_score": 1.0,
+      "source_file": "main/app_main.c",
+      "source_location": "line 60",
+      "source": "ws_control_callback",
+      "target": "camera_ctrl_is_on"
     },
     {
-      "source": "ws_control_callback",
-      "target": "camera_server_start",
       "relation": "calls",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ws_control_callback",
+      "_tgt": "camera_server_start",
+      "confidence_score": 1.0,
+      "source_file": "main/app_main.c",
+      "source_location": "line 63",
+      "source": "ws_control_callback",
+      "target": "camera_server_start"
     },
     {
-      "source": "ws_control_callback",
-      "target": "ws_action_t",
       "relation": "uses",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ws_control_callback",
+      "_tgt": "ws_action_t",
+      "confidence_score": 1.0,
+      "source_file": "main/app_main.c",
+      "source_location": "line 54",
+      "source": "ws_control_callback",
+      "target": "ws_action_t"
     },
     {
-      "source": "ws_action_t",
-      "target": "WS_ACTION_SERVO",
       "relation": "contains",
-      "confidence": "EXTRACTED"
-    },
-    {
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ws_action_t",
+      "_tgt": "WS_ACTION_SERVO",
+      "confidence_score": 1.0,
+      "source_file": "main/ws_control.h",
+      "source_location": "line 10",
       "source": "ws_action_t",
-      "target": "WS_ACTION_ON",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "target": "WS_ACTION_SERVO"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ws_action_t",
+      "_tgt": "WS_ACTION_ON",
+      "confidence_score": 1.0,
+      "source_file": "main/ws_control.h",
+      "source_location": "line 7",
       "source": "ws_action_t",
-      "target": "WS_ACTION_OFF",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "target": "WS_ACTION_ON"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ws_action_t",
+      "_tgt": "WS_ACTION_OFF",
+      "confidence_score": 1.0,
+      "source_file": "main/ws_control.h",
+      "source_location": "line 8",
       "source": "ws_action_t",
-      "target": "WS_ACTION_STATUS",
-      "relation": "contains",
-      "confidence": "EXTRACTED"
+      "target": "WS_ACTION_OFF"
     },
     {
-      "source": "WS_ACTION_SERVO",
-      "target": "control_post_handler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ws_action_t",
+      "_tgt": "WS_ACTION_STATUS",
+      "confidence_score": 1.0,
+      "source_file": "main/ws_control.h",
+      "source_location": "line 9",
+      "source": "ws_action_t",
+      "target": "WS_ACTION_STATUS"
+    },
+    {
       "relation": "handles",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "WS_ACTION_SERVO",
+      "_tgt": "control_post_handler",
+      "confidence_score": 1.0,
+      "source_file": "main/ws_control.c",
+      "source_location": "line 75",
+      "source": "WS_ACTION_SERVO",
+      "target": "control_post_handler"
     },
     {
-      "source": "camera_server_start",
-      "target": "MJPEG_Stream",
       "relation": "starts",
-      "confidence": "INFERRED"
+      "confidence": "INFERRED",
+      "key": 1,
+      "_src": "camera_server_start",
+      "_tgt": "MJPEG_Stream",
+      "confidence_score": 0.85,
+      "source_file": "main/app_main.c",
+      "source_location": "line 208",
+      "source": "camera_server_start",
+      "target": "MJPEG_Stream"
     },
     {
-      "source": "control_post_handler",
-      "target": "angle_out_of_range",
       "relation": "returns_error",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "control_post_handler",
+      "_tgt": "angle_out_of_range",
+      "confidence_score": 1.0,
+      "source_file": "main/ws_control.c",
+      "source_location": "line 91-93",
+      "source": "control_post_handler",
+      "target": "angle_out_of_range"
     },
     {
-      "source": "ESP32_Camera_Surveillance_Integration_Tests",
-      "target": "test_control_get_status",
       "relation": "part_of",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ESP32_Camera_Surveillance_Integration_Tests",
+      "_tgt": "test_control_get_status",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_camera_api.py",
+      "source_location": "line 15",
+      "source": "ESP32_Camera_Surveillance_Integration_Tests",
+      "target": "test_control_get_status"
     },
     {
-      "source": "ESP32_Camera_Surveillance_Integration_Tests",
-      "target": "test_control_post_on",
       "relation": "part_of",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ESP32_Camera_Surveillance_Integration_Tests",
+      "_tgt": "test_control_post_on",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_camera_api.py",
+      "source_location": "line 29",
+      "source": "ESP32_Camera_Surveillance_Integration_Tests",
+      "target": "test_control_post_on"
     },
     {
-      "source": "ESP32_Camera_Surveillance_Integration_Tests",
-      "target": "test_control_post_off",
       "relation": "part_of",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ESP32_Camera_Surveillance_Integration_Tests",
+      "_tgt": "test_control_post_off",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_camera_api.py",
+      "source_location": "line 43",
+      "source": "ESP32_Camera_Surveillance_Integration_Tests",
+      "target": "test_control_post_off"
     },
     {
-      "source": "ESP32_Camera_Surveillance_Integration_Tests",
-      "target": "test_stream_endpoint",
       "relation": "part_of",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ESP32_Camera_Surveillance_Integration_Tests",
+      "_tgt": "test_stream_endpoint",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_camera_api.py",
+      "source_location": "line 68",
+      "source": "ESP32_Camera_Surveillance_Integration_Tests",
+      "target": "test_stream_endpoint"
     },
     {
-      "source": "ESP32_Camera_Surveillance_Integration_Tests",
-      "target": "conftest_pytest_fixtures",
       "relation": "uses",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ESP32_Camera_Surveillance_Integration_Tests",
+      "_tgt": "conftest_pytest_fixtures",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_camera_api.py",
+      "source_location": "line 15-16",
+      "source": "ESP32_Camera_Surveillance_Integration_Tests",
+      "target": "conftest_pytest_fixtures"
     },
     {
-      "source": "test_control_post_on",
-      "target": "test_camera_on_off_sequence",
       "relation": "calls",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "test_control_post_on",
+      "_tgt": "test_camera_on_off_sequence",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_camera_api.py",
+      "source_location": "line 119",
+      "source": "test_control_post_on",
+      "target": "test_camera_on_off_sequence"
     },
     {
-      "source": "test_control_post_on",
-      "target": "test_stream_endpoint",
       "relation": "calls_first",
-      "confidence": "INFERRED"
+      "confidence": "INFERRED",
+      "key": 1,
+      "_src": "test_control_post_on",
+      "_tgt": "test_stream_endpoint",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_camera_api.py",
+      "source_location": "line 71-76",
+      "source": "test_control_post_on",
+      "target": "test_stream_endpoint"
     },
     {
-      "source": "test_control_post_off",
-      "target": "test_camera_on_off_sequence",
       "relation": "calls",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "test_control_post_off",
+      "_tgt": "test_camera_on_off_sequence",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_camera_api.py",
+      "source_location": "line 133",
+      "source": "test_control_post_off",
+      "target": "test_camera_on_off_sequence"
     },
     {
-      "source": "conftest_pytest_fixtures",
-      "target": "ESP32_Static_IP",
       "relation": "configures",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "conftest_pytest_fixtures",
+      "_tgt": "ESP32_Static_IP",
+      "confidence_score": 1.0,
+      "source_file": "tests/conftest.py",
+      "source_location": "line 11",
+      "source": "conftest_pytest_fixtures",
+      "target": "ESP32_Static_IP"
     },
     {
-      "source": "ESP32_Monitor_Frontend_Design",
-      "target": "ESP32_Monitor_Frontend_Implementation_Plan",
       "relation": "specified_by",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ESP32_Monitor_Frontend_Design",
+      "_tgt": "ESP32_Monitor_Frontend_Implementation_Plan",
+      "confidence_score": 1.0,
+      "source_file": "docs/superpowers/plans/2026-04-26-esp32-monitor-frontend-implementation.md",
+      "source_location": "line 1-9",
+      "source": "ESP32_Monitor_Frontend_Design",
+      "target": "ESP32_Monitor_Frontend_Implementation_Plan"
     },
     {
-      "source": "ESP32_Monitor_Frontend_Design",
-      "target": "Three_Phase_Deployment",
       "relation": "describes",
-      "confidence": "EXTRACTED"
-    },
-    {
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ESP32_Monitor_Frontend_Design",
+      "_tgt": "Three_Phase_Deployment",
+      "confidence_score": 1.0,
+      "source_file": "docs/superpowers/specs/2026-04-26-esp32-monitor-frontend-design.md",
+      "source_location": "line 81-88",
       "source": "ESP32_Monitor_Frontend_Design",
-      "target": "MJPEG_Stream",
+      "target": "Three_Phase_Deployment"
+    },
+    {
       "relation": "displays",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "ESP32_Monitor_Frontend_Design",
+      "_tgt": "MJPEG_Stream",
+      "confidence_score": 1.0,
+      "source_file": "docs/superpowers/specs/2026-04-26-esp32-monitor-frontend-design.md",
+      "source_location": "line 29-31",
+      "source": "ESP32_Monitor_Frontend_Design",
+      "target": "MJPEG_Stream"
     },
     {
+      "relation": "specifies",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "Dark_Theme_Design_System",
+      "_tgt": "ESP32_Monitor_Frontend_Implementation_Plan",
+      "confidence_score": 1.0,
+      "source_file": "docs/superpowers/plans/2026-04-26-esp32-monitor-frontend-implementation.md",
+      "source_location": "line 11-16",
       "source": "Dark_Theme_Design_System",
-      "target": "ESP32_Monitor_Frontend_Implementation_Plan",
-      "relation": "specifies",
-      "confidence": "EXTRACTED"
+      "target": "ESP32_Monitor_Frontend_Implementation_Plan"
     },
     {
+      "relation": "specifies",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "JetBrains_Mono_Font",
+      "_tgt": "ESP32_Monitor_Frontend_Implementation_Plan",
+      "confidence_score": 1.0,
+      "source_file": "docs/superpowers/plans/2026-04-26-esp32-monitor-frontend-implementation.md",
+      "source_location": "line 13",
       "source": "JetBrains_Mono_Font",
-      "target": "ESP32_Monitor_Frontend_Implementation_Plan",
-      "relation": "specifies",
-      "confidence": "EXTRACTED"
+      "target": "ESP32_Monitor_Frontend_Implementation_Plan"
     },
     {
+      "relation": "specifies",
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "8px_Spacing_System",
+      "_tgt": "ESP32_Monitor_Frontend_Implementation_Plan",
+      "confidence_score": 1.0,
+      "source_file": "docs/superpowers/plans/2026-04-26-esp32-monitor-frontend-implementation.md",
+      "source_location": "line 14",
       "source": "8px_Spacing_System",
-      "target": "ESP32_Monitor_Frontend_Implementation_Plan",
-      "relation": "specifies",
-      "confidence": "EXTRACTED"
+      "target": "ESP32_Monitor_Frontend_Implementation_Plan"
     },
     {
-      "source": "Servo_Control_Plan",
-      "target": "Servo_Control_Design_Spec",
       "relation": "specified_by",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "Servo_Control_Plan",
+      "_tgt": "Servo_Control_Design_Spec",
+      "confidence_score": 1.0,
+      "source_file": "docs/superpowers/plans/2026-04-26-servo-control-plan.md",
+      "source_location": "line 1-10",
+      "source": "Servo_Control_Plan",
+      "target": "Servo_Control_Design_Spec"
     },
     {
-      "source": "Servo_Control_Design_Spec",
-      "target": "angle_to_duty",
       "relation": "describes_formula",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "Servo_Control_Design_Spec",
+      "_tgt": "angle_to_duty",
+      "confidence_score": 1.0,
+      "source_file": "docs/superpowers/specs/2026-04-26-servo-control-design.md",
+      "source_location": "line 25-30",
+      "source": "Servo_Control_Design_Spec",
+      "target": "angle_to_duty"
     },
     {
-      "source": "Servo_Control_Design_Spec",
-      "target": "angle_out_of_range",
       "relation": "defines_error",
-      "confidence": "EXTRACTED"
+      "confidence": "EXTRACTED",
+      "key": 1,
+      "_src": "Servo_Control_Design_Spec",
+      "_tgt": "angle_out_of_range",
+      "confidence_score": 1.0,
+      "source_file": "docs/superpowers/specs/2026-04-26-servo-control-design.md",
+      "source_location": "line 68-69",
+      "source": "Servo_Control_Design_Spec",
+      "target": "angle_out_of_range"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "main/servo.c",
+      "source_location": "line 29",
+      "key": 0,
+      "_src": "angle_to_duty",
+      "_tgt": "SERVO_LEDC_PERIOD",
+      "source": "angle_to_duty",
+      "target": "SERVO_LEDC_PERIOD"
+    },
+    {
+      "relation": "includes",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "graphify-out/GRAPH_REPORT.md",
+      "source_location": "line 147",
+      "key": 0,
+      "_src": "Camera_Surveillance_System",
+      "_tgt": "ws_control",
+      "source": "Camera_Surveillance_System",
+      "target": "ws_control"
+    },
+    {
+      "relation": "includes",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "graphify-out/GRAPH_REPORT.md",
+      "source_location": "line 147",
+      "key": 0,
+      "_src": "Camera_Surveillance_System",
+      "_tgt": "camera_ctrl",
+      "source": "Camera_Surveillance_System",
+      "target": "camera_ctrl"
+    },
+    {
+      "relation": "includes",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "graphify-out/GRAPH_REPORT.md",
+      "source_location": "line 147",
+      "key": 0,
+      "_src": "Camera_Surveillance_System",
+      "_tgt": "camera_server",
+      "source": "Camera_Surveillance_System",
+      "target": "camera_server"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L75",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "app_main_ws_command_callback",
+      "_tgt": "ws_client_ws_client_send_text",
+      "source": "app_main_ws_command_callback",
+      "target": "ws_client_ws_client_send_text"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L104",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "app_main_ws_command_callback",
+      "_tgt": "camera_ctrl_camera_ctrl_capture",
+      "source": "app_main_ws_command_callback",
+      "target": "camera_ctrl_camera_ctrl_capture"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "main\\app_main.c",
+      "source_location": "L108",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "app_main_ws_command_callback",
+      "_tgt": "ws_client_ws_client_send_binary",
+      "source": "app_main_ws_command_callback",
+      "target": "ws_client_ws_client_send_binary"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_task.c",
+      "source_location": "L1",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_task_c",
+      "_tgt": "camera_task",
+      "source": "main_camera_task_c",
+      "target": "camera_task",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_task.c",
+      "source_location": "L2",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_task_c",
+      "_tgt": "camera_driver",
+      "source": "main_camera_task_c",
+      "target": "camera_driver",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_task.c",
+      "source_location": "L3",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_task_c",
+      "_tgt": "shared_mem",
+      "source": "main_camera_task_c",
+      "target": "shared_mem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_task.c",
+      "source_location": "L4",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_task_c",
+      "_tgt": "esp_log",
+      "source": "main_camera_task_c",
+      "target": "esp_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_task.c",
+      "source_location": "L5",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_task_c",
+      "_tgt": "esp_camera",
+      "source": "main_camera_task_c",
+      "target": "esp_camera",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_task.c",
+      "source_location": "L6",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_task_c",
+      "_tgt": "task",
+      "source": "main_camera_task_c",
+      "target": "task",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_task.c",
+      "source_location": "L7",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_task_c",
+      "_tgt": "string",
+      "source": "main_camera_task_c",
+      "target": "string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_task.c",
+      "source_location": "L11",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_task_c",
+      "_tgt": "camera_task_vcameratask",
+      "source": "main_camera_task_c",
+      "target": "camera_task_vcameratask",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_task.c",
+      "source_location": "L155",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_task_c",
+      "_tgt": "camera_task_camera_task_start",
+      "source": "main_camera_task_c",
+      "target": "camera_task_camera_task_start",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_task.c",
+      "source_location": "L165",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_task_c",
+      "_tgt": "camera_task_camera_task_stop",
+      "source": "main_camera_task_c",
+      "target": "camera_task_camera_task_stop",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\camera_task.h",
+      "source_location": "L4",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_camera_task_h",
+      "_tgt": "shared_mem",
+      "source": "main_camera_task_h",
+      "target": "shared_mem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\shared_mem.c",
+      "source_location": "L1",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_shared_mem_c",
+      "_tgt": "shared_mem",
+      "source": "main_shared_mem_c",
+      "target": "shared_mem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\shared_mem.c",
+      "source_location": "L2",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_shared_mem_c",
+      "_tgt": "esp_heap_caps",
+      "source": "main_shared_mem_c",
+      "target": "esp_heap_caps",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\shared_mem.c",
+      "source_location": "L3",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_shared_mem_c",
+      "_tgt": "esp_log",
+      "source": "main_shared_mem_c",
+      "target": "esp_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\shared_mem.c",
+      "source_location": "L4",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_shared_mem_c",
+      "_tgt": "freertos",
+      "source": "main_shared_mem_c",
+      "target": "freertos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\shared_mem.c",
+      "source_location": "L5",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_shared_mem_c",
+      "_tgt": "queue",
+      "source": "main_shared_mem_c",
+      "target": "queue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\shared_mem.c",
+      "source_location": "L6",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_shared_mem_c",
+      "_tgt": "semphr",
+      "source": "main_shared_mem_c",
+      "target": "semphr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\shared_mem.c",
+      "source_location": "L27",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_shared_mem_c",
+      "_tgt": "shared_mem_shared_mem_init",
+      "source": "main_shared_mem_c",
+      "target": "shared_mem_shared_mem_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\shared_mem.c",
+      "source_location": "L66",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_shared_mem_c",
+      "_tgt": "shared_mem_shared_mem_deinit",
+      "source": "main_shared_mem_c",
+      "target": "shared_mem_shared_mem_deinit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\shared_mem.h",
+      "source_location": "L4",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_shared_mem_h",
+      "_tgt": "stdint",
+      "source": "main_shared_mem_h",
+      "target": "stdint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\shared_mem.h",
+      "source_location": "L5",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_shared_mem_h",
+      "_tgt": "stddef",
+      "source": "main_shared_mem_h",
+      "target": "stddef",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\shared_mem.h",
+      "source_location": "L6",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_shared_mem_h",
+      "_tgt": "freertos",
+      "source": "main_shared_mem_h",
+      "target": "freertos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\shared_mem.h",
+      "source_location": "L7",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_shared_mem_h",
+      "_tgt": "queue",
+      "source": "main_shared_mem_h",
+      "target": "queue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L1",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "ws_client",
+      "source": "main_ws_client_c",
+      "target": "ws_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L2",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "shared_mem",
+      "source": "main_ws_client_c",
+      "target": "shared_mem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L3",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "esp_log",
+      "source": "main_ws_client_c",
+      "target": "esp_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L4",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "esp_event",
+      "source": "main_ws_client_c",
+      "target": "esp_event",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L5",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "task",
+      "source": "main_ws_client_c",
+      "target": "task",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L6",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "sockets",
+      "source": "main_ws_client_c",
+      "target": "sockets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L7",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "netdb",
+      "source": "main_ws_client_c",
+      "target": "netdb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L8",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "ip4_addr",
+      "source": "main_ws_client_c",
+      "target": "ip4_addr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L9",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "string",
+      "source": "main_ws_client_c",
+      "target": "string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L10",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "esp_random",
+      "source": "main_ws_client_c",
+      "target": "esp_random",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L37",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "ws_client_next_seq",
+      "source": "main_ws_client_c",
+      "target": "ws_client_next_seq",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L43",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "ws_client_base64_encode",
+      "source": "main_ws_client_c",
+      "target": "ws_client_base64_encode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L61",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "ws_client_sha1_hash",
+      "source": "main_ws_client_c",
+      "target": "ws_client_sha1_hash",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L74",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "ws_client_ws_send_handshake",
+      "source": "main_ws_client_c",
+      "target": "ws_client_ws_send_handshake",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L121",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "ws_client_ws_parse_frame",
+      "source": "main_ws_client_c",
+      "target": "ws_client_ws_parse_frame",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L169",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "ws_client_ws_client_recv_task",
+      "source": "main_ws_client_c",
+      "target": "ws_client_ws_client_recv_task",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L209",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "ws_client_ws_client_reconnect_task",
+      "source": "main_ws_client_c",
+      "target": "ws_client_ws_client_reconnect_task",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L300",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "ws_client_parse_json_command",
+      "source": "main_ws_client_c",
+      "target": "ws_client_parse_json_command",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L338",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "ws_client_ws_client_init",
+      "source": "main_ws_client_c",
+      "target": "ws_client_ws_client_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L348",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "ws_client_ws_client_deinit",
+      "source": "main_ws_client_c",
+      "target": "ws_client_ws_client_deinit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L368",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "ws_client_ws_send_frame",
+      "source": "main_ws_client_c",
+      "target": "ws_client_ws_send_frame",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L397",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "ws_client_ws_client_send_text",
+      "source": "main_ws_client_c",
+      "target": "ws_client_ws_client_send_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L404",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "ws_client_ws_client_send_binary",
+      "source": "main_ws_client_c",
+      "target": "ws_client_ws_client_send_binary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L411",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_c",
+      "_tgt": "ws_client_ws_client_is_connected",
+      "source": "main_ws_client_c",
+      "target": "ws_client_ws_client_is_connected",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L304",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "ws_client_next_seq",
+      "_tgt": "ws_client_parse_json_command",
+      "source": "ws_client_next_seq",
+      "target": "ws_client_parse_json_command",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L82",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "ws_client_base64_encode",
+      "_tgt": "ws_client_ws_send_handshake",
+      "source": "ws_client_base64_encode",
+      "target": "ws_client_ws_send_handshake",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L272",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "ws_client_ws_send_handshake",
+      "_tgt": "ws_client_ws_client_reconnect_task",
+      "source": "ws_client_ws_send_handshake",
+      "target": "ws_client_ws_client_reconnect_task",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L181",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "ws_client_ws_parse_frame",
+      "_tgt": "ws_client_ws_client_recv_task",
+      "source": "ws_client_ws_parse_frame",
+      "target": "ws_client_ws_client_recv_task",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L186",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "ws_client_ws_client_recv_task",
+      "_tgt": "ws_client_parse_json_command",
+      "source": "ws_client_ws_client_recv_task",
+      "target": "ws_client_parse_json_command",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L399",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "ws_client_ws_send_frame",
+      "_tgt": "ws_client_ws_client_send_text",
+      "source": "ws_client_ws_send_frame",
+      "target": "ws_client_ws_client_send_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.c",
+      "source_location": "L406",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "ws_client_ws_send_frame",
+      "_tgt": "ws_client_ws_client_send_binary",
+      "source": "ws_client_ws_send_frame",
+      "target": "ws_client_ws_client_send_binary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.h",
+      "source_location": "L4",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_h",
+      "_tgt": "stdbool",
+      "source": "main_ws_client_h",
+      "target": "stdbool",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.h",
+      "source_location": "L5",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_h",
+      "_tgt": "stdint",
+      "source": "main_ws_client_h",
+      "target": "stdint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "main\\ws_client.h",
+      "source_location": "L6",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "main_ws_client_h",
+      "_tgt": "stddef",
+      "source": "main_ws_client_h",
+      "target": "stddef",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "tests_test_ws_commands_py",
+      "_tgt": "pytest",
+      "source": "tests_test_ws_commands_py",
+      "target": "pytest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "tests_test_ws_commands_py",
+      "_tgt": "json",
+      "source": "tests_test_ws_commands_py",
+      "target": "json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "tests_test_ws_commands_py",
+      "_tgt": "struct",
+      "source": "tests_test_ws_commands_py",
+      "target": "struct",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "tests_test_ws_commands_py",
+      "_tgt": "test_ws_commands_testwscommandprotocol",
+      "source": "tests_test_ws_commands_py",
+      "target": "test_ws_commands_testwscommandprotocol",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "tests_test_ws_commands_py",
+      "_tgt": "test_ws_commands_testwsresponseformat",
+      "source": "tests_test_ws_commands_py",
+      "target": "test_ws_commands_testwsresponseformat",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L119",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "tests_test_ws_commands_py",
+      "_tgt": "test_ws_commands_testjpegbinaryframe",
+      "source": "tests_test_ws_commands_py",
+      "target": "test_ws_commands_testjpegbinaryframe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L145",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "tests_test_ws_commands_py",
+      "_tgt": "test_ws_commands_testcameramsgqueue",
+      "source": "tests_test_ws_commands_py",
+      "target": "test_ws_commands_testcameramsgqueue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "tests_test_ws_commands_py",
+      "_tgt": "test_ws_commands_rationale_1",
+      "source": "tests_test_ws_commands_py",
+      "target": "test_ws_commands_rationale_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwscommandprotocol",
+      "_tgt": "test_ws_commands_testwscommandprotocol_test_parse_camera_on_command",
+      "source": "test_ws_commands_testwscommandprotocol",
+      "target": "test_ws_commands_testwscommandprotocol_test_parse_camera_on_command",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwscommandprotocol",
+      "_tgt": "test_ws_commands_testwscommandprotocol_test_parse_camera_off_command",
+      "source": "test_ws_commands_testwscommandprotocol",
+      "target": "test_ws_commands_testwscommandprotocol_test_parse_camera_off_command",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L25",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwscommandprotocol",
+      "_tgt": "test_ws_commands_testwscommandprotocol_test_parse_servo_command_with_angle",
+      "source": "test_ws_commands_testwscommandprotocol",
+      "target": "test_ws_commands_testwscommandprotocol_test_parse_servo_command_with_angle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwscommandprotocol",
+      "_tgt": "test_ws_commands_testwscommandprotocol_test_parse_capture_command",
+      "source": "test_ws_commands_testwscommandprotocol",
+      "target": "test_ws_commands_testwscommandprotocol_test_parse_capture_command",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwscommandprotocol",
+      "_tgt": "test_ws_commands_testwscommandprotocol_test_parse_stream_start_command",
+      "source": "test_ws_commands_testwscommandprotocol",
+      "target": "test_ws_commands_testwscommandprotocol_test_parse_stream_start_command",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwscommandprotocol",
+      "_tgt": "test_ws_commands_testwscommandprotocol_test_parse_stream_stop_command",
+      "source": "test_ws_commands_testwscommandprotocol",
+      "target": "test_ws_commands_testwscommandprotocol_test_parse_stream_stop_command",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwscommandprotocol",
+      "_tgt": "test_ws_commands_rationale_11",
+      "source": "test_ws_commands_testwscommandprotocol",
+      "target": "test_ws_commands_rationale_11",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwscommandprotocol_test_parse_camera_on_command",
+      "_tgt": "test_ws_commands_rationale_14",
+      "source": "test_ws_commands_testwscommandprotocol_test_parse_camera_on_command",
+      "target": "test_ws_commands_rationale_14",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwscommandprotocol_test_parse_camera_off_command",
+      "_tgt": "test_ws_commands_rationale_20",
+      "source": "test_ws_commands_testwscommandprotocol_test_parse_camera_off_command",
+      "target": "test_ws_commands_rationale_20",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwscommandprotocol_test_parse_servo_command_with_angle",
+      "_tgt": "test_ws_commands_rationale_26",
+      "source": "test_ws_commands_testwscommandprotocol_test_parse_servo_command_with_angle",
+      "target": "test_ws_commands_rationale_26",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwscommandprotocol_test_parse_capture_command",
+      "_tgt": "test_ws_commands_rationale_33",
+      "source": "test_ws_commands_testwscommandprotocol_test_parse_capture_command",
+      "target": "test_ws_commands_rationale_33",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwscommandprotocol_test_parse_stream_start_command",
+      "_tgt": "test_ws_commands_rationale_39",
+      "source": "test_ws_commands_testwscommandprotocol_test_parse_stream_start_command",
+      "target": "test_ws_commands_rationale_39",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwscommandprotocol_test_parse_stream_stop_command",
+      "_tgt": "test_ws_commands_rationale_45",
+      "source": "test_ws_commands_testwscommandprotocol_test_parse_stream_stop_command",
+      "target": "test_ws_commands_rationale_45",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwsresponseformat",
+      "_tgt": "test_ws_commands_testwsresponseformat_test_response_has_seq_field",
+      "source": "test_ws_commands_testwsresponseformat",
+      "target": "test_ws_commands_testwsresponseformat_test_response_has_seq_field",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L66",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwsresponseformat",
+      "_tgt": "test_ws_commands_testwsresponseformat_test_ok_response_camera_on",
+      "source": "test_ws_commands_testwsresponseformat",
+      "target": "test_ws_commands_testwsresponseformat_test_ok_response_camera_on",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwsresponseformat",
+      "_tgt": "test_ws_commands_testwsresponseformat_test_ok_response_servo",
+      "source": "test_ws_commands_testwsresponseformat",
+      "target": "test_ws_commands_testwsresponseformat_test_ok_response_servo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L82",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwsresponseformat",
+      "_tgt": "test_ws_commands_testwsresponseformat_test_ok_response_capture",
+      "source": "test_ws_commands_testwsresponseformat",
+      "target": "test_ws_commands_testwsresponseformat_test_ok_response_capture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L90",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwsresponseformat",
+      "_tgt": "test_ws_commands_testwsresponseformat_test_error_response_init_failed",
+      "source": "test_ws_commands_testwsresponseformat",
+      "target": "test_ws_commands_testwsresponseformat_test_error_response_init_failed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L97",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwsresponseformat",
+      "_tgt": "test_ws_commands_testwsresponseformat_test_error_response_angle_out_of_range",
+      "source": "test_ws_commands_testwsresponseformat",
+      "target": "test_ws_commands_testwsresponseformat_test_error_response_angle_out_of_range",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L104",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwsresponseformat",
+      "_tgt": "test_ws_commands_testwsresponseformat_test_error_response_capture_failed",
+      "source": "test_ws_commands_testwsresponseformat",
+      "target": "test_ws_commands_testwsresponseformat_test_error_response_capture_failed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L111",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwsresponseformat",
+      "_tgt": "test_ws_commands_testwsresponseformat_test_error_response_unknown_command",
+      "source": "test_ws_commands_testwsresponseformat",
+      "target": "test_ws_commands_testwsresponseformat_test_error_response_unknown_command",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwsresponseformat",
+      "_tgt": "test_ws_commands_rationale_52",
+      "source": "test_ws_commands_testwsresponseformat",
+      "target": "test_ws_commands_rationale_52",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwsresponseformat_test_response_has_seq_field",
+      "_tgt": "test_ws_commands_rationale_55",
+      "source": "test_ws_commands_testwsresponseformat_test_response_has_seq_field",
+      "target": "test_ws_commands_rationale_55",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwsresponseformat_test_ok_response_camera_on",
+      "_tgt": "test_ws_commands_rationale_67",
+      "source": "test_ws_commands_testwsresponseformat_test_ok_response_camera_on",
+      "target": "test_ws_commands_rationale_67",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwsresponseformat_test_ok_response_servo",
+      "_tgt": "test_ws_commands_rationale_75",
+      "source": "test_ws_commands_testwsresponseformat_test_ok_response_servo",
+      "target": "test_ws_commands_rationale_75",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L83",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwsresponseformat_test_ok_response_capture",
+      "_tgt": "test_ws_commands_rationale_83",
+      "source": "test_ws_commands_testwsresponseformat_test_ok_response_capture",
+      "target": "test_ws_commands_rationale_83",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L91",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwsresponseformat_test_error_response_init_failed",
+      "_tgt": "test_ws_commands_rationale_91",
+      "source": "test_ws_commands_testwsresponseformat_test_error_response_init_failed",
+      "target": "test_ws_commands_rationale_91",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L98",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwsresponseformat_test_error_response_angle_out_of_range",
+      "_tgt": "test_ws_commands_rationale_98",
+      "source": "test_ws_commands_testwsresponseformat_test_error_response_angle_out_of_range",
+      "target": "test_ws_commands_rationale_98",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L105",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwsresponseformat_test_error_response_capture_failed",
+      "_tgt": "test_ws_commands_rationale_105",
+      "source": "test_ws_commands_testwsresponseformat_test_error_response_capture_failed",
+      "target": "test_ws_commands_rationale_105",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L112",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testwsresponseformat_test_error_response_unknown_command",
+      "_tgt": "test_ws_commands_rationale_112",
+      "source": "test_ws_commands_testwsresponseformat_test_error_response_unknown_command",
+      "target": "test_ws_commands_rationale_112",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L122",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testjpegbinaryframe",
+      "_tgt": "test_ws_commands_testjpegbinaryframe_test_binary_frame_header_format",
+      "source": "test_ws_commands_testjpegbinaryframe",
+      "target": "test_ws_commands_testjpegbinaryframe_test_binary_frame_header_format",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L134",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testjpegbinaryframe",
+      "_tgt": "test_ws_commands_testjpegbinaryframe_test_jpeg_soi_marker",
+      "source": "test_ws_commands_testjpegbinaryframe",
+      "target": "test_ws_commands_testjpegbinaryframe_test_jpeg_soi_marker",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L139",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testjpegbinaryframe",
+      "_tgt": "test_ws_commands_testjpegbinaryframe_test_jpeg_buf_size_constant",
+      "source": "test_ws_commands_testjpegbinaryframe",
+      "target": "test_ws_commands_testjpegbinaryframe_test_jpeg_buf_size_constant",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L120",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testjpegbinaryframe",
+      "_tgt": "test_ws_commands_rationale_120",
+      "source": "test_ws_commands_testjpegbinaryframe",
+      "target": "test_ws_commands_rationale_120",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L123",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testjpegbinaryframe_test_binary_frame_header_format",
+      "_tgt": "test_ws_commands_rationale_123",
+      "source": "test_ws_commands_testjpegbinaryframe_test_binary_frame_header_format",
+      "target": "test_ws_commands_rationale_123",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L135",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testjpegbinaryframe_test_jpeg_soi_marker",
+      "_tgt": "test_ws_commands_rationale_135",
+      "source": "test_ws_commands_testjpegbinaryframe_test_jpeg_soi_marker",
+      "target": "test_ws_commands_rationale_135",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L140",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testjpegbinaryframe_test_jpeg_buf_size_constant",
+      "_tgt": "test_ws_commands_rationale_140",
+      "source": "test_ws_commands_testjpegbinaryframe_test_jpeg_buf_size_constant",
+      "target": "test_ws_commands_rationale_140",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L148",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testcameramsgqueue",
+      "_tgt": "test_ws_commands_testcameramsgqueue_test_queue_message_struct_packing",
+      "source": "test_ws_commands_testcameramsgqueue",
+      "target": "test_ws_commands_testcameramsgqueue_test_queue_message_struct_packing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L173",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testcameramsgqueue",
+      "_tgt": "test_ws_commands_testcameramsgqueue_test_camera_cmd_enum_values",
+      "source": "test_ws_commands_testcameramsgqueue",
+      "target": "test_ws_commands_testcameramsgqueue_test_camera_cmd_enum_values",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L146",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testcameramsgqueue",
+      "_tgt": "test_ws_commands_rationale_146",
+      "source": "test_ws_commands_testcameramsgqueue",
+      "target": "test_ws_commands_rationale_146",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\test_ws_commands.py",
+      "source_location": "L149",
+      "weight": 1.0,
+      "key": 0,
+      "_src": "test_ws_commands_testcameramsgqueue_test_queue_message_struct_packing",
+      "_tgt": "test_ws_commands_rationale_149",
+      "source": "test_ws_commands_testcameramsgqueue_test_queue_message_struct_packing",
+      "target": "test_ws_commands_rationale_149",
+      "confidence_score": 1.0
     }
-  ]
+  ],
+  "hyperedges": []
 }

@@ -1,19 +1,210 @@
+# ESP32 WS Debug Implementation Plan
+
+**Goal:** Create standalone ESP32 debug project that connects to PC WebSocket server, sends heartbeat, prints received messages. Verify WS connection works before integrating with full app.
+
+**Architecture:** Minimal ESP-IDF project with one task: connect WiFi, establish WS connection, send periodic heartbeats, print all received data. Uses mbedTLS SHA1 for correct WS handshake.
+
+**Tech Stack:** ESP-IDF v6.0, mbedTLS, POSIX sockets, aiohttp Python server
+
+---
+
+## File Structure
+
+```
+esp32_ws_debug/
+├── CMakeLists.txt
+├── sdkconfig.defaults
+├── main/
+│   ├── CMakeLists.txt
+│   ├── ws_echo.h           # WS echo interface
+│   ├── ws_echo.c           # WS connection + receive + send
+│   └── app_main.c          # WiFi init + task creation
+└── server/
+    └── echo_server.py      # Python echo WS server (port 11081)
+```
+
+---
+
+## Task 1: Create Directory Structure and Build Config
+
+**Files:**
+- Create: `esp32_ws_debug/CMakeLists.txt`
+- Create: `esp32_ws_debug/sdkconfig.defaults`
+- Create: `esp32_ws_debug/main/CMakeLists.txt`
+
+- [ ] **Step 1: Create directory**
+
+```bash
+mkdir -p esp32_ws_debug/main
+mkdir -p esp32_ws_debug/server
+```
+
+- [ ] **Step 2: Write top-level CMakeLists.txt**
+
+```cmake
+cmake_minimum_required(VERSION 3.16)
+include($ENV{IDF_PATH}/tools/cmake/project.cmake)
+project(ws_echo)
+```
+
+- [ ] **Step 3: Write main/CMakeLists.txt**
+
+```cmake
+idf_component_register(SRCS "app_main.c" "ws_echo.c"
+    INCLUDE_DIRS ".")
+```
+
+- [ ] **Step 4: Write sdkconfig.defaults**
+
+```
+CONFIG_ESP_WIFI_ENABLED=y
+CONFIG_ESP_NETIF_ENABLED=y
+CONFIG_LWIP_ENABLED=y
+CONFIG_ESP_EVENT_LOOP_ENABLED=y
+CONFIG_ESP_WIFI_STATIC_RX_BUFFER_NUM=10
+CONFIG_ESP_WIFI_DYNAMIC_RX_BUFFER_NUM=32
+CONFIG_ESP_WIFI_DYNAMIC_TX_BUFFER_NUM=32
+CONFIG_ESP_WIFI_AMPDU_TX_ENABLED=y
+CONFIG_ESP_WIFI_AMPDU_RX_ENABLED=y
+CONFIG_ESP_WIFI_NVS_ENABLED=y
+CONFIG_LWIP_MAX_SOCKETS=16
+CONFIG_LWIP_SO_REUSE=y
+CONFIG_LWIP_SO_RCVBUF=y
+CONFIG_LWIP_TCP_SND_BUF_DEFAULT=5760
+CONFIG_LWIP_TCP_WND_DEFAULT=5760
+```
+
+---
+
+## Task 2: Write echo_server.py
+
+**Files:**
+- Create: `esp32_ws_debug/server/echo_server.py`
+
+- [ ] **Step 1: Write echo_server.py**
+
+```python
+#!/usr/bin/env python3
+"""Simple WebSocket echo server for ESP32 debug testing."""
+import asyncio
+import json
+from aiohttp import web
+
+PORT = 11081
+
+async def ws_handler(request):
+    ws = web.WebSocketResponse()
+    await ws.prepare(request)
+    print(f"[SERVER] ESP32 connected from {request.transport.get_extra_info('peername')}")
+
+    async for msg in ws:
+        if msg.type == web.WSMsgType.TEXT:
+            print(f"[SERVER] Received: {msg.data}")
+            # Echo back with wrapper
+            try:
+                data = json.loads(msg.data)
+                echo = {"echo": data}
+                await ws.send_str(json.dumps(echo))
+                print(f"[SERVER] Sent echo: {echo}")
+            except json.JSONDecodeError:
+                await ws.send_str(f"{{\"echo\": \"{msg.data}\"}}")
+                print(f"[SERVER] Sent echo (raw): {msg.data}")
+        elif msg.type == web.WSMsgType.BINARY:
+            print(f"[SERVER] Received binary: {msg.data.hex()}")
+            await ws.send_bytes(msg.data)
+
+    print("[SERVER] ESP32 disconnected")
+    return ws
+
+async def main():
+    app = web.Application()
+    app.router.add_get('/debug', ws_handler)
+    runner = web.AppRunner(app)
+    await runner.setup()
+    await web.TCPSite(runner, '0.0.0.0', PORT).start()
+    print(f"[SERVER] Echo server running on ws://0.0.0.0:{PORT}/debug")
+    print("Waiting for ESP32 connection...")
+
+    # Keep alive
+    while True:
+        await asyncio.sleep(3600)
+
+asyncio.run(main())
+```
+
+- [ ] **Step 2: Test server starts**
+
+```bash
+python esp32_ws_debug/server/echo_server.py
+# Expected: "[SERVER] Echo server running on ws://0.0.0.0:11081/debug"
+# Press Ctrl+C to stop
+```
+
+---
+
+## Task 3: Write ws_echo.h
+
+**Files:**
+- Create: `esp32_ws_debug/main/ws_echo.h`
+
+- [ ] **Step 1: Write ws_echo.h**
+
+```c
+#ifndef WS_ECHO_H
+#define WS_ECHO_H
+
+#include <stdint.h>
+#include <stdbool.h>
+
+#define WS_ECHO_SERVER_URI  "ws://10.0.0.232:11081/debug"
+#define WS_ECHO_HEARTBEAT_MS 5000
+#define WS_ECHO_RECONNECT_MAX_MS 30000
+
+typedef enum {
+    WS_ECHO_DISCONNECTED = 0,
+    WS_ECHO_CONNECTING,
+    WS_ECHO_CONNECTED,
+} ws_echo_state_t;
+
+typedef void (*ws_echo_on_receive_t)(const char* data, int len);
+
+void ws_echo_init(ws_echo_on_receive_t callback);
+void ws_echo_deinit(void);
+bool ws_echo_is_connected(void);
+void ws_echo_send(const char* json);
+
+#endif // WS_ECHO_H
+```
+
+---
+
+## Task 4: Write ws_echo.c (Core WS Logic)
+
+**Files:**
+- Create: `esp32_ws_debug/main/ws_echo.c`
+
+- [ ] **Step 1: Write ws_echo.c**
+
+Key implementation details:
+- Use `esp_crypto_hash.h` (mbedTLS wrapper) for correct SHA1
+- Parse URI `ws://host:port/path` manually
+- Use `select()` + non-blocking recv in task loop
+- Masked WS frames (all client frames must be masked per RFC 6455)
+- Send JSON heartbeat every 5 seconds when connected
+- Callback fires for each received text frame
+
+```c
 #include "ws_echo.h"
 #include "esp_log.h"
 #include "esp_timer.h"
 #include "esp_random.h"
-#include "esp_wifi.h"
-#include "esp_netif.h"
+#include "esp_crypto_hash.h"
 #include <string.h>
 #include <sys/socket.h>
 #include <netdb.h>
 #include <arpa/inet.h>
-#include "mbedtls/md.h"
 
 static const char* TAG = "ws_echo";
-
-#define WIFI_SSID     "jhome"
-#define WIFI_PASS     "123698745"
 
 // Server config - parsed from WS_ECHO_SERVER_URI
 static char s_host[64] = {0};
@@ -35,12 +226,19 @@ static bool s_task_running = false;
 // SHA1 for WS handshake - uses mbedTLS via esp_crypto_hash
 // ---------------------------------------------------------------------------
 
-static __attribute__((unused)) bool sha1_raw(const char* data, size_t len, uint8_t* out_sha1_20bytes)
+static bool sha1_raw(const char* data, size_t len, uint8_t* out_sha1_20bytes)
 {
-    mbedtls_md_context_t ctx;
-    mbedtls_md_init(&ctx);
+    // mbedTLS SHA-1: supported in ESP-IDF via mbedtls library
+    // We implement a minimal portable SHA-1 since mbedTLS API varies by IDF version
+    // Use the same approach as ESP-IDF examples (HAL SHA1 or mbedtls_md)
+    // For this debug project, use mbedTLS md_context approach
 
-    const mbedtls_md_info_t* md_info = mbedtls_md_info_from_type(MBEDTLS_MD_SHA1);
+    mbedtls_md_context_t ctx;
+    mbedtls_md_type_t md_type = MBEDTLS_MD_SHA1;
+    const mbedtls_md_info_t* md_info;
+
+    mbedtls_md_init(&ctx);
+    md_info = mbedtls_md_info_from_type(md_type);
     if (!md_info) {
         ESP_LOGE(TAG, "SHA1 info not found");
         mbedtls_md_free(&ctx);
@@ -252,22 +450,14 @@ static bool ws_handshake(int sock)
         s_path, s_host, s_port, key_b64);
 
     ESP_LOGI(TAG, "[HS] Sending handshake...");
-    ESP_LOGI(TAG, "[HS] request prepared, len=%d", (int)strlen(request));
-    ESP_LOGI(TAG, "[HS] s_path=%s s_host=%s s_port=%d", s_path, s_host, s_port);
-    ESP_LOGI(TAG, "[HS] key_b64=%s", key_b64);
-    ESP_LOGI(TAG, "[HS] calling send(sock=%d, len=%d)...", sock, (int)strlen(request));
-    int send_ret = send(sock, request, strlen(request), 0);
-    ESP_LOGI(TAG, "[HS] send ret=%d errno=%d", send_ret, errno);
-    if (send_ret < 0) {
+    if (send(sock, request, strlen(request), 0) < 0) {
         ESP_LOGE(TAG, "[HS] send failed");
         return false;
     }
 
     // Read response
-    ESP_LOGI(TAG, "[HS] calling recv(sock=%d)...", sock);
     char response[1024];
     int received = recv(sock, response, sizeof(response) - 1, 0);
-    ESP_LOGI(TAG, "[HS] recv ret=%d errno=%d", received, errno);
     if (received <= 0) {
         ESP_LOGE(TAG, "[HS] recv failed ret=%d", received);
         return false;
@@ -297,7 +487,7 @@ static void send_heartbeat(void)
     s_seq++;
     char msg[128];
     int len = snprintf(msg, sizeof(msg),
-        "{\"seq\":%lu,\"type\":\"heartbeat\",\"source\":\"esp32\"}", (unsigned long)s_seq);
+        "{\"seq\":%u,\"type\":\"heartbeat\",\"source\":\"esp32\"}", s_seq);
 
     if (ws_send_frame(s_sock_fd, (uint8_t*)msg, len, 0x01)) {
         ESP_LOGI(TAG, "[HB] Sent heartbeat seq=%u", s_seq);
@@ -312,8 +502,8 @@ static void send_heartbeat(void)
 
 static void ws_echo_task(void* param)
 {
-    uint8_t buf[1024];
-    uint8_t payload[1024];
+    uint8_t buf[4096];
+    uint8_t payload[4096];
     int64_t next_reconnect_ms = 0;
     int reconnect_delay_ms = 1000;
 
@@ -330,26 +520,10 @@ static void ws_echo_task(void* param)
                 continue;
             }
 
-            ESP_LOGI(TAG, "[TASK] WiFi SSID='%s' PASS='%s'", WIFI_SSID, WIFI_PASS);
+            ESP_LOGI(TAG, "[TASK] Connecting to %s:%d...", s_host, s_port);
+            s_state = WS_ECHO_CONNECTING;
 
-            // Log current WiFi status
-            wifi_ap_record_t ap_info;
-            if (esp_wifi_sta_get_ap_info(&ap_info) == ESP_OK) {
-                ESP_LOGI(TAG, "[TASK] WiFi connected, RSSI=%d, ch=%d", ap_info.rssi, ap_info.primary);
-            } else {
-                ESP_LOGI(TAG, "[TASK] WiFi not connected to AP");
-            }
-
-            // Log IP info
-            esp_netif_t* netif = esp_netif_get_handle_from_ifkey("WIFI_STA_DEF");
-            if (netif) {
-                esp_netif_ip_info_t ip_info;
-                if (esp_netif_get_ip_info(netif, &ip_info) == ESP_OK) {
-                    ESP_LOGI(TAG, "[TASK] IP: " IPSTR, IP2STR(&ip_info.ip));
-                }
-            }
-
-            ESP_LOGI(TAG, "[TASK] Creating socket...");
+            // Create socket
             int sock = socket(AF_INET, SOCK_STREAM, 0);
             if (sock < 0) {
                 ESP_LOGE(TAG, "[TASK] socket() failed errno=%d", errno);
@@ -507,7 +681,7 @@ void ws_echo_init(ws_echo_on_receive_t callback)
     s_sock_fd = -1;
     s_seq = 0;
     s_task_running = true;
-    xTaskCreate(&ws_echo_task, "ws_echo_task", 16384, NULL, 5, &s_task_handle);
+    xTaskCreate(&ws_echo_task, "ws_echo_task", 8192, NULL, 5, &s_task_handle);
     ESP_LOGI(TAG, "[INIT] Task created handle=%p", (void*)s_task_handle);
 }
 
@@ -537,3 +711,222 @@ void ws_echo_send(const char* json)
         ws_send_frame(s_sock_fd, (const uint8_t*)json, strlen(json), 0x01);
     }
 }
+```
+
+---
+
+## Task 5: Write app_main.c
+
+**Files:**
+- Create: `esp32_ws_debug/main/app_main.c`
+
+- [ ] **Step 1: Write app_main.c**
+
+```c
+#include <stdio.h>
+#include "esp_wifi.h"
+#include "esp_event.h"
+#include "nvs_flash.h"
+#include "ws_echo.h"
+#include "esp_log.h"
+
+static const char* TAG = "app";
+
+#define WIFI_SSID     "jhome"
+#define WIFI_PASS     "123698745"
+#define WIFI_CONNECT_TIMEOUT_MS 30000
+
+static void wifi_event_handler(void* arg, esp_event_base_t event_base,
+                                int32_t event_id, void* event_data)
+{
+    if (event_id == WIFI_EVENT_STA_START) {
+        ESP_LOGI(TAG, "[WiFi] Start connecting...");
+        esp_wifi_connect();
+    } else if (event_id == WIFI_EVENT_STA_DISCONNECTED) {
+        ESP_LOGI(TAG, "[WiFi] Disconnected");
+    } else if (event_id == IP_EVENT_STA_GOT_IP) {
+        ip_event_got_ip_t* event = (ip_event_got_ip_t*)event_data;
+        ESP_LOGI(TAG, "[WiFi] Got IP: " IPSTR, IP2STR(&event->ip_info.ip));
+    }
+}
+
+static void on_receive(const char* data, int len)
+{
+    ESP_LOGI(TAG, "[RCV] %s", data);
+    // Echo the received data back
+    ws_echo_send(data);
+}
+
+void app_main(void)
+{
+    ESP_LOGI(TAG, "=== ESP32 WS Echo Debug ===");
+
+    // NVS init
+    ESP_ERROR_CHECK(nvs_flash_init());
+
+    // TCP/IP init
+    ESP_ERROR_CHECK(esp_netif_init());
+
+    // Event loop
+    ESP_ERROR_CHECK(esp_event_loop_create_default());
+    esp_netif_create_default_wifi_sta();
+
+    // WiFi init
+    wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
+    ESP_ERROR_CHECK(esp_wifi_init(&cfg));
+
+    // Register event handler
+    esp_event_handler_instance_t handler;
+    ESP_ERROR_CHECK(esp_event_handler_instance_register(WIFI_EVENT, ESP_EVENT_ANY_ID,
+        &wifi_event_handler, NULL, &handler));
+    ESP_ERROR_CHECK(esp_event_handler_instance_register(IP_EVENT, IP_EVENT_STA_GOT_IP,
+        &wifi_event_handler, NULL, &handler));
+
+    // Configure station
+    wifi_config_t wifi_cfg = {
+        .sta = {
+            .threshold = { .authmode = WIFI_AUTH_WPA2_PSK },
+        },
+    };
+    memcpy(wifi_cfg.sta.ssid, WIFI_SSID, strlen(WIFI_SSID));
+    memcpy(wifi_cfg.sta.password, WIFI_PASS, strlen(WIFI_PASS));
+
+    ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
+    ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_cfg));
+    ESP_ERROR_CHECK(esp_wifi_start());
+
+    ESP_LOGI(TAG, "[WiFi] WiFi started, connecting to SSID='%s'", WIFI_SSID);
+
+    // Wait for IP (simple polling)
+    int64_t start = esp_timer_get_time() / 1000;
+    while (true) {
+        vTaskDelay(pdMS_TO_TICKS(500));
+        int64_t now = esp_timer_get_time() / 1000;
+        if (now - start > WIFI_CONNECT_TIMEOUT_MS) {
+            ESP_LOGE(TAG, "[WiFi] Timeout waiting for IP!");
+            break;
+        }
+        // Check netif has IP - simplified
+        esp_netif_t* netif = esp_netif_get_handle_from_ifkey("WIFI_STA_DEF");
+        if (netif) {
+            esp_netif_ip_info_t ip_info;
+            if (esp_netif_get_ip_info(netif, &ip_info) == ESP_OK) {
+                if (ip_info.ip.addr != 0) {
+                    ESP_LOGI(TAG, "[WiFi] Connected! IP: " IPSTR, IP2STR(&ip_info.ip));
+                    break;
+                }
+            }
+        }
+    }
+
+    // Start WS echo
+    ESP_LOGI(TAG, "Starting WS echo client...");
+    ws_echo_init(on_receive);
+
+    ESP_LOGI(TAG, "=== System running ===");
+    ESP_LOGI(TAG, "Target server: %s", WS_ECHO_SERVER_URI);
+    ESP_LOGI(TAG, "Heartbeat every %d ms", WS_ECHO_HEARTBEAT_MS);
+}
+```
+
+---
+
+## Task 6: Build and Test
+
+**Files:**
+- Modify: `E:\projects\esp32-rabbit\build_esp32.ps1` (if needed for new project)
+
+- [ ] **Step 1: Verify directory structure**
+
+```bash
+ls -la esp32_ws_debug/
+ls -la esp32_ws_debug/main/
+```
+
+- [ ] **Step 2: Build project**
+
+From `esp32_ws_debug/`:
+```bash
+idf.py build
+```
+Expected: Build succeeds with no errors.
+
+- [ ] **Step 3: Flash to ESP32**
+
+```bash
+idf.py -p COM8 flash monitor
+```
+Note: Use actual COM port from `idf.py list-ports` if COM8 not available.
+
+- [ ] **Step 4: Verify serial output**
+
+Expected serial output:
+```
+I (0) app: === ESP32 WS Echo Debug ===
+I (500) wifi: WiFi started, connecting to SSID='jhome'
+I (1500) wifi: Got IP: 10.0.0.x
+I (2000) ws_echo: URI parsed: host=10.0.0.232 port=11081 path=/debug
+I (2000) ws_echo: [TASK] Starting. Target: 10.0.0.232:11081/debug
+I (2500) ws_echo: [TASK] Connecting to 10.0.0.232:11081...
+I (2600) ws_echo: [HS] Sending handshake...
+I (2700) ws_echo: [HS] Response:
+HTTP/1.1 101 Switching Protocols
+...
+I (2700) ws_echo: [HS] SUCCESS
+I (2700) ws_echo: [TASK] *** WS CONNECTED ***
+I (7500) ws_echo: [HB] Sent heartbeat seq=1
+```
+
+- [ ] **Step 5: Verify echo on server**
+
+PC console shows:
+```
+[SERVER] ESP32 connected from ...
+[SERVER] Received: {"seq":1,"type":"heartbeat","source":"esp32"}
+[SERVER] Sent echo: {"echo": {"seq":1,...}}
+```
+
+- [ ] **Step 6: Test PC→ESP32 message**
+
+In another terminal, use websocat or similar:
+```bash
+websocat ws://10.0.0.232:11081/debug
+# Then type: {"cmd":"test"}
+```
+
+ESP32 serial should show:
+```
+I (xxx) ws_echo: [TASK] recv N bytes:
+  [7b] {  [22] "  ...
+I (xxx) ws_echo: [TASK] WS frame text: {"cmd":"test"}
+I (xxx) app: [RCV] {"cmd":"test"}
+```
+
+---
+
+## Task 7: Commit
+
+- [ ] **Step 1: Stage and commit**
+
+```bash
+git add esp32_ws_debug/
+git commit -m "feat: add standalone ESP32 WS debug project
+
+- ws_echo.c: correct mbedTLS SHA1, WS handshake, masked frames
+- echo_server.py: Python WS server on port 11081
+- app_main.c: WiFi connect + WS echo init
+- Minimal build config in sdkconfig.defaults
+
+First debugging step for WS connection issue."
+```
+
+---
+
+## Verification Checklist
+
+- [ ] echo_server.py starts without error
+- [ ] ESP32 connects to server (serial shows `WS CONNECTED`)
+- [ ] ESP32 sends heartbeat every 5s (visible on PC server)
+- [ ] PC can send message → ESP32 receives and prints it
+- [ ] Build clean (no warnings about SHA1)
+- [ ] Commit created

@@ -30,8 +30,8 @@ static void wifi_event_handler(void* arg, esp_event_base_t event_base,
 static void on_receive(const char* data, int len)
 {
     ESP_LOGI(TAG, "[RCV] %s", data);
-    // Echo the received data back
-    ws_echo_send(data);
+    // Debug only - do not echo back to avoid echo loop
+    // ws_echo_send(data);
 }
 
 void app_main(void)
@@ -101,6 +101,7 @@ void app_main(void)
     ws_echo_init(on_receive);
 
     ESP_LOGI(TAG, "=== System running ===");
+    ESP_LOGI(TAG, "WiFi SSID='%s' PASS='%s'", WIFI_SSID, WIFI_PASS);
     ESP_LOGI(TAG, "Target server: %s", WS_ECHO_SERVER_URI);
     ESP_LOGI(TAG, "Heartbeat every %d ms", WS_ECHO_HEARTBEAT_MS);
 }

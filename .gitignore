@@ -67,6 +67,7 @@ logs/
 
 # AI Coding
 .Claude/
+CLAUDE.local.md
 
 # Worktrees
 .worktrees/

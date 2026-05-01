@@ -2,11 +2,11 @@
 #include "esp_log.h"
 #include "esp_timer.h"
 #include "esp_random.h"
-#include "esp_crypto_hash.h"
 #include <string.h>
 #include <sys/socket.h>
 #include <netdb.h>
 #include <arpa/inet.h>
+#include "mbedtls/md.h"
 
 static const char* TAG = "ws_echo";
 
@@ -30,19 +30,12 @@ static bool s_task_running = false;
 // SHA1 for WS handshake - uses mbedTLS via esp_crypto_hash
 // ---------------------------------------------------------------------------
 
-static bool sha1_raw(const char* data, size_t len, uint8_t* out_sha1_20bytes)
+static __attribute__((unused)) bool sha1_raw(const char* data, size_t len, uint8_t* out_sha1_20bytes)
 {
-    // mbedTLS SHA-1: supported in ESP-IDF via mbedtls library
-    // We implement a minimal portable SHA-1 since mbedTLS API varies by IDF version
-    // Use the same approach as ESP-IDF examples (HAL SHA1 or mbedtls_md)
-    // For this debug project, use mbedTLS md_context approach
-
     mbedtls_md_context_t ctx;
-    mbedtls_md_type_t md_type = MBEDTLS_MD_SHA1;
-    const mbedtls_md_info_t* md_info;
-
     mbedtls_md_init(&ctx);
-    md_info = mbedtls_md_info_from_type(md_type);
+
+    const mbedtls_md_info_t* md_info = mbedtls_md_info_from_type(MBEDTLS_MD_SHA1);
     if (!md_info) {
         ESP_LOGE(TAG, "SHA1 info not found");
         mbedtls_md_free(&ctx);
@@ -291,7 +284,7 @@ static void send_heartbeat(void)
     s_seq++;
     char msg[128];
     int len = snprintf(msg, sizeof(msg),
-        "{\"seq\":%u,\"type\":\"heartbeat\",\"source\":\"esp32\"}", s_seq);
+        "{\"seq\":%lu,\"type\":\"heartbeat\",\"source\":\"esp32\"}", (unsigned long)s_seq);
 
     if (ws_send_frame(s_sock_fd, (uint8_t*)msg, len, 0x01)) {
         ESP_LOGI(TAG, "[HB] Sent heartbeat seq=%u", s_seq);

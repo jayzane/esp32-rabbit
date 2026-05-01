@@ -7,6 +7,7 @@
 #include "lwip/netdb.h"
 #include "lwip/ip4_addr.h"
 #include <string.h>
+#include <sys/time.h>
 #include "esp_random.h"
 
 static const char* TAG = "ws_client";
@@ -171,13 +172,27 @@ static void ws_client_recv_task(void* param)
     ESP_LOGI(TAG, "WS recv task STARTED, s_sock_fd=%d", s_sock_fd);
     uint8_t buf[2048];
     uint8_t payload[2048];
-    int loop_count = 0;
 
     while (s_sock_fd >= 0) {
-        loop_count++;
-        if (loop_count % 1000 == 0) {
-            ESP_LOGI(TAG, "WS recv task alive, loop=%d", loop_count);
+        // Use select() to wait for socket readability (blocks until data or timeout)
+        fd_set read_fds;
+        FD_ZERO(&read_fds);
+        FD_SET(s_sock_fd, &read_fds);
+        struct timeval tv = { .tv_sec = 1, .tv_usec = 0 };  // 1 second timeout
+
+        int sel = select(s_sock_fd + 1, &read_fds, NULL, NULL, &tv);
+        if (sel < 0) {
+            ESP_LOGW(TAG, "WS select error, reconnecting");
+            break;
         }
+        if (sel == 0) {
+            // Timeout - no data, just yield CPU (normal keep-alive state)
+            continue;
+        }
+        if (!FD_ISSET(s_sock_fd, &read_fds)) {
+            continue;
+        }
+
         int received = recv(s_sock_fd, (char*)buf, sizeof(buf) - 1, 0);
         ESP_LOGI(TAG, "WS recv returned: %d bytes", received);
         if (received <= 0) {
@@ -210,9 +225,7 @@ static void ws_client_recv_task(void* param)
         } else if (payload_len == 0) {
             ESP_LOGW(TAG, "WS parse skipped - non-text opcode");
         }
-
-        // Yield CPU to allow network stack and other tasks to run
-        vTaskDelay(pdMS_TO_TICKS(50));
+        // select() above already yielded CPU, no extra delay needed
     }
 
     s_connected = false;

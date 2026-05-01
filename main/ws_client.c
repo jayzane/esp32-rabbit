@@ -210,6 +210,9 @@ static void ws_client_recv_task(void* param)
         } else if (payload_len == 0) {
             ESP_LOGW(TAG, "WS parse skipped - non-text opcode");
         }
+
+        // Yield CPU to allow network stack and other tasks to run
+        vTaskDelay(pdMS_TO_TICKS(50));
     }
 
     s_connected = false;

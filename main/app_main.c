@@ -51,7 +51,7 @@ static void status_heartbeat_task(void* param)
             servo_get_angle());
 
         ws_client_send_text(status_json);
-        ESP_LOGD(TAG, "Heartbeat sent: %s", status_json);
+        ESP_LOGI(TAG, "Heartbeat sent: %s", status_json);
     }
 
     ESP_LOGW(TAG, "WS disconnected, heartbeat stopped");
